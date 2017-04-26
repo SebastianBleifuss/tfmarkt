@@ -22,6 +22,45 @@ namespace AdministrationDerProdukte
         public Hinzufuegen()
         {
             InitializeComponent();
+            txtArtikelnummer.IsReadOnly = true;
+            rbTapete.IsChecked = true;
         }
+
+        private void RadioButtons_Checked(object sender, RoutedEventArgs e)
+        {
+            if (sender == rbTapete)
+            {
+                lblOptionOne.Content = "Länge Tapetenrolle";
+                lblOptionOne.Visibility = Visibility.Visible;
+                txtOptionOne.Visibility = Visibility.Visible;
+                lblOptionTwo.Content = "Tapetenbreite";
+                lblOptionTwo.Visibility = Visibility.Visible;
+                txtOptionTwo.Visibility = Visibility.Visible;
+                lblOptionThree.Content = "Rapport";
+                lblOptionThree.Visibility = Visibility.Visible;
+                txtOptionThree.Visibility = Visibility.Visible;
+            }
+            else if (sender == rbFliese)
+            {
+                lblOptionOne.Content = "Länge";
+                lblOptionOne.Visibility = Visibility.Visible;
+                lblOptionTwo.Content = "Breite";
+                lblOptionTwo.Visibility = Visibility.Visible;
+                lblOptionThree.Visibility = Visibility.Hidden;
+                txtOptionThree.Visibility = Visibility.Hidden;
+            }
+            else if (sender == rbFugenfüller || sender == rbFliesenkleber || sender == rbTapetenkleber)
+            {
+                lblOptionOne.Content = "Ergiebigkeit";
+                lblOptionOne.Visibility = Visibility.Visible;
+                txtOptionOne.Visibility = Visibility.Visible;
+                lblOptionTwo.Visibility = Visibility.Hidden;
+                txtOptionTwo.Visibility = Visibility.Hidden;
+                lblOptionThree.Visibility = Visibility.Hidden;
+                txtOptionThree.Visibility = Visibility.Hidden;
+            }
+        }
+
+
     }
 }
