@@ -2,8 +2,16 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdministrationDerProdukte", "AdministrationDerProdukte\AdministrationDerProdukte.csproj", "{06737AE5-1E7F-468B-9388-4CFFC4BAD8FE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{94EFA374-32F8-48FB-9EC1-4AE906645218} = {94EFA374-32F8-48FB-9EC1-4AE906645218}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tfMarktMain", "tfMarktMain\tfMarktMain.csproj", "{7999F399-7ACF-4E15-8439-3DC5003245E6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{94EFA374-32F8-48FB-9EC1-4AE906645218} = {94EFA374-32F8-48FB-9EC1-4AE906645218}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xmlserializer", "xmlserializer\xmlserializer.csproj", "{94EFA374-32F8-48FB-9EC1-4AE906645218}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,6 +27,10 @@ Global
 		{7999F399-7ACF-4E15-8439-3DC5003245E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7999F399-7ACF-4E15-8439-3DC5003245E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7999F399-7ACF-4E15-8439-3DC5003245E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94EFA374-32F8-48FB-9EC1-4AE906645218}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94EFA374-32F8-48FB-9EC1-4AE906645218}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94EFA374-32F8-48FB-9EC1-4AE906645218}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94EFA374-32F8-48FB-9EC1-4AE906645218}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
