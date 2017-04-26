@@ -34,9 +34,12 @@ namespace AdministrationDerProdukte
             }
         }
 
-        private void txtPasswort_KeyDown(object sender, KeyEventArgs e)
+        private void txtPasswort_KeyDown_1(object sender, KeyEventArgs e)
         {
-
+            if (e.Key == Key.Enter)
+            {
+                Button_Click(sender, e);
+            }
         }
     }
 }
