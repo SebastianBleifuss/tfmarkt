@@ -18,9 +18,7 @@ namespace AdministrationDerProdukte
     /// Interaktionslogik für Login.xaml
     /// </summary>
     public partial class Login : Window
-    {
-        private String passwort;
-        
+    {        
         public Login()
         {
             InitializeComponent();
