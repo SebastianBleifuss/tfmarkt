@@ -10,18 +10,30 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace AdministrationDerProdukte
 {
     /// <summary>
-    /// Interaktionslogik für Hinzufuegen.xaml
+    /// Interaktionslogik für AdministrationDerProdukteGUI.xaml
     /// </summary>
-    public partial class Hinzufuegen : Window
+    public partial class AdministrationDerProdukteGUI : Window
     {
-        public Hinzufuegen()
+        public AdministrationDerProdukteGUI()
         {
             InitializeComponent();
+        }
+
+        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Hinzufuegen fenster = new Hinzufuegen();
+            fenster.ShowDialog();
         }
     }
 }
