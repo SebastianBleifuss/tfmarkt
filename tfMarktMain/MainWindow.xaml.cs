@@ -20,9 +20,43 @@ namespace tfMarktMain
     /// </summary>
     public partial class MainWindow : Window
     {
+        private static int fliesenTabs = 0;
+        private static int tapetenTabs = 0;
+
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void cmdBeenden_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void cmdFliesenAuf_Click(object sender, RoutedEventArgs e)
+        {
+            TabItem fliesenAnsicht = new TabItem();
+            fliesenTabs++;
+            fliesenAnsicht.Name = "tabfliesenAnsicht" + fliesenTabs;
+            fliesenAnsicht.Header = "Fliesen " + fliesenTabs;
+            tabAnsicht.Items.Add(fliesenAnsicht);
+        }
+
+        private void cmdTapetenAuf_Click(object sender, RoutedEventArgs e)
+        {
+            TabItem tapetenAnsicht = new TabItem();
+            fliesenTabs++;
+            tapetenAnsicht.Name = "tabfliesenAnsicht" + tapetenTabs;
+            tapetenAnsicht.Header = "Fliesen " + tapetenTabs;
+            tabAnsicht.Items.Add(tapetenAnsicht);
+        }
+
+        private void cmdGesamtbetragAuf_Click(object sender, RoutedEventArgs e)
+        {
+            TabItem gesamt = new TabItem();
+            gesamt.Name = "Gesamt";
+            gesamt.Header = "Gesamt";
+            tabAnsicht.Items.Add(gesamt);
         }
     }
 }
