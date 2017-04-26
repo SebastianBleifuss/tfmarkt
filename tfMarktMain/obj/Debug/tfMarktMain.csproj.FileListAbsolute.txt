@@ -1,0 +1,12 @@
+D:\Patzelt\ITM\2Block\Projekt\tfmarkt\bin\tfMarktMain.exe.config
+D:\Patzelt\ITM\2Block\Projekt\tfmarkt\bin\tfMarktMain.exe
+D:\Patzelt\ITM\2Block\Projekt\tfmarkt\bin\tfMarktMain.pdb
+D:\Patzelt\ITM\2Block\Projekt\tfmarkt\tfMarktMain\obj\Debug\MainWindow.baml
+D:\Patzelt\ITM\2Block\Projekt\tfmarkt\tfMarktMain\obj\Debug\MainWindow.g.cs
+D:\Patzelt\ITM\2Block\Projekt\tfmarkt\tfMarktMain\obj\Debug\App.g.cs
+D:\Patzelt\ITM\2Block\Projekt\tfmarkt\tfMarktMain\obj\Debug\tfMarktMain_MarkupCompile.cache
+D:\Patzelt\ITM\2Block\Projekt\tfmarkt\tfMarktMain\obj\Debug\tfMarktMain.g.resources
+D:\Patzelt\ITM\2Block\Projekt\tfmarkt\tfMarktMain\obj\Debug\tfMarktMain.Properties.Resources.resources
+D:\Patzelt\ITM\2Block\Projekt\tfmarkt\tfMarktMain\obj\Debug\tfMarktMain.csproj.GenerateResource.Cache
+D:\Patzelt\ITM\2Block\Projekt\tfmarkt\tfMarktMain\obj\Debug\tfMarktMain.exe
+D:\Patzelt\ITM\2Block\Projekt\tfmarkt\tfMarktMain\obj\Debug\tfMarktMain.pdb

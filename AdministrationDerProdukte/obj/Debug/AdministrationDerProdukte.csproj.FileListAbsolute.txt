@@ -13,3 +13,16 @@ C:\Users\Basti Schule\Documents\Visual Studio 2013\Projects\tfMarkt\Administrati
 C:\Users\Basti Schule\Documents\Visual Studio 2013\Projects\tfMarkt\AdministrationDerProdukte\obj\Debug\AdministrationDerProdukte.pdb
 C:\Users\Basti Schule\Documents\Visual Studio 2013\Projects\tfMarkt\AdministrationDerProdukte\obj\Debug\Hinzufuegen.baml
 C:\Users\Basti Schule\Documents\Visual Studio 2013\Projects\tfMarkt\AdministrationDerProdukte\obj\Debug\Hinzufuegen.g.cs
+D:\Patzelt\ITM\2Block\Projekt\tfmarkt\AdministrationDerProdukte\bin\Debug\AdministrationDerProdukte.exe.config
+D:\Patzelt\ITM\2Block\Projekt\tfmarkt\AdministrationDerProdukte\obj\Debug\AdministrationDerProdukte.exe
+D:\Patzelt\ITM\2Block\Projekt\tfmarkt\AdministrationDerProdukte\obj\Debug\AdministrationDerProdukte.pdb
+D:\Patzelt\ITM\2Block\Projekt\tfmarkt\AdministrationDerProdukte\obj\Debug\AdministrationDerProdukte.csprojResolveAssemblyReference.cache
+D:\Patzelt\ITM\2Block\Projekt\tfmarkt\AdministrationDerProdukte\obj\Debug\Hinzufuegen.baml
+D:\Patzelt\ITM\2Block\Projekt\tfmarkt\AdministrationDerProdukte\obj\Debug\MainWindow.baml
+D:\Patzelt\ITM\2Block\Projekt\tfmarkt\AdministrationDerProdukte\obj\Debug\Hinzufuegen.g.cs
+D:\Patzelt\ITM\2Block\Projekt\tfmarkt\AdministrationDerProdukte\obj\Debug\MainWindow.g.cs
+D:\Patzelt\ITM\2Block\Projekt\tfmarkt\AdministrationDerProdukte\obj\Debug\App.g.cs
+D:\Patzelt\ITM\2Block\Projekt\tfmarkt\AdministrationDerProdukte\obj\Debug\AdministrationDerProdukte_MarkupCompile.cache
+D:\Patzelt\ITM\2Block\Projekt\tfmarkt\AdministrationDerProdukte\obj\Debug\AdministrationDerProdukte.g.resources
+D:\Patzelt\ITM\2Block\Projekt\tfmarkt\AdministrationDerProdukte\obj\Debug\AdministrationDerProdukte.Properties.Resources.resources
+D:\Patzelt\ITM\2Block\Projekt\tfmarkt\AdministrationDerProdukte\obj\Debug\AdministrationDerProdukte.csproj.GenerateResource.Cache
