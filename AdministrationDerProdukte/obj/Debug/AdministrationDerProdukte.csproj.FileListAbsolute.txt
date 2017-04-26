@@ -2,8 +2,6 @@ C:\Users\Basti Schule\Documents\Visual Studio 2013\Projects\tfMarkt\Administrati
 C:\Users\Basti Schule\Documents\Visual Studio 2013\Projects\tfMarkt\AdministrationDerProdukte\bin\Debug\AdministrationDerProdukte.exe
 C:\Users\Basti Schule\Documents\Visual Studio 2013\Projects\tfMarkt\AdministrationDerProdukte\bin\Debug\AdministrationDerProdukte.pdb
 C:\Users\Basti Schule\Documents\Visual Studio 2013\Projects\tfMarkt\AdministrationDerProdukte\obj\Debug\AdministrationDerProdukte.csprojResolveAssemblyReference.cache
-C:\Users\Basti Schule\Documents\Visual Studio 2013\Projects\tfMarkt\AdministrationDerProdukte\obj\Debug\MainWindow.baml
-C:\Users\Basti Schule\Documents\Visual Studio 2013\Projects\tfMarkt\AdministrationDerProdukte\obj\Debug\MainWindow.g.cs
 C:\Users\Basti Schule\Documents\Visual Studio 2013\Projects\tfMarkt\AdministrationDerProdukte\obj\Debug\App.g.cs
 C:\Users\Basti Schule\Documents\Visual Studio 2013\Projects\tfMarkt\AdministrationDerProdukte\obj\Debug\AdministrationDerProdukte_MarkupCompile.cache
 C:\Users\Basti Schule\Documents\Visual Studio 2013\Projects\tfMarkt\AdministrationDerProdukte\obj\Debug\AdministrationDerProdukte.g.resources
@@ -26,3 +24,8 @@ D:\Patzelt\ITM\2Block\Projekt\tfmarkt\AdministrationDerProdukte\obj\Debug\Admini
 D:\Patzelt\ITM\2Block\Projekt\tfmarkt\AdministrationDerProdukte\obj\Debug\AdministrationDerProdukte.g.resources
 D:\Patzelt\ITM\2Block\Projekt\tfmarkt\AdministrationDerProdukte\obj\Debug\AdministrationDerProdukte.Properties.Resources.resources
 D:\Patzelt\ITM\2Block\Projekt\tfmarkt\AdministrationDerProdukte\obj\Debug\AdministrationDerProdukte.csproj.GenerateResource.Cache
+C:\Users\Basti Schule\Documents\Visual Studio 2013\Projects\tfmarkt\bin\AdministrationDerProdukte.exe.config
+C:\Users\Basti Schule\Documents\Visual Studio 2013\Projects\tfmarkt\AdministrationDerProdukte\obj\Debug\AdministrationDerProdukteGUI.baml
+C:\Users\Basti Schule\Documents\Visual Studio 2013\Projects\tfmarkt\AdministrationDerProdukte\obj\Debug\AdministrationDerProdukteGUI.g.cs
+C:\Users\Basti Schule\Documents\Visual Studio 2013\Projects\tfmarkt\bin\AdministrationDerProdukte.exe
+C:\Users\Basti Schule\Documents\Visual Studio 2013\Projects\tfmarkt\bin\AdministrationDerProdukte.pdb

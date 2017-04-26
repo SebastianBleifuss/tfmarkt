@@ -10,3 +10,15 @@ D:\Patzelt\ITM\2Block\Projekt\tfmarkt\tfMarktMain\obj\Debug\tfMarktMain.Properti
 D:\Patzelt\ITM\2Block\Projekt\tfmarkt\tfMarktMain\obj\Debug\tfMarktMain.csproj.GenerateResource.Cache
 D:\Patzelt\ITM\2Block\Projekt\tfmarkt\tfMarktMain\obj\Debug\tfMarktMain.exe
 D:\Patzelt\ITM\2Block\Projekt\tfmarkt\tfMarktMain\obj\Debug\tfMarktMain.pdb
+C:\Users\Basti Schule\Documents\Visual Studio 2013\Projects\tfmarkt\bin\tfMarktMain.exe.config
+C:\Users\Basti Schule\Documents\Visual Studio 2013\Projects\tfmarkt\tfMarktMain\obj\Debug\tfMarktMain.exe
+C:\Users\Basti Schule\Documents\Visual Studio 2013\Projects\tfmarkt\tfMarktMain\obj\Debug\tfMarktMain.pdb
+C:\Users\Basti Schule\Documents\Visual Studio 2013\Projects\tfmarkt\bin\tfMarktMain.exe
+C:\Users\Basti Schule\Documents\Visual Studio 2013\Projects\tfmarkt\bin\tfMarktMain.pdb
+C:\Users\Basti Schule\Documents\Visual Studio 2013\Projects\tfmarkt\tfMarktMain\obj\Debug\MainWindow.baml
+C:\Users\Basti Schule\Documents\Visual Studio 2013\Projects\tfmarkt\tfMarktMain\obj\Debug\MainWindow.g.cs
+C:\Users\Basti Schule\Documents\Visual Studio 2013\Projects\tfmarkt\tfMarktMain\obj\Debug\App.g.cs
+C:\Users\Basti Schule\Documents\Visual Studio 2013\Projects\tfmarkt\tfMarktMain\obj\Debug\tfMarktMain_MarkupCompile.cache
+C:\Users\Basti Schule\Documents\Visual Studio 2013\Projects\tfmarkt\tfMarktMain\obj\Debug\tfMarktMain.g.resources
+C:\Users\Basti Schule\Documents\Visual Studio 2013\Projects\tfmarkt\tfMarktMain\obj\Debug\tfMarktMain.Properties.Resources.resources
+C:\Users\Basti Schule\Documents\Visual Studio 2013\Projects\tfmarkt\tfMarktMain\obj\Debug\tfMarktMain.csproj.GenerateResource.Cache
