@@ -2,6 +2,5 @@
 # Diese .gitignore-Datei wurde von Microsoft(R) Visual Studio automatisch erstellt.
 ################################################################################
 
-/AdministrationDerProdukte/obj/
-/bin
-/xmlserializer/obj/
+/bin/
+/tfMarkt.v11.suo
