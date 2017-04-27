@@ -8,9 +8,9 @@ namespace xmlserializer.models
 {
     public abstract class Product
     {
-        private int artikelnummer;
-        private String artikelbezeichnung;
-        private decimal preis;
+        protected int artikelnummer;
+        protected String artikelbezeichnung;
+        protected decimal preis;
 
         public int getArtikelnummer()
         {
