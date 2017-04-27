@@ -26,6 +26,7 @@ namespace tfMarktMain
         public MainWindow()
         {
             InitializeComponent();
+            new CustomerInterface.CustomerInterface().ShowDialog();
         }
 
         private void cmdBeenden_Click(object sender, RoutedEventArgs e)

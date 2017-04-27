@@ -37,11 +37,13 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FooBarCalculation.cs" />
     <Compile Include="models\Calculation.cs" />
     <Compile Include="models\Customer.cs" />
-    <Compile Include="models\Products.cs" />
+    <Compile Include="models\IProducts.cs" />
     <Compile Include="xmlserializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
