@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using xmlserializer.models;
 
-namespace xmlserializer
+namespace xmlserializer.models
 {
     public class Customer
     {
@@ -17,8 +17,8 @@ namespace xmlserializer
 
         public static List<String> getCustomerNames() {
         List<String> CustomerNames = new List<string>();
-        foreach (String Name in Directory.GetFiles(xmlserializer.DATASTORAGEPATH + "\\customer")) {
-            CustomerNames.Add(Name.Replace(".xml", ""));
+        foreach (String Name in Directory.GetFiles(xmlserializer.DATASTORAGEPATH + "\\customers")) {
+            CustomerNames.Add(Name.Replace(".xml", "").Replace("_",", ").Replace("..\\datastorage\\customers\\",""));
         }
         return CustomerNames;
         }

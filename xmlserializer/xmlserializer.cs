@@ -25,7 +25,18 @@ namespace xmlserializer
 
         public static Customer deserialize(String Customername)
         {
-            return null;
+            if (File.Exists(DATASTORAGEPATH + "\\customers\\" + Customername.Replace(", ", "_") + ".xml")) {
+                List<Calculation> ExampleCalcs = new List<Calculation>();
+                ExampleCalcs.Add(new FooBarCalculation());
+                return new Customer()
+                {
+                    Name = "example, customer",
+                    Calculations = ExampleCalcs
+                };
+            }else{
+            throw new FileNotFoundException();
+            }
+           
         }
 
         public static List<IProducts> deserializeAllProducts()

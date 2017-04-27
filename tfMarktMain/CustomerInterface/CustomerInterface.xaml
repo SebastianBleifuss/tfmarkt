@@ -1,0 +1,13 @@
+﻿<Window x:Class="tfMarktMain.CustomerInterface.CustomerInterface"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Kundenverwaltung" Height="302.256" Width="546.992">
+    <Grid>
+        <ComboBox Name="CustomersBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" SelectionChanged="CustomersBox_SelectionChanged">
+            <ComboBoxItem Content="Kunde bitte auswählen!"/>
+        </ComboBox>
+        <ListBox Name="CalculationListBox" HorizontalAlignment="Left" Height="223" Margin="0,48,0,0" VerticalAlignment="Top" Width="200" RenderTransformOrigin="-0.086,-0.04" MouseDoubleClick="CalculationListBox_MouseDoubleClick"/>
+        <Label Content="Kalkulationen" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,22,0,0" Width="200"/>
+
+    </Grid>
+</Window>

@@ -23,6 +23,7 @@ namespace tfMarktMain
         public MainWindow()
         {
             InitializeComponent();
+            new CustomerInterface.CustomerInterface().ShowDialog();
         }
     }
 }
