@@ -43,7 +43,7 @@
     <Compile Include="FooBarCalculation.cs" />
     <Compile Include="models\Calculation.cs" />
     <Compile Include="models\Customer.cs" />
-    <Compile Include="models\IProducts.cs" />
+    <Compile Include="models\Products.cs" />
     <Compile Include="xmlserializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

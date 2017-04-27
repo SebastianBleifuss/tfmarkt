@@ -18,7 +18,7 @@ namespace xmlserializer
         
         }
 
-        public static void serialize<T>(T Product) where T : IProducts
+        public static void serialize<T>(T Product) where T : Product
         {
 
         }
@@ -39,7 +39,7 @@ namespace xmlserializer
            
         }
 
-        public static List<IProducts> deserializeAllProducts()
+        public static List<Product> deserializeAllProducts()
         {
             //DATASTORAGEPATH + "\\products\\products.xml"
             return null;
