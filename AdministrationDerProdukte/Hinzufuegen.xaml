@@ -10,7 +10,7 @@
             <RowDefinition Height="97*"/>
             <RowDefinition Height="213*"/>
         </Grid.RowDefinitions>
-        <Label Content="Hinzufügen" Margin="10,10,0,0" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" Width="178" Height="41" VerticalAlignment="Top"/>
+        <Label Content="Hinzufügen" Margin="10,10,0,0" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" Width="178" Height="43" VerticalAlignment="Top"/>
         <RadioButton x:Name="rbTapete" Content="Tapete" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top" Height="15" Width="55" Checked="RadioButtons_Checked"/>
         <RadioButton x:Name="rbFliese" Content="Fliese" HorizontalAlignment="Left" Margin="113,70,0,0" VerticalAlignment="Top" Height="15" Width="48" Checked="RadioButtons_Checked"/>
         <Label x:Name="lblArtikelbezeichnung" Content="Artikelbezeichnung" HorizontalAlignment="Left" Margin="11,38,0,0" Grid.Row="1" VerticalAlignment="Top"/>
