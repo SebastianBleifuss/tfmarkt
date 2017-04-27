@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace xmlserializer
 {
-    public interface Products
+    public interface IProducts
     {
-        public int Artikelnummer;
-        public string Produktbeschreibung;
-        public decimal Preis;
     }
 }
