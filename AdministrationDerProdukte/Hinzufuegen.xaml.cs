@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Text.RegularExpressions;
 
 namespace AdministrationDerProdukte
 {
@@ -62,5 +63,24 @@ namespace AdministrationDerProdukte
         }
 
 
+
+        private bool checkTxtPreis()
+        {
+            decimal temp;
+            return Decimal.TryParse(txtPreis.Text, out temp);
+        }
+
+        private void checkDecimal_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox txtSender = (TextBox) sender;
+            if (checkTxtPreis())
+            {
+                txtSender.Foreground = Brushes.Black;
+            }
+            else
+            {
+                txtSender.Foreground = Brushes.Red;
+            }
+        }
     }
 }

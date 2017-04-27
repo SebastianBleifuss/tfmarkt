@@ -16,13 +16,13 @@
         <Label x:Name="lblArtikelbezeichnung" Content="Artikelbezeichnung" HorizontalAlignment="Left" Margin="11,38,0,0" Grid.Row="1" VerticalAlignment="Top"/>
         <TextBox x:Name="txtArtikelbezeichnung" HorizontalAlignment="Left" Height="26" Margin="192,38,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="217"/>
         <Label x:Name="lblOptionOne" Content="Länge Tapetenrolle" HorizontalAlignment="Left" Margin="12,69,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtOptionOne" HorizontalAlignment="Left" Height="26" Margin="192,69,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="217"/>
+        <TextBox x:Name="txtOptionOne" TextChanged="checkDecimal_TextChanged" HorizontalAlignment="Left" Height="26" Margin="192,69,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="217"/>
         <Label x:Name="lblOptionTwo" Content="Breite Tapetenrolle" HorizontalAlignment="Left" Margin="11,100,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtOptionTwo" HorizontalAlignment="Left" Height="26" Margin="192,100,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="217"/>
+        <TextBox x:Name="txtOptionTwo" TextChanged="checkDecimal_TextChanged" HorizontalAlignment="Left" Height="26" Margin="192,100,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="217"/>
         <Label x:Name="lblOptionThree" Content="Rapport" HorizontalAlignment="Left" Margin="11,131,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtOptionThree" HorizontalAlignment="Left" Height="26" Margin="192,131,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="217"/>
+        <TextBox x:Name="txtOptionThree" TextChanged="checkDecimal_TextChanged" HorizontalAlignment="Left" Height="26" Margin="192,131,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="217"/>
         <Label x:Name="lblPreis" Content="Preis" HorizontalAlignment="Left" Margin="11,162,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtPreis" HorizontalAlignment="Left" Height="26" Margin="192,162,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="217"/>
+        <TextBox x:Name="txtPreis" HorizontalAlignment="Left" TextChanged="checkDecimal_TextChanged" Height="26" Margin="192,162,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="217"/>
         <Label x:Name="lblArtikelnummer" Content="Artikelnummer" HorizontalAlignment="Left" Margin="12,7,0,0" Grid.Row="1" VerticalAlignment="Top"/>
         <TextBox x:Name="txtArtikelnummer" HorizontalAlignment="Left" Height="26" Margin="192,7,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="217" IsReadOnlyCaretVisible="True" Background="#FFABADB3"/>
         <RadioButton x:Name="rbFliesenkleber" Content="Fliesenkleber" HorizontalAlignment="Left" Margin="192,70,0,0" VerticalAlignment="Top" Height="15" Width="97" Checked="RadioButtons_Checked"/>
