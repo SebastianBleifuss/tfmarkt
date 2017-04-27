@@ -3,6 +3,22 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+
+            <ColumnDefinition Width="25*"/>
+            <ColumnDefinition Width="75*"/>
+
+        </Grid.ColumnDefinitions>
+        <Button x:Name="cmdAndererKunde" Content="Anderer Kunde" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="109"/>
+        <Button x:Name="cmdFliesenAuf" Content="Fliesen" HorizontalAlignment="Left" Margin="10,75,0,0" VerticalAlignment="Top" Width="109" RenderTransformOrigin="0.027,-0.2"/>
+        <Button x:Name="cmdTapetenAuf" Content="Tapeten" HorizontalAlignment="Left" Margin="10,149,0,0" VerticalAlignment="Top" Width="109"/>
+        <Button x:Name="cmdGesamtbetragAuf" Content="Gesamtbetrag" HorizontalAlignment="Left" Margin="10,222,0,0" VerticalAlignment="Top" Width="109"/>
+        <Button x:Name="cmdBeenden" Content="Beenden" HorizontalAlignment="Left" Margin="10,289,0,0" VerticalAlignment="Top" Width="109" Click="cmdBeenden_Click"/>
+        <TabControl x:Name="tabAnsicht" Grid.Column="1" HorizontalAlignment="Left" Height="299" Margin="10,10,0,0" VerticalAlignment="Top" Width="368">
+            <TabItem x:Name="tabKunde" Header="Kunde">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+        </TabControl>
+
     </Grid>
 </Window>
