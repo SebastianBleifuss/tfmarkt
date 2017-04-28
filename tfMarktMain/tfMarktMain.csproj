@@ -53,14 +53,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="CustomerInterface\CustomerInterface.xaml.cs">
-      <DependentUpon>CustomerInterface.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="TestKalkulation.cs" />
-    <Page Include="CustomerInterface\CustomerInterface.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Fliesenkalkulation\FliesenkalkulationGUI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -73,6 +65,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Export\TotalCalculation.cs" />
     <Compile Include="Fliesenkalkulation\FliesenkalkulationGUI.xaml.cs">
       <DependentUpon>FliesenkalkulationGUI.xaml</DependentUpon>
     </Compile>
