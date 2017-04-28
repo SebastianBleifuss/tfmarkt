@@ -14,13 +14,13 @@ namespace xmlserializer.Models
         protected Type ProductType;
 
         public void setProductType(Type t) {
-            if (t.IsAssignableFrom(typeof(Calculation)))
+            if (t.IsAssignableFrom(typeof(Product)))
             {
                 this.ProductType = t;
             }
             else
             {
-                throw new InvalidOperationException("Not iherit Calculations");
+                throw new InvalidOperationException("Not inherit Product");
             }
         }
 

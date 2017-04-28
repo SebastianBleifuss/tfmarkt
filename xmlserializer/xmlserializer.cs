@@ -31,7 +31,9 @@ namespace xmlserializer
 
         public static void serialize<T>(T Product) where T : Product
         {
+            XmlDocument doc = new XmlDocument();
 
+            doc.Save(DATASTORAGEPATH + "\\products\\" + Product.getProductType().Name + ".xml");
         }
 
         public static Customer deserialize(String Customername)

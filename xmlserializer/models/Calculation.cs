@@ -12,6 +12,9 @@ namespace xmlserializer.Models
         public Guid Identifier = Guid.NewGuid();
         public String Description = "undefined";
         public Type CalculationType;
+        public int Amount;
+        public Product SelectedProduct;
+        
 
 
         public override string ToString()
