@@ -46,6 +46,7 @@
     <Compile Include="Models\Product.cs" />
     <Compile Include="XmlDocuments\CalculationXmlDokument.cs" />
     <Compile Include="XmlDocuments\CustomerXmlDocument.cs" />
+
     <Compile Include="xmlserializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

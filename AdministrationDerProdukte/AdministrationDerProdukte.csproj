@@ -67,6 +67,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Fliese.cs" />
     <Compile Include="Hinzufuegen.xaml.cs">
       <DependentUpon>Hinzufuegen.xaml</DependentUpon>
     </Compile>
@@ -108,6 +109,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\xmlserializer\xmlserializer.csproj">
+      <Project>{94efa374-32f8-48fb-9ec1-4ae906645218}</Project>
+      <Name>xmlserializer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
