@@ -6,8 +6,9 @@
         <ComboBox Name="CustomersBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" SelectionChanged="CustomersBox_SelectionChanged">
             <ComboBoxItem Content="Kunde bitte auswählen!"/>
         </ComboBox>
-        <ListBox Name="CalculationListBox" HorizontalAlignment="Left" Height="223" Margin="0,48,0,0" VerticalAlignment="Top" Width="200" RenderTransformOrigin="-0.086,-0.04" MouseDoubleClick="CalculationListBox_MouseDoubleClick"/>
+        <ListBox Name="CalculationListBox" HorizontalAlignment="Left" Height="223" Margin="0,48,0,0" VerticalAlignment="Top" Width="539" RenderTransformOrigin="-0.086,-0.04" MouseDoubleClick="CalculationListBox_MouseDoubleClick"/>
         <Label Content="Kalkulationen" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,22,0,0" Width="200"/>
+        <Button Content="Save Customer" HorizontalAlignment="Left" Margin="439,0,0,0" VerticalAlignment="Top" Width="100" Click="Save_Customer_Click"/>
 
     </Grid>
 </Window>

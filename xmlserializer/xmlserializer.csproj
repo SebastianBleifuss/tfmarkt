@@ -41,9 +41,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FooBarCalculation.cs" />
-    <Compile Include="models\Calculation.cs" />
-    <Compile Include="models\Customer.cs" />
-    <Compile Include="models\Products.cs" />
+    <Compile Include="Models\Calculation.cs" />
+    <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="XmlDocuments\CalculationXmlDokument.cs" />
+    <Compile Include="XmlDocuments\CustomerXmlDocument.cs" />
+
     <Compile Include="xmlserializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

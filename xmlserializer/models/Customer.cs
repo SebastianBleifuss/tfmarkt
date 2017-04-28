@@ -5,14 +5,14 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using xmlserializer.models;
+using xmlserializer.Models;
 
-namespace xmlserializer.models
+namespace xmlserializer.Models
 {
     public class Customer
     {
         public String Name;
-        public List<Calculation> Calculations;
+        public Dictionary<Guid,Calculation> Calculations;
 
 
         public static List<String> getCustomerNames() {

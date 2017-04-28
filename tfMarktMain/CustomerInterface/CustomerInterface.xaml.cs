@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using xmlserializer.models;
+using xmlserializer.Models;
 
 namespace tfMarktMain.CustomerInterface
 {
@@ -38,17 +38,19 @@ namespace tfMarktMain.CustomerInterface
         {
            SelectedCustomer = xmlserializer.xmlserializer.deserialize(((ComboBoxItem)sender).Content.ToString());
            CalculationListBox.Items.Clear();
-            foreach(Calculation calc in SelectedCustomer.Calculations){
-                CalculationListBox.Items.Add(calc.CalculationType.Name +" ["+ calc.date.ToShortDateString()+"]");
-            }
+
+           foreach (Calculation calc in SelectedCustomer.Calculations.Values)
+           {
+               CalculationListBox.Items.Add(calc);
+           }
         }
 
         private void CalculationListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (CalculationListBox.SelectedIndex != null && CalculationListBox.SelectedIndex != -1)
+            if (CalculationListBox.SelectedIndex != -1)
             {
-                Calculation calc = SelectedCustomer.Calculations[CalculationListBox.SelectedIndex];
-                MessageBox.Show(calc.IDENTIFIER.ToString());
+                Calculation calc = SelectedCustomer.Calculations.Values.ToArray()[CalculationListBox.SelectedIndex];
+                MessageBox.Show(calc.Identifier.ToString() + " - " + calc.Description);
             }
         }
 
@@ -56,6 +58,14 @@ namespace tfMarktMain.CustomerInterface
         {
             if (CustomersBox.SelectedIndex == 0) {
                 CalculationListBox.Items.Clear();
+            }
+        }
+
+        private void Save_Customer_Click(object sender, RoutedEventArgs e)
+        {
+            if (SelectedCustomer != null)
+            {
+                xmlserializer.xmlserializer.serialize(SelectedCustomer);
             }
         }
     }
