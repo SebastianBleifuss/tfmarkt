@@ -15,7 +15,7 @@ namespace xmlserializer.Models
         /// <summary>
         /// Identifier of calculations
         /// </summary>
-        public Guid Identifier = Guid.NewGuid();
+        public Guid Identifier;
 
         /// <summary>
         /// Description used as displayed name

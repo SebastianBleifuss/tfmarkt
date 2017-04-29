@@ -126,9 +126,19 @@ namespace tfMarktMain
             else {
                 MessageBox.Show("Keine Kalkulationen vorhanden!");
             }
-            
         }
 
+        private Guid generateGuid()
+        {
+            // Prüfen, ob Kunde schon Kalkulation mit GUID hat.
+            Guid NewGuid = Guid.NewGuid();
+            Calculation tmp;
+            while (SelectedCustomer.Calculations.TryGetValue(NewGuid, out tmp))
+            {
+                NewGuid = Guid.NewGuid();
+            }
+            return NewGuid;
+        }
       
     }
 }
