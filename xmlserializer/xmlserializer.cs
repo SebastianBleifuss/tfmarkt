@@ -29,12 +29,6 @@ namespace xmlserializer
             doc.Save(DATASTORAGEPATH + "\\customers\\" + Customer.Name.Replace(", ", "_") + ".xml");
         }
 
-        public static void serialize<T>(T Product) where T : Product
-        {
-            XmlDocument doc = new XmlDocument();
-
-            doc.Save(DATASTORAGEPATH + "\\products\\" + Product.getProductType().Name + ".xml");
-        }
 
         public static Customer deserialize(String Customername)
         {
@@ -49,13 +43,36 @@ namespace xmlserializer
             {
                 throw new FileNotFoundException();
             }
+        }
 
+        public static void serialize(Product Product)
+        {
+            XmlDocument doc = new XmlDocument();
+
+            XmlDeclaration xmlDeclaration = doc.CreateXmlDeclaration("1.0", "UTF-8", null);
+            XmlElement docElement = doc.DocumentElement;
+            doc.InsertBefore(xmlDeclaration, docElement);
+
+            XmlElement root = doc.CreateProductElement(Product);
+            doc.AppendChild(root);
+
+            doc.Save(DATASTORAGEPATH+"\\products\\" + Product.getArtikelbezeichnung().Replace(" ","_") + ".xml");
         }
 
         public static List<Product> deserializeAllProducts()
         {
-            //DATASTORAGEPATH + "\\products\\products.xml"
-            return null;
+            XmlDocument doc = new XmlDocument();
+
+            List<Product> ProductList = new List<Product>();
+            foreach (String Name in Directory.GetFiles(DATASTORAGEPATH + "\\products"))
+            {
+                doc.Load(Name);
+                ProductList.Add(doc.GetProductFromNode(doc.DocumentElement));
+            }
+
+            return ProductList;
         }
+
+
     }
 }

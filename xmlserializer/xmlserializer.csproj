@@ -41,12 +41,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FooBarCalculation.cs" />
+    <Compile Include="FooBarProduct.cs" />
     <Compile Include="Models\Calculation.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="XmlDocuments\CalculationXmlDokument.cs" />
     <Compile Include="XmlDocuments\CustomerXmlDocument.cs" />
-
+    <Compile Include="XmlDocuments\ProductXmlDokument.cs" />
     <Compile Include="xmlserializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
