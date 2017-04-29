@@ -13,7 +13,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using xmlserializer.Models;
-using static tfMarktMain.Export.PDFFactory;
 
 namespace tfMarktMain
 {
@@ -36,7 +35,6 @@ namespace tfMarktMain
                 CustomersBox.Items.Add(NewComboItem);
             }
             CustomersBox.SelectedIndex = 0;
-            SelectedCustomer = new Customer();
         }
 
         private Customer SelectedCustomer;
@@ -58,7 +56,6 @@ namespace tfMarktMain
             {
                 Calculation calc = SelectedCustomer.Calculations.Values.ToArray()[CalculationListBox.SelectedIndex];
                 MessageBox.Show(calc.Identifier.ToString() + " - " + calc.Description);
-                MessageBox.Show(calc.SelectedProduct.getArtikelbezeichnung());
             }
         }
 
@@ -111,17 +108,7 @@ namespace tfMarktMain
 
         private void Generate_TotalCalculation_Click(object sender, RoutedEventArgs e)
         {
-            if (SelectedCustomer.Calculations.Count > 0)
-            {
-                CustomerPDFDocument cpd = new CustomerPDFDocument(SelectedCustomer);
-                cpd.showPDF();
-                cpd.printPDF(false);
-                //cpd.savePDF(true);
-            }
-            else {
-                MessageBox.Show("Keine Kalkulationen vorhanden!");
-            }
-            
+            Export.TotalCalculation.GenerateTotalCalculation(SelectedCustomer);
         }
 
       

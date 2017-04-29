@@ -14,18 +14,8 @@ namespace xmlserializer.Models
         public Type CalculationType;
         public int Amount;
         public Product SelectedProduct;
+        
 
-        public void setCalculationType(Type t)
-        {
-            if (typeof(Calculation).IsAssignableFrom(t))
-            {
-                this.CalculationType = t;
-            }
-            else
-            {
-                throw new InvalidOperationException("Not inherit Calculation");
-            }
-        }
 
         public override string ToString()
         {

@@ -12,8 +12,7 @@ namespace xmlserializer.Models
     public class Customer
     {
         public String Name;
-        public Guid Customernumber = Guid.NewGuid();
-        public Dictionary<Guid,Calculation> Calculations = new Dictionary<Guid, Calculation>();
+        public Dictionary<Guid,Calculation> Calculations;
 
 
         public static List<String> getCustomerNames() {
