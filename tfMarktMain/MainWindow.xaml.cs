@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using xmlserializer.Models;
-using static tfMarktMain.Export.PDFFactory;
+using tfMarktMain.Export;
 
 namespace tfMarktMain
 {
@@ -113,7 +113,7 @@ namespace tfMarktMain
         {
             if (SelectedCustomer.Calculations.Count > 0)
             {
-                CustomerPDFDocument cpd = new CustomerPDFDocument(SelectedCustomer);
+                tfMarktMain.Export.PDFFactory.CustomerPDFDocument cpd = new tfMarktMain.Export.PDFFactory.CustomerPDFDocument(SelectedCustomer);
                 cpd.showPDF();
                 cpd.printPDF(false);
                 //cpd.savePDF(true);
