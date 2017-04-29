@@ -34,6 +34,18 @@ namespace xmlserializer.XmlDocuments
             );
             root.AppendChild(CalculationType);
 
+            XmlElement Amount = doc.CreateElement(string.Empty, "Amount", string.Empty);
+            Amount.AppendChild(
+                doc.CreateTextNode(calc.Amount.ToString())
+            );
+            root.AppendChild(Amount);
+
+            XmlElement Product = doc.CreateElement(string.Empty, "Product", string.Empty);
+
+            root.AppendChild(doc.CreateProductElement(calc.SelectedProduct));
+
+
+
             Type calcType = calc.CalculationType;
 
                 if (calcType.Equals(typeof(FooBarCalculation)))
@@ -76,6 +88,8 @@ namespace xmlserializer.XmlDocuments
             LoadingCalculation.Identifier = Guid.Parse(CalculationNode.SelectSingleNode("Identifier").InnerText);
             LoadingCalculation.Description = CalculationNode.SelectSingleNode("Description").InnerText;
             LoadingCalculation.CalculationType = CalculationType;
+            LoadingCalculation.Amount = Int32.Parse(CalculationNode.SelectSingleNode("Amount").InnerText);
+            LoadingCalculation.SelectedProduct = doc.GetProductFromNode(CalculationNode.SelectSingleNode("Product"));
 
             if (CalculationType.Equals(typeof(FooBarCalculation)))
             {

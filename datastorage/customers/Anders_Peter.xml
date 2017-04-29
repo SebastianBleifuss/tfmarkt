@@ -3,14 +3,28 @@
   <Name>Anders, Peter</Name>
   <Calculations>
     <Calculation>
-      <Identifier>2affcf02-d858-4749-94a1-57cf0c66bf02</Identifier>
+      <Identifier>5993c087-e581-4347-a60a-71dc2291321c</Identifier>
       <Description>Test123</Description>
       <CalculationType>xmlserializer.FooBarCalculation, xmlserializer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</CalculationType>
+      <Amount>0</Amount>
+      <Product>
+        <Articlenumber>0</Articlenumber>
+        <Articledescription>WunderFliese</Articledescription>
+        <Price>13,99</Price>
+        <ProductType>xmlserializer.FooBarProduct, xmlserializer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</ProductType>
+      </Product>
     </Calculation>
     <Calculation>
-      <Identifier>fa5ee03d-e229-4ae4-b830-6ab3473e8dc6</Identifier>
+      <Identifier>8cd76203-cc74-4e28-a26e-f7d72aa2c31a</Identifier>
       <Description>Test456</Description>
       <CalculationType>xmlserializer.FooBarCalculation, xmlserializer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</CalculationType>
+      <Amount>0</Amount>
+      <Product>
+        <Articlenumber>0</Articlenumber>
+        <Articledescription>Wolkentapete</Articledescription>
+        <Price>0,99</Price>
+        <ProductType>xmlserializer.FooBarProduct, xmlserializer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</ProductType>
+      </Product>
     </Calculation>
   </Calculations>
 </Customer>

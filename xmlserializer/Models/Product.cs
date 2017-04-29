@@ -13,8 +13,13 @@ namespace xmlserializer.Models
         protected decimal preis;
         protected Type ProductType;
 
-        public void setProductType(Type t) {
-            if (t.IsAssignableFrom(typeof(Product)))
+        public Product()
+        {
+        }
+
+        public void setProductType(Type t)
+        {
+            if (typeof(Product).IsAssignableFrom(t))
             {
                 this.ProductType = t;
             }
@@ -24,13 +29,24 @@ namespace xmlserializer.Models
             }
         }
 
-        public Type getProductType() {
+        public Type getProductType()
+        {
             return ProductType;
         }
 
         public int getArtikelnummer()
         {
             return artikelnummer;
+        }
+
+        public void setArtikelnummer(int nummer)
+        {
+            artikelnummer = nummer;
+        }
+
+        public void setArtikelbezeichnung(String bez)
+        {
+            artikelbezeichnung = bez;
         }
 
         public String getArtikelbezeichnung()
@@ -42,5 +58,24 @@ namespace xmlserializer.Models
         {
             return preis;
         }
+
+        public void setPreis(decimal price)
+        {
+            preis = price;
+        }
+
+        public static Type GetType(String AssemblyQualifiedName)
+        {
+            if (AssemblyQualifiedName.Equals(typeof(FooBarProduct).AssemblyQualifiedName))
+            {
+                return typeof(FooBarProduct);
+            }
+            else
+            {
+                throw new NotSupportedException(AssemblyQualifiedName + " is not supported!");
+            }
+            //Erweitern!
+        }
+
     }
 }
