@@ -85,28 +85,33 @@ namespace tfMarktMain
 
         private void cmdFliesenAuf_Click(object sender, RoutedEventArgs e)
         {
-            TabItem fliesenAnsicht = new TabItem();
-            fliesenTabs++;
-            fliesenAnsicht.Name = "tabfliesenAnsicht" + fliesenTabs;
-            fliesenAnsicht.Header = "Fliesen " + fliesenTabs;
-            tabAnsicht.Items.Add(fliesenAnsicht);
+            neuerTab("Fliesen", "tabFliesenAnsicht", fliesenTabs);
         }
 
         private void cmdTapetenAuf_Click(object sender, RoutedEventArgs e)
         {
-            TabItem tapetenAnsicht = new TabItem();
-            fliesenTabs++;
-            tapetenAnsicht.Name = "tabfliesenAnsicht" + tapetenTabs;
-            tapetenAnsicht.Header = "Fliesen " + tapetenTabs;
-            tabAnsicht.Items.Add(tapetenAnsicht);
+            neuerTab("Tapeten", "tabTapetenAnsicht", tapetenTabs);
         }
 
         private void cmdGesamtbetragAuf_Click(object sender, RoutedEventArgs e)
         {
-            TabItem gesamt = new TabItem();
-            gesamt.Name = "Gesamt";
-            gesamt.Header = "Gesamt";
-            tabAnsicht.Items.Add(gesamt);
+            neuerTab("Gesamt", "tabGesamt", 0);
+        }
+
+        private void neuerTab(String tabname, String tabBezeichnung, int anzahl)
+        {
+            TabItem tab = new TabItem();
+            if (anzahl > 0)
+            {
+                tab.Name = tabname + anzahl;
+                tab.Header = tabname + anzahl;
+            }
+            else
+            {
+                tab.Name = tabname;
+                tab.Header = tabname;
+            }
+            tabAnsicht.Items.Add(tab);
         }
 
         private void Generate_TotalCalculation_Click(object sender, RoutedEventArgs e)
