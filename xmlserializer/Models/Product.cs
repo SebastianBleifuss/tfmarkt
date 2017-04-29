@@ -6,20 +6,45 @@ using System.Threading.Tasks;
 
 namespace xmlserializer.Models
 {
+    /// <summary>
+    /// Abstract Class defines Product
+    /// </summary>
     public abstract class Product
     {
+        /// <summary>
+        /// Articlenumber
+        /// </summary>
         protected int artikelnummer;
+
+        /// <summary>
+        /// Articledescrption
+        /// </summary>
         protected String artikelbezeichnung;
+
+        /// <summary>
+        /// Articleprice
+        /// </summary>
         protected decimal preis;
+
+        /// <summary>
+        /// ProductType
+        /// </summary>
         protected Type ProductType;
 
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         public Product()
         {
         }
 
+        /// <summary>
+        /// set ProductType
+        /// </summary>
+        /// <param name="t">Type of product</param>
         public void setProductType(Type t)
         {
-            if (typeof(Product).IsAssignableFrom(t))
+            if (typeof(Product).IsAssignableFrom(t))//Check if passed type inherit base type
             {
                 this.ProductType = t;
             }
@@ -64,9 +89,14 @@ namespace xmlserializer.Models
             preis = price;
         }
 
+        /// <summary>
+        /// Return ProductType of product if the AssemblyQualifiedName matches
+        /// </summary>
+        /// <param name="AssemblyQualifiedName">AssemblyQualifiedName</param>
+        /// <returns>Type of calculation</returns>
         public static Type GetType(String AssemblyQualifiedName)
         {
-            if (AssemblyQualifiedName.Equals(typeof(FooBarProduct).AssemblyQualifiedName))
+            if (AssemblyQualifiedName.Equals(typeof(FooBarProduct).AssemblyQualifiedName))//Check if passed type inherit base type
             {
                 return typeof(FooBarProduct);
             }
