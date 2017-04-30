@@ -32,10 +32,10 @@ namespace xmlserializer.Models
         /// <summary>
         /// Get all customers name located in datastorage
         /// </summary>
-        /// <returns></returns>
+        /// <returns>List of customer names</returns>
         public static List<String> getCustomerNames() {
         List<String> CustomerNames = new List<string>();
-        foreach (String Name in Directory.GetFiles(xmlserializer.DATASTORAGEPATH + "\\customers")) {
+        foreach (String Name in Directory.GetFiles(xmlserializer.DATASTORAGEPATH + "\\customers")) { //Get all xml files from defined directory
             CustomerNames.Add(Name.Replace(".xml", "").Replace("_",", ").Replace("..\\datastorage\\customers\\",""));
         }
         return CustomerNames;

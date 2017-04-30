@@ -129,7 +129,7 @@ namespace tfMarktMain
             {
                 tfMarktMain.Export.PDFFactory.CustomerPDFDocument cpd = new tfMarktMain.Export.PDFFactory.CustomerPDFDocument(SelectedCustomer);
                 cpd.showPDF();
-                cpd.printPDF(false);
+                cpd.printPDF();
                 //cpd.savePDF(true);
             }
             else {
