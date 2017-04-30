@@ -15,6 +15,7 @@
             <MenuItem x:Name="dateiMenu" Header="Datei" RenderTransformOrigin="0.381,0.5">
                 <MenuItem Header="Gesamtkalkulation anzeigen" x:Name="gesamtAnzeigenMenuItem" Click="Generate_TotalCalculation_Click"/>
                 <MenuItem Header="Gesamtkalkulation drucken" x:Name="druckenMenuItem" Click="Generate_TotalCalculation_Click"/>
+                <MenuItem Header="Kunde speichern" x:Name="kundeMenuItem" Click="Save_Customer_Click"/>
                 <Separator />
                 <MenuItem Header="Beenden" x:Name="beendenMenuItem" Click="cmdBeenden_Click"/>
             </MenuItem>
@@ -26,13 +27,28 @@
         </Menu>
         <TabControl x:Name="tabAnsicht" Grid.Column="1" Margin="10" Grid.Row="1">
             <TabItem x:Name="tabKunde" Header="Kunde">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5" x:Name="kundenGrid" Margin="0,-3,0,3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30*"></RowDefinition>
+                        <RowDefinition Height="70*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30*"></ColumnDefinition>
+                        <ColumnDefinition Width="70*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Kundennummer" HorizontalAlignment="Left" Margin="10,125,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+                    <Label Content="Kundenname" HorizontalAlignment="Left" Margin="10,66,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Grid.Row="1"/>
+                    <Label Content="Kundennachname" HorizontalAlignment="Left" Margin="10,193,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Grid.Row="1"/>
+                    <TextBox x:Name="KundenNummerTextbox" Grid.Column="1" HorizontalAlignment="Left" Height="31" Margin="10,125,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="585" FontSize="16" FontWeight="Bold" IsEnabled="False"/>
+                    <TextBox x:Name="KundenNameTextbox" Grid.Column="1" HorizontalAlignment="Left" Height="31" Margin="10,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="585" FontSize="16" FontWeight="Bold" Grid.Row="1"/>
+                    <TextBox x:Name="KundenNachnameTextbox" Grid.Column="1" HorizontalAlignment="Left" Height="31" Margin="10,193,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="585" FontSize="16" FontWeight="Bold" Grid.Row="1"/>
+                </Grid>
             </TabItem>
         </TabControl>
         <ComboBox x:Name="CustomersBox" SelectionChanged="CustomersBox_SelectionChanged" Margin="10,10,10,0" Grid.Row="1" Height="22" VerticalAlignment="Top">
-            <ComboBoxItem Content="Kunde bitte auswählen!"/>
+            <ComboBoxItem Content="Neuer Kunde"/>
         </ComboBox>
         <ListBox x:Name="CalculationListBox" Margin="10,95,10,10" RenderTransformOrigin="-0.086,-0.04" MouseDoubleClick="CalculationListBox_MouseDoubleClick" Grid.Row="1"/>
-        <Label Content="Kalkulationen" Margin="10,64,108,0" Grid.Row="1" Height="26" VerticalAlignment="Top"/>
+        <Label Content="Kalkulationen" Margin="10,58,108,0" Grid.Row="1" Height="32" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
     </Grid>
 </Window>
