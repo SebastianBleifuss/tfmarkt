@@ -33,6 +33,7 @@ namespace xmlserializer.Models
 
         public Customer(Guid Customernumber)
         {
+            this.Customernumber = Customernumber;
             Calculations = new Dictionary<Guid, Calculation>();
         }
         public Customer() {

@@ -33,6 +33,13 @@ namespace xmlserializer.XmlDocuments
             );
             root.AppendChild(NameElement);//Add NameElement to root Element
 
+            //Create CustomernumberElement
+            XmlElement CustomernumberElement = doc.CreateElement(string.Empty, "Customernumber", string.Empty);
+            CustomernumberElement.AppendChild(
+                doc.CreateTextNode(c.Customernumber.ToString()) //Create and add TextNode to CustomernumberElement child
+            );
+            root.AppendChild(CustomernumberElement);//Add CustomernumberElement to root Element
+
             //Create CalculationsElement
             XmlElement CalculationsElement = doc.CreateElement(string.Empty, "Calculations", string.Empty);
             root.AppendChild(CalculationsElement);//Add CalculationsElement to root Element
@@ -56,7 +63,7 @@ namespace xmlserializer.XmlDocuments
         /// <returns>Customer instance</returns>
         public static Customer GetCustomerFromElement(this XmlDocument doc, XmlElement CustomerElement)
         {
-            Customer LoadingCustomer = new Customer();
+            Customer LoadingCustomer = new Customer(new Guid(CustomerElement.SelectSingleNode("Customernumber").InnerText));
 
             //Set Properties from Nodes of the xml-file
             LoadingCustomer.Name = CustomerElement.SelectSingleNode("Name").InnerText;
