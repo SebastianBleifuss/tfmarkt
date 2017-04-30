@@ -51,13 +51,15 @@ namespace xmlserializer.XmlDocuments
         /// <summary>
         /// Extention method for creating a customer Element out of an customer instance
         /// </summary>
-        /// <param name="doc"></param>
-        /// <param name="CustomerElement">Customer Element from where the calculations are loaded</param>
-        /// <returns></returns>
+        /// <param name="doc">XmlDocument instance</param>
+        /// <param name="CustomerElement">Customer Element</param>
+        /// <returns>Customer instance</returns>
         public static Customer GetCustomerFromElement(this XmlDocument doc, XmlElement CustomerElement)
         {
             Customer LoadingCustomer = new Customer();
-            LoadingCustomer.Name = CustomerElement.SelectSingleNode("Name").InnerText;//Set InnerText of "Name"-Node into Customer.Name-Property
+
+            //Set Properties from Nodes of the xml-file
+            LoadingCustomer.Name = CustomerElement.SelectSingleNode("Name").InnerText;
             LoadingCustomer.Calculations = new Dictionary<Guid, Calculation>();
             foreach (XmlNode calcNode in CustomerElement.SelectSingleNode("Calculations").ChildNodes)
             {
