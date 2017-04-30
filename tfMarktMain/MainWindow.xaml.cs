@@ -102,6 +102,9 @@ namespace tfMarktMain
         private void Delete_Customer_Click(object sender, RoutedEventArgs e)
         {
             Customer.removeCustomer(SelectedCustomer);
+            object selectedItem = CustomersBox.SelectedItem;
+            CustomersBox.SelectedIndex = 0;
+            CustomersBox.Items.Remove(selectedItem);
         }
 
         private void cmdBeenden_Click(object sender, RoutedEventArgs e)
@@ -126,7 +129,7 @@ namespace tfMarktMain
 
         private void neuerTab(String tabname, String tabBezeichnung, int anzahl)
         {
-            TabItem tab = new TabItem();
+            KalkulationsTab<Calculation> tab = new KalkulationsTab<Calculation>();
             if (anzahl > 0)
             {
                 tab.Name = tabname + anzahl;
@@ -168,7 +171,7 @@ namespace tfMarktMain
 
         private void KundenNameVeraendern_TextChanged(object sender, TextChangedEventArgs e)
         {
-            SelectedCustomer.Name = KundenNachnameTextbox + ", " + KundenNameTextbox;
+            SelectedCustomer.Name = KundenNachnameTextbox.Text + ", " + KundenNameTextbox.Text;
         }
       
     }
