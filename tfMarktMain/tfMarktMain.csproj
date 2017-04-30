@@ -100,6 +100,7 @@
     <Compile Include="Fliesenkalkulation\FliesenkalkulationGUI.xaml.cs">
       <DependentUpon>FliesenkalkulationGUI.xaml</DependentUpon>
     </Compile>
+    <Compile Include="KalkulationsTab.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
