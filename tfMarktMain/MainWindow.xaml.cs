@@ -22,8 +22,9 @@ namespace tfMarktMain
     /// </summary>
     public partial class MainWindow : Window
     {
-        private static int fliesenTabs = 0;
-        private static int tapetenTabs = 0;
+        private int fliesenTabs = 0;
+        private int tapetenTabs = 0;
+        private bool isCustomerChanged = false;
 
         public MainWindow()
         {
@@ -45,8 +46,15 @@ namespace tfMarktMain
 
         private void customer_selected(object sender, RoutedEventArgs e)
         {
+
             ComboBoxItem CustomerItem = (ComboBoxItem)sender;
             SelectedCustomer = xmlserializer.xmlserializer.deserialize(CustomerItem.Content.ToString(), new Guid(CustomerItem.ToolTip.ToString()));
+
+            String[] namen = SelectedCustomer.Name.Split(new[] { ", " }, StringSplitOptions.None);
+            KundenNameTextbox.Text=namen[0];
+            KundenNachnameTextbox.Text = namen[1];
+            KundenNummerTextbox.Text = SelectedCustomer.Customernumber.ToString();
+
             CalculationListBox.Items.Clear();
 
             foreach (Calculation calc in SelectedCustomer.Calculations.Values)
@@ -70,12 +78,16 @@ namespace tfMarktMain
             if (CustomersBox.SelectedIndex == 0)
             {
                 CalculationListBox.Items.Clear();
+                SelectedCustomer = new Customer();
+                KundenNameTextbox.Clear();
+                KundenNachnameTextbox.Clear();
+                KundenNummerTextbox.Text = SelectedCustomer.Customernumber.ToString();
             }
         }
 
         private void Save_Customer_Click(object sender, RoutedEventArgs e)
         {
-            if (SelectedCustomer != null)
+            if (isCustomerChanged)
             {
                 xmlserializer.xmlserializer.serialize(SelectedCustomer);
             }
@@ -129,9 +141,19 @@ namespace tfMarktMain
             else {
                 MessageBox.Show("Keine Kalkulationen vorhanden!");
             }
-            
         }
 
+        private Guid generateGuid()
+        {
+            // Prüfen, ob Kunde schon Kalkulation mit GUID hat.
+            Guid NewGuid = Guid.NewGuid();
+            Calculation tmp;
+            while (SelectedCustomer.Calculations.TryGetValue(NewGuid, out tmp))
+            {
+                NewGuid = Guid.NewGuid();
+            }
+            return NewGuid;
+        }
       
     }
 }
