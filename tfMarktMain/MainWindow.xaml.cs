@@ -29,11 +29,13 @@ namespace tfMarktMain
         public MainWindow()
         {
             InitializeComponent();
-            foreach (String Customername in Customer.getCustomerNames())
+            foreach (String CustomerInfo in Customer.getCustomerNames())
             {
+                String[] CustomerInfoSet = CustomerInfo.Split('_');
                 ComboBoxItem NewComboItem = new ComboBoxItem();
-                NewComboItem.Content = Customername;
+                NewComboItem.Content = CustomerInfoSet[1] +", " + CustomerInfoSet[2];
                 NewComboItem.Selected += customer_selected;
+                NewComboItem.ToolTip = CustomerInfoSet[0];
                 CustomersBox.Items.Add(NewComboItem);
             }
             CustomersBox.SelectedIndex = 0;
@@ -44,11 +46,15 @@ namespace tfMarktMain
 
         private void customer_selected(object sender, RoutedEventArgs e)
         {
-            SelectedCustomer = xmlserializer.xmlserializer.deserialize(((ComboBoxItem)sender).Content.ToString());
+
+            ComboBoxItem CustomerItem = (ComboBoxItem)sender;
+            SelectedCustomer = xmlserializer.xmlserializer.deserialize(CustomerItem.Content.ToString(), new Guid(CustomerItem.ToolTip.ToString()));
+
             String[] namen = SelectedCustomer.Name.Split(new[] { ", " }, StringSplitOptions.None);
             KundenNameTextbox.Text=namen[0];
             KundenNachnameTextbox.Text = namen[1];
             KundenNummerTextbox.Text = SelectedCustomer.Customernumber.ToString();
+
             CalculationListBox.Items.Clear();
 
             foreach (Calculation calc in SelectedCustomer.Calculations.Values)
