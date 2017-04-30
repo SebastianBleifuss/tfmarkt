@@ -38,7 +38,7 @@ namespace xmlserializer
             doc.AppendChild(root);
 
             //Save document to passed path
-            doc.Save(DATASTORAGEPATH + "\\customers\\" + Customer.Name.Replace(", ", "_") + ".xml");
+            doc.Save(DATASTORAGEPATH + "\\customers\\" +Customer.Customernumber+"_"+ Customer.Name.Replace(", ", "_") + ".xml");
         }
 
         /// <summary>
@@ -46,10 +46,10 @@ namespace xmlserializer
         /// </summary>
         /// <param name="Customername">String defines which xml-file will be deserialize</param>
         /// <returns>Customer instance defined by customername</returns>
-        public static Customer deserialize(String Customername)
+        public static Customer deserialize(String Customername, Guid Customernumber)
         {
             //Path defines where the xml-file will be located
-            String XmlPath = DATASTORAGEPATH + "\\customers\\" + Customername.Replace(", ", "_") + ".xml";
+            String XmlPath = DATASTORAGEPATH + "\\customers\\" + Customernumber + "_" + Customername.Replace(", ", "_") + ".xml";
             if (File.Exists(XmlPath))//Check if xml-file exists
             {
                 XmlDocument doc = new XmlDocument();
