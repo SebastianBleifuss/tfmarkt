@@ -24,7 +24,8 @@ namespace tfMarktMain
     {
         private int fliesenTabs = 0;
         private int tapetenTabs = 0;
-        private bool isCustomerChanged = false;
+        private bool isCustomerChanged = true;
+        private Customer SelectedCustomer;
 
         public MainWindow()
         {
@@ -41,8 +42,6 @@ namespace tfMarktMain
             CustomersBox.SelectedIndex = 0;
             SelectedCustomer = new Customer();
         }
-
-        private Customer SelectedCustomer;
 
         private void customer_selected(object sender, RoutedEventArgs e)
         {
@@ -87,10 +86,22 @@ namespace tfMarktMain
 
         private void Save_Customer_Click(object sender, RoutedEventArgs e)
         {
-            if (isCustomerChanged)
+            if(isCustomerChanged)
             {
-                xmlserializer.xmlserializer.serialize(SelectedCustomer);
+                if (SelectedCustomer.Calculations.Count > 0)
+                {
+                    xmlserializer.xmlserializer.serialize(SelectedCustomer);
+                }
+                else {
+                    MessageBox.Show("Keine Kalkualtionen zum speichern!");
+                }
             }
+        }
+
+
+        private void Delete_Customer_Click(object sender, RoutedEventArgs e)
+        {
+            Customer.removeCustomer(SelectedCustomer);
         }
 
         private void cmdBeenden_Click(object sender, RoutedEventArgs e)
@@ -153,6 +164,11 @@ namespace tfMarktMain
                 NewGuid = Guid.NewGuid();
             }
             return NewGuid;
+        }
+
+        private void KundenNameVeraendern_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            SelectedCustomer.Name = KundenNachnameTextbox + ", " + KundenNameTextbox;
         }
       
     }
