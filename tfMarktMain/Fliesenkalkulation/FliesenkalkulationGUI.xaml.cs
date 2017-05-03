@@ -32,11 +32,7 @@ namespace tfMarktMain.Fliesenkalkulation
         private void btnFlaecheBerechnen_Click(object sender, RoutedEventArgs e)
         {
             Window FlaecheBerechnenFenster = new FlaecheBerechnen();
-            FlaecheBerechnenFenster.Show();
-            while (FlaecheBerechnenFenster.IsVisible)
-            {
-
-            }
+            FlaecheBerechnenFenster.ShowDialog();
             txtGroesse.Text = kalkulation.getFlaeche().ToString();
         }
     }
