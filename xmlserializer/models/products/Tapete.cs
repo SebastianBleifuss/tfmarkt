@@ -10,8 +10,26 @@ namespace xmlserializer.Models.Products
     public class Tapete: Product
     {
         private decimal laenge;
+
+        public decimal Laenge
+        {
+            get { return laenge; }
+            set { laenge = value; }
+        }
         private decimal breite;
+
+        public decimal Breite
+        {
+            get { return breite; }
+            set { breite = value; }
+        }
         private decimal rapport;
+
+        public decimal Rapport
+        {
+            get { return rapport; }
+            set { rapport = value; }
+        }
 
         public Tapete(String Artikelbezeichnung, decimal Laenge, decimal Breite, decimal Rapport, decimal Preis)
         {
@@ -23,8 +41,6 @@ namespace xmlserializer.Models.Products
             this.ProductType = typeof(Tapete);
         }
 
-        public decimal Laenge { get => laenge; set => laenge = value; }
-        public decimal Breite { get => breite; set => breite = value; }
-        public decimal Rapport { get => rapport; set => rapport = value; }
+        
     }
 }
