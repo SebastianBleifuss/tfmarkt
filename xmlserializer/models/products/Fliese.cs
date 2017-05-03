@@ -10,7 +10,19 @@ namespace xmlserializer.Models.Products
     public class Fliese : Product
     {
         private decimal laenge;
+
+        public decimal Laenge
+        {
+            get { return laenge; }
+            set { laenge = value; }
+        }
         private decimal breite;
+
+        public decimal Breite
+        {
+            get { return breite; }
+            set { breite = value; }
+        }
 
 
         public Fliese(String Artikelbezeichnung, decimal Laenge, decimal Breite, decimal Preis)
@@ -21,8 +33,5 @@ namespace xmlserializer.Models.Products
             this.preis = Preis;
             this.ProductType = typeof(Fliese);
         }
-
-        public decimal Laenge { get => laenge; set => laenge = value; }
-        public decimal Breite { get => breite; set => breite = value; }
     }
 }
