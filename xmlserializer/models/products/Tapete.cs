@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using xmlserializer.models;
+using xmlserializer.Models;
 
-namespace AdministrationDerProdukte
+namespace xmlserializer.Models.Products
 {
-    class Tapete: Product
+    public class Tapete: Product
     {
         private decimal laenge;
         private decimal breite;
@@ -20,6 +20,11 @@ namespace AdministrationDerProdukte
             this.breite = Breite;
             this.rapport = Rapport;
             this.preis = Preis;
+            this.ProductType = typeof(Tapete);
         }
+
+        public decimal Laenge { get => laenge; set => laenge = value; }
+        public decimal Breite { get => breite; set => breite = value; }
+        public decimal Rapport { get => rapport; set => rapport = value; }
     }
 }

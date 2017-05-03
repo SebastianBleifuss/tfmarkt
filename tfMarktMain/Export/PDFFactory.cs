@@ -77,7 +77,7 @@ namespace tfMarktMain.Export
 
             //X,Y,Width,Height
             gfx.DrawImage(CompanyLogo, gfx.PageSize.Width - 50 - CompanyLogoWidth, 55, 250, 100);
-
+            
 
             //Create XColors
             XColor XColorBlack = XColor.FromArgb(0, 0, 0);
@@ -85,46 +85,46 @@ namespace tfMarktMain.Export
             XColor XColorLightBrownLine = XColor.FromArgb(220, 197, 156);
 
             //Define positions for vertical and horizontal allignment
-            double hPos = 120;
-            double vPosR = gfx.PageSize.Width - 70;
-            double vPosL = 60;
+            double vPos = 120;
+            double hPosR = gfx.PageSize.Width - 70;
+            double hPosL = 60;
 
             //Create document header
-            gfx.DrawString("tfMarkt GmbH & Co. KG.", Headerft20Fett, XBrushes.Black, new XRect(vPosL, hPos, PageOne.Width, PageOne.Height), XStringFormats.TopLeft);
+            gfx.DrawString("tfMarkt GmbH & Co. KG.", Headerft20Fett, XBrushes.Black, new XRect(hPosL, vPos, PageOne.Width, PageOne.Height), XStringFormats.TopLeft);
 
-            hPos += 25;
-            gfx.DrawLine(new XPen(XColorBlack), vPosL, hPos, vPosR, hPos);//Draw black line
+            vPos += 25;
+            gfx.DrawLine(new XPen(XColorBlack), hPosL, vPos, hPosR, vPos);//Draw black line
 
-            hPos += 5;
-            gfx.DrawString(DateTime.Now.ToShortDateString(), ft9Fett, XBrushes.Black, new XRect(vPosL, hPos, PageOne.Width, PageOne.Height), XStringFormats.TopLeft);//Write date
+            vPos += 5;
+            gfx.DrawString(DateTime.Now.ToShortDateString(), ft9Fett, XBrushes.Black, new XRect(hPosL, vPos, PageOne.Width, PageOne.Height), XStringFormats.TopLeft);//Write date
 
-            hPos += 15;
-            gfx.DrawLine(new XPen(XColorBlack), vPosL, hPos, vPosR, hPos);//Draw black line
+            vPos += 15;
+            gfx.DrawLine(new XPen(XColorBlack), hPosL, vPos, hPosR, vPos);//Draw black line
 
-            hPos += 30;//Write customer informations
-            gfx.DrawString("Kundenname:", ft11Fett, XBrushes.Black, new XRect(vPosL, hPos, PageOne.Width, PageOne.Height), XStringFormats.TopLeft);
-            gfx.DrawString(Customer.Name, ft9Std, XBrushes.Black, new XRect(vPosL + 120, hPos + 2, PageOne.Width, PageOne.Height), XStringFormats.TopLeft);
+            vPos += 30;//Write customer informations
+            gfx.DrawString("Kundenname:", ft11Fett, XBrushes.Black, new XRect(hPosL, vPos, PageOne.Width, PageOne.Height), XStringFormats.TopLeft);
+            gfx.DrawString(Customer.Name, ft9Std, XBrushes.Black, new XRect(hPosL + 120, vPos + 2, PageOne.Width, PageOne.Height), XStringFormats.TopLeft);
 
-            hPos += 15;
-            gfx.DrawString("Kundennummer:", ft11Fett, XBrushes.Black, new XRect(vPosL, hPos, PageOne.Width, PageOne.Height), XStringFormats.TopLeft);
-            gfx.DrawString(Customer.Customernumber.ToString(), ft9Std, XBrushes.Black, new XRect(vPosL + 120, hPos + 3, PageOne.Width, PageOne.Height), XStringFormats.TopLeft);
+            vPos += 15;
+            gfx.DrawString("Kundennummer:", ft11Fett, XBrushes.Black, new XRect(hPosL, vPos, PageOne.Width, PageOne.Height), XStringFormats.TopLeft);
+            gfx.DrawString(Customer.Customernumber.ToString(), ft9Std, XBrushes.Black, new XRect(hPosL + 120, vPos + 3, PageOne.Width, PageOne.Height), XStringFormats.TopLeft);
 
-            hPos += 50;
-            gfx.DrawLine(new XPen(XColorBlack), vPosL, hPos, vPosR, hPos);
+            vPos += 50;
+            gfx.DrawLine(new XPen(XColorBlack), hPosL, vPos, hPosR, vPos);
 
             // Calculations
             Dictionary<Guid, Calculation> Calculations = Customer.Calculations;
 
-            hPos += 5;//Write column header
-            gfx.DrawString("MENGE", Headerft10Std, XBrushes.Black, new XRect(vPosL + 10, hPos, PageOne.Width, PageOne.Height), XStringFormats.TopLeft);
-            gfx.DrawString("DETAILS", Headerft10Std, XBrushes.Black, new XRect(vPosL + 75, hPos, PageOne.Width, PageOne.Height), XStringFormats.TopLeft);
-            gfx.DrawString("EINZELPREIS", Headerft10Std, XBrushes.Black, new XRect(vPosL + 275, hPos, PageOne.Width, PageOne.Height), XStringFormats.TopLeft);
-            gfx.DrawString("POSITION GESAMT", Headerft10Std, XBrushes.Black, new XRect(vPosL + 375, hPos, PageOne.Width, PageOne.Height), XStringFormats.TopLeft);
+            vPos += 5;//Write column header
+            gfx.DrawString("MENGE", Headerft10Std, XBrushes.Black, new XRect(hPosL + 10, vPos, PageOne.Width, PageOne.Height), XStringFormats.TopLeft);
+            gfx.DrawString("DETAILS", Headerft10Std, XBrushes.Black, new XRect(hPosL + 75, vPos, PageOne.Width, PageOne.Height), XStringFormats.TopLeft);
+            gfx.DrawString("EINZELPREIS", Headerft10Std, XBrushes.Black, new XRect(hPosL + 275, vPos, PageOne.Width, PageOne.Height), XStringFormats.TopLeft);
+            gfx.DrawString("POSITION GESAMT", Headerft10Std, XBrushes.Black, new XRect(hPosL + 375, vPos, PageOne.Width, PageOne.Height), XStringFormats.TopLeft);
 
-            hPos += 15;//Draw colored row
-            gfx.DrawRectangle(new XSolidBrush(XColorLightBrown), vPosL, hPos - 0.5, vPosR - vPosL, 20);
+            vPos += 15;//Draw colored row
+            gfx.DrawRectangle(new XSolidBrush(XColorLightBrown), hPosL, vPos - 0.5, hPosR - hPosL, 20);
 
-            double LinehPos = hPos;
+            double LinehPos = vPos;
             bool drawRec = true;
             decimal totalPosGes = 0;
             foreach (Calculation calc in Calculations.Values)
@@ -132,7 +132,7 @@ namespace tfMarktMain.Export
                 if (drawRec)
                 {
                     drawRec = false;
-                    gfx.DrawRectangle(new XSolidBrush(XColorLightBrown), vPosL, hPos - 0.5, vPosR - vPosL, 20);//Draw colored row
+                    gfx.DrawRectangle(new XSolidBrush(XColorLightBrown), hPosL, vPos - 0.5, hPosR - hPosL, 20);//Draw colored row
                 }
                 else
                 {
@@ -142,25 +142,25 @@ namespace tfMarktMain.Export
 
 
                 //Write product informations
-                hPos += 5;
+                vPos += 5;
                 Product p = calc.SelectedProduct;
-                gfx.DrawString(calc.Amount.ToString(), ft8Std, XBrushes.Black, new XRect(vPosL + 10, hPos, PageOne.Width, PageOne.Height), XStringFormats.TopLeft);
+                gfx.DrawString(calc.Amount.ToString(), ft8Std, XBrushes.Black, new XRect(hPosL + 10, vPos, PageOne.Width, PageOne.Height), XStringFormats.TopLeft);
 
                 String Description = p.getArtikelbezeichnung();
                 if (Description.Length > 22)
                 {
                     Description = Description.Substring(0, 22) + "...";
                 }
-                gfx.DrawString(Description, ft8Std, XBrushes.Black, new XRect(vPosL + 75, hPos, PageOne.Width, PageOne.Height), XStringFormats.TopLeft);
-                gfx.DrawString(p.getPreis().ToFormatStringEuro(), ft8Std, XBrushes.Black, new XRect(vPosL + 275, hPos, PageOne.Width, PageOne.Height), XStringFormats.TopLeft);//Write currency formated price
+                gfx.DrawString(Description, ft8Std, XBrushes.Black, new XRect(hPosL + 75, vPos, PageOne.Width, PageOne.Height), XStringFormats.TopLeft);
+                gfx.DrawString(p.getPreis().ToFormatStringEuro(), ft8Std, XBrushes.Black, new XRect(hPosL + 275, vPos, PageOne.Width, PageOne.Height), XStringFormats.TopLeft);//Write currency formated price
                 decimal posGes = RoundCurrency((calc.Amount * p.getPreis()));//Calculate total price and round it away from zero
                 totalPosGes += posGes;//Add total position price to global total position price
-                gfx.DrawString(posGes.ToFormatStringEuro(), ft8Std, XBrushes.Black, new XRect(vPosL + 375, hPos, PageOne.Width, PageOne.Height), XStringFormats.TopLeft);
-                hPos += 15;
+                gfx.DrawString(posGes.ToFormatStringEuro(), ft8Std, XBrushes.Black, new XRect(hPosL + 375, vPos, PageOne.Width, PageOne.Height), XStringFormats.TopLeft);
+                vPos += 15;
 
 
 
-                if (hPos >= 800)//Check if page end is reached
+                if (vPos >= 800)//Check if page end is reached
                 {
                     // Create an empty page
                     PdfPage NextPage = doc.AddPage();
@@ -168,18 +168,18 @@ namespace tfMarktMain.Export
                     // Get an XGraphics object for drawing
                     gfx = XGraphics.FromPdfPage(NextPage);
                     drawRec = true;
-                    hPos = 115;
+                    vPos = 115;
                 }
 
             }
 
             //Draw colored line at top and bottom of the table
-            gfx.DrawLine(new XPen(XColorLightBrownLine, 0.5), vPosL, LinehPos, vPosR, LinehPos);
-            gfx.DrawLine(new XPen(XColorLightBrownLine, 0.5), vPosL, hPos, vPosR, hPos);
+            gfx.DrawLine(new XPen(XColorLightBrownLine, 0.5), hPosL, LinehPos, hPosR, LinehPos);
+            gfx.DrawLine(new XPen(XColorLightBrownLine, 0.5), hPosL, vPos, hPosR, vPos);
 
             totalPosGes = totalPosGes.RoundCurrency();
 
-            if (hPos > 750)
+            if (vPos > 750)
             {
                 // Create an empty page
                 PdfPage NextPage = doc.AddPage();
@@ -187,7 +187,7 @@ namespace tfMarktMain.Export
                 // Get an XGraphics object for drawing
                 gfx = XGraphics.FromPdfPage(NextPage);
                 drawRec = true;
-                hPos = 115;
+                vPos = 115;
             }
             else
             {
@@ -196,23 +196,23 @@ namespace tfMarktMain.Export
             }
 
             //Draw global total price and taxes
-            hPos += 5;
-            gfx.DrawString("Gesamt Netto", ft8Std, XBrushes.Black, new XRect(vPosL + 275, hPos, PageOne.Width, PageOne.Height), XStringFormats.TopLeft);
-            gfx.DrawString(totalPosGes.ToFormatStringEuro(), ft8Std, XBrushes.Black, new XRect(vPosL + 375, hPos, PageOne.Width, PageOne.Height), XStringFormats.TopLeft);
-            hPos += 15;
+            vPos += 5;
+            gfx.DrawString("Gesamt Netto", ft8Std, XBrushes.Black, new XRect(hPosL + 275, vPos, PageOne.Width, PageOne.Height), XStringFormats.TopLeft);
+            gfx.DrawString(totalPosGes.ToFormatStringEuro(), ft8Std, XBrushes.Black, new XRect(hPosL + 375, vPos, PageOne.Width, PageOne.Height), XStringFormats.TopLeft);
+            vPos += 15;
             decimal tax = totalPosGes * 0.19m;
-            gfx.DrawString("MwSt.(19%)", ft8Std, XBrushes.Black, new XRect(vPosL + 275, hPos, PageOne.Width, PageOne.Height), XStringFormats.TopLeft);
-            gfx.DrawString(tax.ToFormatStringEuro(), ft8Std, XBrushes.Black, new XRect(vPosL + 375, hPos, PageOne.Width, PageOne.Height), XStringFormats.TopLeft);
+            gfx.DrawString("MwSt.(19%)", ft8Std, XBrushes.Black, new XRect(hPosL + 275, vPos, PageOne.Width, PageOne.Height), XStringFormats.TopLeft);
+            gfx.DrawString(tax.ToFormatStringEuro(), ft8Std, XBrushes.Black, new XRect(hPosL + 375, vPos, PageOne.Width, PageOne.Height), XStringFormats.TopLeft);
 
-            hPos += 15;
-            gfx.DrawLine(new XPen(XColorBlack, 0.5), vPosL, hPos, vPosR, hPos);
+            vPos += 15;
+            gfx.DrawLine(new XPen(XColorBlack, 0.5), hPosL, vPos, hPosR, vPos);
 
-            hPos += 5;
-            gfx.DrawString("EUR Gesamt Brutto", ft9Std, XBrushes.Orange, new XRect(vPosL + 275, hPos, PageOne.Width, PageOne.Height), XStringFormats.TopLeft);
-            gfx.DrawString(RoundCurrency(totalPosGes + tax).ToFormatStringEuro(), ft9Std, XBrushes.Orange, new XRect(vPosL + 375, hPos, PageOne.Width, PageOne.Height), XStringFormats.TopLeft);
+            vPos += 5;
+            gfx.DrawString("EUR Gesamt Brutto", ft9Std, XBrushes.Orange, new XRect(hPosL + 275, vPos, PageOne.Width, PageOne.Height), XStringFormats.TopLeft);
+            gfx.DrawString(RoundCurrency(totalPosGes + tax).ToFormatStringEuro(), ft9Std, XBrushes.Orange, new XRect(hPosL + 375, vPos, PageOne.Width, PageOne.Height), XStringFormats.TopLeft);
 
-            hPos += 15;
-            gfx.DrawLine(new XPen(XColorBlack), vPosL, hPos, vPosR, hPos);
+            vPos += 15;
+            gfx.DrawLine(new XPen(XColorBlack), hPosL, vPos, hPosR, vPos);
 
 
             //Save PDF to FilePath with write-only-permissions
