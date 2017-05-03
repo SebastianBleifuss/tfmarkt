@@ -22,6 +22,8 @@ namespace AdministrationDerProdukte
     {
         public AdministrationDerProdukteGUI()
         {
+            Window loginFenster = new Login();
+            loginFenster.ShowDialog();
             InitializeComponent();
         }
 

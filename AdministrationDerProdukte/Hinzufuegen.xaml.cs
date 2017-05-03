@@ -82,5 +82,10 @@ namespace AdministrationDerProdukte
                 txtSender.Foreground = Brushes.Red;
             }
         }
+
+        private void btnSpeichern_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

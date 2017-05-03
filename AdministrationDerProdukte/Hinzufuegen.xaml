@@ -28,6 +28,6 @@
         <RadioButton x:Name="rbFliesenkleber" Content="Fliesenkleber" HorizontalAlignment="Left" Margin="192,70,0,0" VerticalAlignment="Top" Height="15" Width="97" Checked="RadioButtons_Checked"/>
         <RadioButton x:Name="rbFugenfüller" Content="Fugenfüller" HorizontalAlignment="Left" Margin="312,70,0,0" VerticalAlignment="Top" Height="15" Width="97" Checked="RadioButtons_Checked"/>
         <RadioButton x:Name="rbTapetenkleber" Content="Tapetenkleber" HorizontalAlignment="Left" Margin="10,91,0,0" VerticalAlignment="Top" Height="15" Width="112" Checked="RadioButtons_Checked"/>
-        <Button x:Name="btnSpeichern" Content="Speichern" Margin="303,0,0,21" VerticalAlignment="Bottom" Height="24" HorizontalAlignment="Left" Width="106" RenderTransformOrigin="-0.057,0.708" Grid.Row="1"/>
+        <Button x:Name="btnSpeichern" Content="Speichern" Margin="303,0,0,21" VerticalAlignment="Bottom" Height="24" HorizontalAlignment="Left" Width="106" RenderTransformOrigin="-0.057,0.708" Grid.Row="1" Click="btnSpeichern_Click"/>
     </Grid>
 </Window>
