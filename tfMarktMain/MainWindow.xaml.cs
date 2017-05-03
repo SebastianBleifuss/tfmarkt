@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using xmlserializer.Models;
+using xmlserializer.Models.Products;
 using tfMarktMain.Export;
 
 namespace tfMarktMain
@@ -52,8 +53,9 @@ namespace tfMarktMain
             SelectedCustomer = xmlserializer.xmlserializer.deserialize(CustomerItem.Content.ToString(), new Guid(CustomerItem.ToolTip.ToString()));
 
             String[] namen = SelectedCustomer.Name.Split(new[] { ", " }, StringSplitOptions.None);
-            KundenNameTextbox.Text=namen[0];
-            KundenNachnameTextbox.Text = namen[1];
+            
+            KundenNachnameTextbox.Text = namen[0];
+            KundenNameTextbox.Text = namen[1];
             KundenNummerTextbox.Text = SelectedCustomer.Customernumber.ToString();
 
             CalculationListBox.Items.Clear();
@@ -93,6 +95,11 @@ namespace tfMarktMain
                 if (SelectedCustomer.Calculations.Count > 0)
                 {
                     xmlserializer.xmlserializer.serialize(SelectedCustomer);
+
+                    xmlserializer.xmlserializer.serialize(new Hilfsmittel("SuperHilfsmittel",23.5m,0.99m));
+                    xmlserializer.xmlserializer.serialize(new Fliese("SuperFliese", 2m,5m, 0.99m));
+                    xmlserializer.xmlserializer.serialize(new Tapete("SuperTapete", 2m,3m,5m, 0.99m));
+
                 }
                 else {
                     MessageBox.Show("Keine Kalkualtionen zum speichern!");

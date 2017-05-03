@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Product>
+  <Articlenumber>0</Articlenumber>
+  <Articledescription>SuperFliese</Articledescription>
+  <Price>0,99</Price>
+  <ProductType>xmlserializer.Models.Products.Fliese, xmlserializer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</ProductType>
+  <Width>5</Width>
+  <Lenght>2</Lenght>
+</Product>

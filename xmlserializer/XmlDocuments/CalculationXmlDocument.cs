@@ -59,37 +59,6 @@ namespace xmlserializer.XmlDocuments
 
             root.AppendChild(doc.CreateProductElement(calc.SelectedProduct));//Create product-XmlElement from product instance
 
-
-
-            Type calcType = calc.CalculationType;
-
-            //Check which Calculationtyp the instance has
-            if (calcType.Equals(typeof(FooBarCalculation)))
-            {
-
-            }
-            else if (calcType.Equals(typeof(FooBarCalculation)))
-            {
-
-            }
-            else if (calcType.Equals(typeof(FooBarCalculation)))
-            {
-
-            }
-            else if (calcType.Equals(typeof(FooBarCalculation)))
-            {
-
-            }
-            else if (calcType.Equals(typeof(FooBarCalculation)))
-            {
-
-            }
-            else
-            {
-                throw new NotSupportedException(calcType.Name + " is not supported!");
-            }
-
-
             return root;//Return CalculationElement
         }
 
@@ -115,32 +84,6 @@ namespace xmlserializer.XmlDocuments
             LoadingCalculation.CalculationType = CalculationType;
             LoadingCalculation.Amount = Int32.Parse(CalculationNode.SelectSingleNode("Amount").InnerText);
             LoadingCalculation.SelectedProduct = doc.GetProductFromNode(CalculationNode.SelectSingleNode("Product"));
-
-            //Check which Calculationtyp the instance has
-            if (CalculationType.Equals(typeof(FooBarCalculation)))
-            {
-
-            }
-            else if (CalculationType.Equals(typeof(FooBarCalculation)))
-            {
-
-            }
-            else if (CalculationType.Equals(typeof(FooBarCalculation)))
-            {
-
-            }
-            else if (CalculationType.Equals(typeof(FooBarCalculation)))
-            {
-
-            }
-            else if (CalculationType.Equals(typeof(FooBarCalculation)))
-            {
-
-            }
-            else
-            {
-                throw new NotSupportedException(CalculationType.Name + " is not supported!");
-            }
 
             return LoadingCalculation;//Return Calculation
         }

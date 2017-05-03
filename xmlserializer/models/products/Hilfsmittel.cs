@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using xmlserializer.models;
+using xmlserializer.Models;
 
-namespace AdministrationDerProdukte
+namespace xmlserializer.Models.Products
 {
-    class Hilfsmittel: Product
+    public class Hilfsmittel: Product
     {
         private decimal ergiebigkeit;
 
@@ -16,6 +16,9 @@ namespace AdministrationDerProdukte
             this.artikelbezeichnung = Artikelbezeichnung;
             this.ergiebigkeit = Ergiebigkeit;
             this.preis = Preis;
+            this.ProductType = typeof(Hilfsmittel);
         }
+
+        public decimal Ergiebigkeit { get => ergiebigkeit; set => ergiebigkeit = value; }
     }
 }
