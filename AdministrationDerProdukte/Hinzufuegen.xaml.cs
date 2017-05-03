@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Text.RegularExpressions;
+using xmlserializer.Models.Products;
 
 namespace AdministrationDerProdukte
 {
@@ -34,31 +35,46 @@ namespace AdministrationDerProdukte
                 lblOptionOne.Content = "Länge Tapetenrolle";
                 lblOptionOne.Visibility = Visibility.Visible;
                 txtOptionOne.Visibility = Visibility.Visible;
+                txtOptionOne.TextChanged += checkDecimal_TextChanged;
+
                 lblOptionTwo.Content = "Tapetenbreite";
                 lblOptionTwo.Visibility = Visibility.Visible;
                 txtOptionTwo.Visibility = Visibility.Visible;
+                txtOptionTwo.TextChanged += checkDecimal_TextChanged;
+
                 lblOptionThree.Content = "Rapport";
                 lblOptionThree.Visibility = Visibility.Visible;
                 txtOptionThree.Visibility = Visibility.Visible;
+                txtOptionThree.TextChanged += checkDecimal_TextChanged;
             }
             else if (sender == rbFliese)
             {
                 lblOptionOne.Content = "Länge";
                 lblOptionOne.Visibility = Visibility.Visible;
+                txtOptionOne.TextChanged += checkDecimal_TextChanged;
+
                 lblOptionTwo.Content = "Breite";
                 lblOptionTwo.Visibility = Visibility.Visible;
+                txtOptionTwo.TextChanged += checkDecimal_TextChanged;
+
                 lblOptionThree.Visibility = Visibility.Hidden;
                 txtOptionThree.Visibility = Visibility.Hidden;
+                txtOptionThree.TextChanged -= checkDecimal_TextChanged;
             }
             else if (sender == rbFugenfüller || sender == rbFliesenkleber || sender == rbTapetenkleber)
             {
                 lblOptionOne.Content = "Ergiebigkeit";
                 lblOptionOne.Visibility = Visibility.Visible;
                 txtOptionOne.Visibility = Visibility.Visible;
+                txtOptionOne.TextChanged += checkDecimal_TextChanged;
+
                 lblOptionTwo.Visibility = Visibility.Hidden;
                 txtOptionTwo.Visibility = Visibility.Hidden;
+                txtOptionTwo.TextChanged -= checkDecimal_TextChanged;
+
                 lblOptionThree.Visibility = Visibility.Hidden;
                 txtOptionThree.Visibility = Visibility.Hidden;
+                txtOptionThree.TextChanged -= checkDecimal_TextChanged;
             }
         }
 
@@ -86,6 +102,12 @@ namespace AdministrationDerProdukte
         private void btnSpeichern_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void speicherHilfsmittel()
+        {
+            Hilfsmittel neuesHilfsmittel = new Hilfsmittel(txtArtikelbezeichnung.Text, Convert.ToDecimal(txtOptionOne.Text), Convert.ToDecimal(txtPreis.Text));
+            xmlserializer.xmlserializer.serialize(neuesHilfsmittel);
         }
     }
 }
