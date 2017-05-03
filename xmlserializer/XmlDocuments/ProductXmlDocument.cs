@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using xmlserializer.Models;
+using xmlserializer.Models.Products;
 
 namespace xmlserializer.XmlDocuments
 {
@@ -53,7 +54,65 @@ namespace xmlserializer.XmlDocuments
             );
             root.AppendChild(ProductType);//Add ProductTypeElement to root Element
 
-            return root;//Return root Element
+
+            if (prod.getProductType().Equals(typeof(Fliese))) {
+
+                Fliese FliesenProduct = (Fliese)prod;
+                
+                //Create WidthElement
+                XmlElement Width = doc.CreateElement(string.Empty, "Width", string.Empty);
+                Width.AppendChild(
+                    doc.CreateTextNode(FliesenProduct.Breite.ToString())//Create and add TextNode to WidthElement child
+                );
+                root.AppendChild(Width);//Add WidthElement to root Element
+
+                //Create LenghtElement
+                XmlElement Lenght = doc.CreateElement(string.Empty, "Lenght", string.Empty);
+                Lenght.AppendChild(
+                    doc.CreateTextNode(FliesenProduct.Laenge.ToString())//Create and add TextNode to LenghtElement child
+                );
+                root.AppendChild(Lenght);//Add LenghtElement to root Element
+
+            } else if (prod.getProductType().Equals(typeof(Tapete)))
+            {
+                Tapete TapetenProduct = (Tapete)prod;
+
+                //Create WidthElement
+                XmlElement Width = doc.CreateElement(string.Empty, "Width", string.Empty);
+                Width.AppendChild(
+                    doc.CreateTextNode(TapetenProduct.Breite.ToString())//Create and add TextNode to WidthElement child
+                );
+                root.AppendChild(Width);//Add WidthElement to root Element
+
+                //Create LenghtElement
+                XmlElement Lenght = doc.CreateElement(string.Empty, "Lenght", string.Empty);
+                Lenght.AppendChild(
+                    doc.CreateTextNode(TapetenProduct.Laenge.ToString())//Create and add TextNode to LenghtElement child
+                );
+                root.AppendChild(Lenght);//Add LenghtElement to root Element
+
+                //Create RapportElement
+                XmlElement Rapport = doc.CreateElement(string.Empty, "Rapport", string.Empty);
+                Rapport.AppendChild(
+                    doc.CreateTextNode(TapetenProduct.Rapport.ToString())//Create and add TextNode to RapportElement child
+                );
+                root.AppendChild(Rapport);//Add RapportElement to root Element
+
+            }
+            else if (prod.getProductType().Equals(typeof(Hilfsmittel)))
+            {
+                //Create ProductivityElement
+                XmlElement Productivity = doc.CreateElement(string.Empty, "Productivity", string.Empty);
+                Productivity.AppendChild(
+                    doc.CreateTextNode(((Hilfsmittel)prod).Ergiebigkeit.ToString())//Create and add TextNode to ProductivityElement child
+                );
+                root.AppendChild(Productivity);//Add ProductivityElement to root Element
+            }
+                
+
+
+
+                return root;//Return root Element
         }
 
         /// <summary>
@@ -76,6 +135,25 @@ namespace xmlserializer.XmlDocuments
             LoadingProduct.setArtikelbezeichnung(ProductNode.SelectSingleNode("Articledescription").InnerText);
             LoadingProduct.setPreis(Decimal.Parse(ProductNode.SelectSingleNode("Price").InnerText));
             LoadingProduct.setProductType(ProductType);
+
+            if (ProductType.Equals(typeof(Fliese)))
+            {
+                ((Fliese)LoadingProduct).Laenge = Decimal.Parse(ProductNode.SelectSingleNode("Lenght").InnerText);
+                ((Fliese)LoadingProduct).Breite = Decimal.Parse(ProductNode.SelectSingleNode("Width").InnerText);
+
+
+            }
+            else if (ProductType.Equals(typeof(Tapete)))
+            {
+                ((Tapete)LoadingProduct).Laenge = Decimal.Parse(ProductNode.SelectSingleNode("Lenght").InnerText);
+                ((Tapete)LoadingProduct).Breite = Decimal.Parse(ProductNode.SelectSingleNode("Width").InnerText);
+                ((Tapete)LoadingProduct).Rapport = Decimal.Parse(ProductNode.SelectSingleNode("Rapport").InnerText);
+
+            }
+            else if (ProductType.Equals(typeof(Hilfsmittel)))
+            {
+               ((Hilfsmittel)LoadingProduct).Ergiebigkeit = Decimal.Parse(ProductNode.SelectSingleNode("Productivity").InnerText);
+            }
 
             return LoadingProduct;//Return Calculation
 
