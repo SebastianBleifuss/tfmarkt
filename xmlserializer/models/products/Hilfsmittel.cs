@@ -11,6 +11,12 @@ namespace xmlserializer.Models.Products
     {
         private decimal ergiebigkeit;
 
+        public decimal Ergiebigkeit
+        {
+            get { return ergiebigkeit; }
+            set { ergiebigkeit = value; }
+        }
+
         public Hilfsmittel(String Artikelbezeichnung, decimal Ergiebigkeit, decimal Preis)
         {
             this.artikelbezeichnung = Artikelbezeichnung;
@@ -19,6 +25,6 @@ namespace xmlserializer.Models.Products
             this.ProductType = typeof(Hilfsmittel);
         }
 
-        public decimal Ergiebigkeit { get => ergiebigkeit; set => ergiebigkeit = value; }
+        
     }
 }
