@@ -50,8 +50,8 @@ namespace tfMarktMain
             SelectedCustomer = xmlserializer.xmlserializer.deserialize(CustomerItem.Content.ToString(), new Guid(CustomerItem.ToolTip.ToString()));
 
             String[] namen = SelectedCustomer.Name.Split(new[] { ", " }, StringSplitOptions.None);
-            KundenNameTextbox.Text=namen[0];
-            KundenNachnameTextbox.Text = namen[1];
+            KundenNameTextbox.Text=namen[1];
+            KundenNachnameTextbox.Text = namen[0];
             KundenNummerTextbox.Text = SelectedCustomer.Customernumber.ToString();
 
             CalculationListBox.Items.Clear();
@@ -114,12 +114,24 @@ namespace tfMarktMain
 
         private void cmdFliesenAuf_Click(object sender, RoutedEventArgs e)
         {
-            neuerTab("Fliesen", "tabFliesenAnsicht", fliesenTabs);
+            KalkulationsTab<Calculation> tab= neuerTab("Fliesen", "tabFliesenAnsicht", fliesenTabs);
+            Frame tabFrame = new Frame();
+            Fliesenkalkulation.FliesenkalkulationGUI ladeSeite = new Fliesenkalkulation.FliesenkalkulationGUI();
+            tabFrame.Content = ladeSeite.Content;
+            tab.Content = tabFrame;
+            tab.Focus();
+            fliesenTabs++;
         }
 
         private void cmdTapetenAuf_Click(object sender, RoutedEventArgs e)
         {
-            neuerTab("Tapeten", "tabTapetenAnsicht", tapetenTabs);
+            KalkulationsTab<Calculation> tab= neuerTab("Tapeten", "tabTapetenAnsicht", tapetenTabs);
+            Frame tabFrame = new Frame();
+            Tapetenkalkulation.TapetenkalkulationGUI ladeSeite = new Tapetenkalkulation.TapetenkalkulationGUI();
+            tabFrame.Content = ladeSeite.Content;
+            tab.Content = tabFrame;
+            tab.Focus();
+            tapetenTabs++;
         }
 
         private void cmdGesamtbetragAuf_Click(object sender, RoutedEventArgs e)
@@ -127,7 +139,7 @@ namespace tfMarktMain
             neuerTab("Gesamt", "tabGesamt", 0);
         }
 
-        private void neuerTab(String tabname, String tabBezeichnung, int anzahl)
+        private KalkulationsTab<Calculation> neuerTab(String tabname, String tabBezeichnung, int anzahl)
         {
             KalkulationsTab<Calculation> tab = new KalkulationsTab<Calculation>();
             if (anzahl > 0)
@@ -141,9 +153,11 @@ namespace tfMarktMain
                 tab.Header = tabname;
             }
             tabAnsicht.Items.Add(tab);
+            
+            return tab;
         }
 
-        private void Generate_TotalCalculation_Click(object sender, RoutedEventArgs e)
+         private void Generate_TotalCalculation_Click(object sender, RoutedEventArgs e)
         {
             if (SelectedCustomer.Calculations.Count > 0)
             {

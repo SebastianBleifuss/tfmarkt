@@ -28,7 +28,7 @@
         </Menu>
         <TabControl x:Name="tabAnsicht" Grid.Column="1" Margin="10" Grid.Row="1">
             <TabItem x:Name="tabKunde" Header="Kunde">
-                <Grid Background="#FFE5E5E5" x:Name="kundenGrid" Margin="0,-3,0,3">
+                <Grid Background="White" x:Name="kundenGrid" Margin="0,-3,0,3">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="30*"></RowDefinition>
                         <RowDefinition Height="70*"></RowDefinition>
