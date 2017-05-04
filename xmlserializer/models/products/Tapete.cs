@@ -3,15 +3,33 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using xmlserializer.models;
+using xmlserializer.Models;
 
-namespace AdministrationDerProdukte
+namespace xmlserializer.Models.Products
 {
-    class Tapete: Product
+    public class Tapete: Product
     {
         private decimal laenge;
+
+        public decimal Laenge
+        {
+            get { return laenge; }
+            set { laenge = value; }
+        }
         private decimal breite;
+
+        public decimal Breite
+        {
+            get { return breite; }
+            set { breite = value; }
+        }
         private decimal rapport;
+
+        public decimal Rapport
+        {
+            get { return rapport; }
+            set { rapport = value; }
+        }
 
         public Tapete(String Artikelbezeichnung, decimal Laenge, decimal Breite, decimal Rapport, decimal Preis)
         {
@@ -20,6 +38,9 @@ namespace AdministrationDerProdukte
             this.breite = Breite;
             this.rapport = Rapport;
             this.preis = Preis;
+            this.ProductType = typeof(Tapete);
         }
+
+        
     }
 }

@@ -67,7 +67,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Fliese.cs" />
     <Compile Include="Hinzufuegen.xaml.cs">
       <DependentUpon>Hinzufuegen.xaml</DependentUpon>
     </Compile>
