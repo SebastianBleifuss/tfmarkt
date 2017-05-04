@@ -170,7 +170,24 @@ namespace tfMarktMain
                 tab.Name = tabname;
                 tab.Header = tabname;
             }
+          
+			ContextMenu TabContextMenue = new ContextMenu();
+
+            MenuItem SpeicherItem = new MenuItem();
+            SpeicherItem.Header = "Speichern";
+            SpeicherItem.Click += SpeicherItem_Click;
+            SpeicherItem.Tag = tab;
+
+            MenuItem VerwerfItem = new MenuItem();
+            VerwerfItem.Header = "Verwerfen";
+            VerwerfItem.Click += VerwerfItem_Click;
+            VerwerfItem.Tag = tab;
+
+            TabContextMenue.Items.Add(SpeicherItem);
+            TabContextMenue.Items.Add(VerwerfItem);
+            tab.ContextMenu = TabContextMenue;
             tabAnsicht.Items.Add(tab);
+            //tabAnsicht.SelectedItem = tab;
             
             return tab;
         }
@@ -221,6 +238,25 @@ namespace tfMarktMain
         {
             //Schauen, wie man am Besten die Administartion reinbekommt
             MessageBox.Show("Hier sollte sich eigentlich die administration öffnen, aber C# ist bescheuert");
+        }
+
+        private void VerwerfItem_Click(object sender, RoutedEventArgs e)
+        {
+            MenuItem ConItem = (MenuItem)sender;
+            KalkulationsTab<Calculation> TabItem = (KalkulationsTab<Calculation>)ConItem.Tag;
+
+
+            tabAnsicht.Items.Remove(TabItem);
+        }
+
+        private void SpeicherItem_Click(object sender, RoutedEventArgs e)
+        {
+            MenuItem ConItem = (MenuItem)sender;
+            KalkulationsTab<Calculation> TabItem = (KalkulationsTab<Calculation>)ConItem.Tag;
+
+            SelectedCustomer.addCalculation(TabItem.getKalkulation(), /*OVERRIDE SETZEN!*/ true); //Wirft Exception wenn die Kalkulation nicht vollständig initialisiert wurde
+            CalculationListBox.ItemsSource = SelectedCustomer.Calculations.Values;
+            tabAnsicht.Items.Remove(TabItem);
         }
       
     }
