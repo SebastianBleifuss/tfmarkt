@@ -90,7 +90,7 @@ namespace tfMarktMain.Export
             double hPosL = 60;
 
             //Create document header
-            gfx.DrawString("tfMarkt GmbH & Co. KG.", Headerft20Fett, XBrushes.Black, new XRect(hPosL, vPos, PageOne.Width, PageOne.Height), XStringFormats.TopLeft);
+            gfx.DrawString("tfMarkt GmbH & Co. KG", Headerft20Fett, XBrushes.Black, new XRect(hPosL, vPos, PageOne.Width, PageOne.Height), XStringFormats.TopLeft);
 
             vPos += 25;
             gfx.DrawLine(new XPen(XColorBlack), hPosL, vPos, hPosR, vPos);//Draw black line

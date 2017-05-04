@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace xmlserializer
 {
-    class FooBarCalculation : Models.Calculation
+    public class FooBarCalculation : Models.Calculation
     {
         public FooBarCalculation() : base(){
             CalculationType = typeof(FooBarCalculation);
