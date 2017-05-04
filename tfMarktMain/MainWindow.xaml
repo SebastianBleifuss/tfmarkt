@@ -25,10 +25,12 @@
                 <MenuItem Header="Tapeten" x:Name="tapetenMenuItem" Click="cmdTapetenAuf_Click"/>
                 <MenuItem Header="Gesamtbetrag" x:Name="gesamtMenuItem" Click="cmdGesamtbetragAuf_Click"/>
             </MenuItem>
+            <MenuItem x:Name="adminMenu" Header="Admin" RenderTransformOrigin="0.381,0.5" Click="cmdStarteAdministration_Click">
+            </MenuItem>
         </Menu>
         <TabControl x:Name="tabAnsicht" Grid.Column="1" Margin="10" Grid.Row="1">
             <TabItem x:Name="tabKunde" Header="Kunde">
-                <Grid Background="#FFE5E5E5" x:Name="kundenGrid" Margin="0,-3,0,3">
+                <Grid Background="White" x:Name="kundenGrid" Margin="0,-3,0,3">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="30*"></RowDefinition>
                         <RowDefinition Height="70*"></RowDefinition>

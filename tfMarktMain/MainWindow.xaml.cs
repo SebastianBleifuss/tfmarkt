@@ -16,6 +16,7 @@ using xmlserializer.Models;
 using xmlserializer.Models.Products;
 using tfMarktMain.Export;
 
+
 namespace tfMarktMain
 {
     /// <summary>
@@ -25,6 +26,7 @@ namespace tfMarktMain
     {
         private int fliesenTabs = 0;
         private int tapetenTabs = 0;
+        private int gesamtTab = 0;
         private bool isCustomerChanged = true;
         private Customer SelectedCustomer;
 
@@ -46,14 +48,13 @@ namespace tfMarktMain
 
         private void customer_selected(object sender, RoutedEventArgs e)
         {
-
             ComboBoxItem CustomerItem = (ComboBoxItem)sender;
             SelectedCustomer = xmlserializer.xmlserializer.deserialize(CustomerItem.Content.ToString(), new Guid(CustomerItem.ToolTip.ToString()));
 
             String[] namen = SelectedCustomer.Name.Split(new[] { ", " }, StringSplitOptions.None);
-            
+
+            KundenNameTextbox.Text=namen[1];
             KundenNachnameTextbox.Text = namen[0];
-            KundenNameTextbox.Text = namen[1];
             KundenNummerTextbox.Text = SelectedCustomer.Customernumber.ToString();
 
             CalculationListBox.Items.Clear();
@@ -62,6 +63,7 @@ namespace tfMarktMain
             {
                 CalculationListBox.Items.Add(calc);
             }
+            //entferneAlleTabs
         }
 
         private void CalculationListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -121,20 +123,41 @@ namespace tfMarktMain
 
         private void cmdFliesenAuf_Click(object sender, RoutedEventArgs e)
         {
-            neuerTab("Fliesen", "tabFliesenAnsicht", fliesenTabs);
+            KalkulationsTab<Calculation> tab= neuerTab("Fliesen", "tabFliesenAnsicht", fliesenTabs);
+            Frame tabFrame = new Frame();
+            Fliesenkalkulation.FliesenkalkulationGUI ladeSeite = new Fliesenkalkulation.FliesenkalkulationGUI();
+            tabFrame.Content = ladeSeite.Content;
+            tab.Content = tabFrame;
+            tab.Focus();
+            fliesenTabs++;
         }
 
         private void cmdTapetenAuf_Click(object sender, RoutedEventArgs e)
         {
-            neuerTab("Tapeten", "tabTapetenAnsicht", tapetenTabs);
+            KalkulationsTab<Calculation> tab= neuerTab("Tapeten", "tabTapetenAnsicht", tapetenTabs);
+            Frame tabFrame = new Frame();
+            Tapetenkalkulation.TapetenkalkulationGUI ladeSeite = new Tapetenkalkulation.TapetenkalkulationGUI();
+            tabFrame.Content = ladeSeite.Content;
+            tab.Content = tabFrame;
+            tab.Focus();
+            tapetenTabs++;
         }
 
         private void cmdGesamtbetragAuf_Click(object sender, RoutedEventArgs e)
         {
-            neuerTab("Gesamt", "tabGesamt", 0);
+            //GUI für Gesamtübersicht fehlt noch
+            if (gesamtTab == 0)
+            {
+                neuerTab("Gesamt", "tabGesamt", 0);
+                gesamtTab++;
+            }
+            else
+            {
+                //Erneuern, da nur einmal Übersicht
+            }
         }
 
-        private void neuerTab(String tabname, String tabBezeichnung, int anzahl)
+        private KalkulationsTab<Calculation> neuerTab(String tabname, String tabBezeichnung, int anzahl)
         {
             KalkulationsTab<Calculation> tab = new KalkulationsTab<Calculation>();
             if (anzahl > 0)
@@ -148,9 +171,11 @@ namespace tfMarktMain
                 tab.Header = tabname;
             }
             tabAnsicht.Items.Add(tab);
+            
+            return tab;
         }
 
-        private void Generate_TotalCalculation_Click(object sender, RoutedEventArgs e)
+         private void Generate_TotalCalculation_Click(object sender, RoutedEventArgs e)
         {
             if (SelectedCustomer.Calculations.Count > 0)
             {
@@ -179,6 +204,23 @@ namespace tfMarktMain
         private void KundenNameVeraendern_TextChanged(object sender, TextChangedEventArgs e)
         {
             SelectedCustomer.Name = KundenNachnameTextbox.Text + ", " + KundenNameTextbox.Text;
+        }
+
+        private void entferneAlleTabs() 
+        {
+            List<TabItem> tabListe = new List<TabItem>();
+            ItemCollection a= tabAnsicht.Items;
+            foreach(ItemsControl e in a)
+            {
+                Console.WriteLine(e.Name);
+            }
+            //tabAnsicht.Items.Remove();
+        }
+
+        private void cmdStarteAdministration_Click(object sender, RoutedEventArgs e)
+        {
+            //Schauen, wie man am Besten die Administartion reinbekommt
+            MessageBox.Show("Hier sollte sich eigentlich die administration öffnen, aber C# ist bescheuert");
         }
       
     }
