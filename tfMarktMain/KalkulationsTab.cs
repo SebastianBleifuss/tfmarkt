@@ -10,15 +10,19 @@ namespace tfMarktMain
 {
     class KalkulationsTab<T> : TabItem
     {
-        private Calculation kalkulation;
+        private T kalkulation;
 
         public KalkulationsTab() 
         {
         }
 
-        public KalkulationsTab(Calculation kalkulation)
+        public KalkulationsTab(T kalkulation)
         {
             this.kalkulation = kalkulation;
+        }
+
+        public T getKalkulation() {
+            return kalkulation;
         }
     }
 }

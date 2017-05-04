@@ -42,9 +42,19 @@ namespace xmlserializer.Models
 
         }
 
-        public void addCalculation(Calculation calc, Guid Identifier)
+        public void addCalculation(Calculation calc, bool Override)
         {
-            this.Calculations.Add(Identifier, calc);
+            if (calculationExists(calc.Identifier)) {
+                if (Override)
+                {
+                    this.Calculations.Remove(calc.Identifier);
+                }
+                else {
+                    throw new InvalidOperationException("Calculation already exists!");
+                }
+            }
+            this.Calculations.Add(calc.Identifier, calc);
+            
         }
 
         public bool calculationExists(Guid Identifier)
