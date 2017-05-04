@@ -42,7 +42,7 @@ namespace xmlserializer.Models
         /// set ProductType
         /// </summary>
         /// <param name="t">Type of product</param>
-        public void setProductType(Type t)
+        internal protected void setProductType(Type t)
         {
             if (typeof(Product).IsAssignableFrom(t))//Check if passed type inherit base type
             {
@@ -54,22 +54,22 @@ namespace xmlserializer.Models
             }
         }
 
-        public Type getProductType()
+        internal protected Type getProductType()
         {
             return ProductType;
         }
 
-        public int getArtikelnummer()
+        internal protected int getArtikelnummer()
         {
             return artikelnummer;
         }
 
-        public void setArtikelnummer(int nummer)
+        internal protected void setArtikelnummer(int nummer)
         {
             artikelnummer = nummer;
         }
 
-        public void setArtikelbezeichnung(String bez)
+        internal protected void setArtikelbezeichnung(String bez)
         {
             artikelbezeichnung = bez;
         }
@@ -84,7 +84,7 @@ namespace xmlserializer.Models
             return preis;
         }
 
-        public void setPreis(decimal price)
+        internal protected void setPreis(decimal price)
         {
             preis = price;
         }
