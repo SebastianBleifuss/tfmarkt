@@ -22,7 +22,7 @@ namespace xmlserializer.Models
         /// <summary>
         /// Customernumber unique define customer
         /// </summary>
-        public Guid Customernumber;
+        public Guid Customernumber { get; private set; }
 
         /// <summary>
         /// Dictionary with Identifier|Calculations
@@ -39,22 +39,41 @@ namespace xmlserializer.Models
         public Customer()
         {
             Customernumber = getNewUniqueGuid();
-
+            Customers.Add(this.Customernumber, "initialised");
         }
 
         public void addCalculation(Calculation calc, bool Override)
         {
-            if (calculationExists(calc.Identifier)) {
+            if (calculationExists(calc.Identifier))
+            {
                 if (Override)
                 {
-                    this.Calculations.Remove(calc.Identifier);
+                    replaceCalculation(calc);
                 }
-                else {
+                else
+                {
                     throw new InvalidOperationException("Calculation already exists!");
                 }
             }
+            else {
             this.Calculations.Add(calc.Identifier, calc);
+            }           
+        }
+
+        private void replaceCalculation(Calculation calc) {
+            Calculation calculationsaver;//Pretend losing the whole calculation
             
+            if(this.Calculations.TryGetValue(calc.Identifier, out calculationsaver))
+            {
+                try {
+                    this.Calculations.Remove(calc.Identifier);
+                    this.Calculations.Add(calc.Identifier,calc);
+                }
+                catch (Exception ex) {
+                    this.Calculations.Add(calculationsaver.Identifier, calculationsaver);
+                    throw ex;
+                }
+            }
         }
 
         public bool calculationExists(Guid Identifier)
@@ -97,6 +116,7 @@ namespace xmlserializer.Models
         public static List<String> getCustomerNames()
         {
             List<String> CustomerNames = new List<string>();
+            Customers.Clear();
             foreach (String Name in Directory.GetFiles(xmlserializer.DATASTORAGEPATH + "\\customers"))
             { //Get all xml files from defined directory
                 String CustomerInfo = Name.Replace(".xml", "").Replace("..\\datastorage\\customers\\", "");

@@ -10,7 +10,7 @@ namespace xmlserializer
     {
         public FooBarCalculation() : base(){
             CalculationType = typeof(FooBarCalculation);
-            
+            SelectedProduct = new FooBarProduct("SuperNull", 0m);
         }
     }
 }
