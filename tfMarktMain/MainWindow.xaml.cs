@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using xmlserializer.Models;
 using tfMarktMain.Export;
 
+
 namespace tfMarktMain
 {
     /// <summary>
@@ -24,6 +25,7 @@ namespace tfMarktMain
     {
         private int fliesenTabs = 0;
         private int tapetenTabs = 0;
+        private int gesamtTab = 0;
         private bool isCustomerChanged = true;
         private Customer SelectedCustomer;
 
@@ -45,7 +47,6 @@ namespace tfMarktMain
 
         private void customer_selected(object sender, RoutedEventArgs e)
         {
-
             ComboBoxItem CustomerItem = (ComboBoxItem)sender;
             SelectedCustomer = xmlserializer.xmlserializer.deserialize(CustomerItem.Content.ToString(), new Guid(CustomerItem.ToolTip.ToString()));
 
@@ -60,6 +61,7 @@ namespace tfMarktMain
             {
                 CalculationListBox.Items.Add(calc);
             }
+            //entferneAlleTabs
         }
 
         private void CalculationListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -136,7 +138,16 @@ namespace tfMarktMain
 
         private void cmdGesamtbetragAuf_Click(object sender, RoutedEventArgs e)
         {
-            neuerTab("Gesamt", "tabGesamt", 0);
+            //GUI für Gesamtübersicht fehlt noch
+            if (gesamtTab == 0)
+            {
+                neuerTab("Gesamt", "tabGesamt", 0);
+                gesamtTab++;
+            }
+            else
+            {
+                //Erneuern, da nur einmal Übersicht
+            }
         }
 
         private KalkulationsTab<Calculation> neuerTab(String tabname, String tabBezeichnung, int anzahl)
@@ -186,6 +197,23 @@ namespace tfMarktMain
         private void KundenNameVeraendern_TextChanged(object sender, TextChangedEventArgs e)
         {
             SelectedCustomer.Name = KundenNachnameTextbox.Text + ", " + KundenNameTextbox.Text;
+        }
+
+        private void entferneAlleTabs() 
+        {
+            List<TabItem> tabListe = new List<TabItem>();
+            ItemCollection a= tabAnsicht.Items;
+            foreach(ItemsControl e in a)
+            {
+                Console.WriteLine(e.Name);
+            }
+            //tabAnsicht.Items.Remove();
+        }
+
+        private void cmdStarteAdministration_Click(object sender, RoutedEventArgs e)
+        {
+            //Schauen, wie man am Besten die Administartion reinbekommt
+            MessageBox.Show("Hier sollte sich eigentlich die administration öffnen, aber C# ist bescheuert");
         }
       
     }

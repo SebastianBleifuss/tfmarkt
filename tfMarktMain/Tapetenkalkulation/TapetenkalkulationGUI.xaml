@@ -1,8 +1,30 @@
 ﻿<Window x:Class="tfMarktMain.Tapetenkalkulation.TapetenkalkulationGUI"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="TapetenkalkulationGUI" Height="300" Width="300">
+        Title="TapetenkalkulationGUI" Height="300" Width="600">
     <Grid>
-        
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="112*"/>
+                <ColumnDefinition Width="485*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="58*"/>
+                <RowDefinition Height="61*"/>
+                <RowDefinition Height="117*"/>
+            </Grid.RowDefinitions>
+            <Label Content="Tapetenkalkulation" Margin="10,10,0,0" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" Width="325" Height="41" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+            <Label Content="Größe" HorizontalAlignment="Left" Margin="15,24,0,0" Grid.Row="1" VerticalAlignment="Top" Height="25" Width="45"/>
+            <TextBox x:Name="txtGroesse" HorizontalAlignment="Left" Height="25" Margin="10,23,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="237" Grid.Column="1"/>
+            <Label Content="m²" HorizontalAlignment="Left" Margin="252,24,0,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="8.361,0.668" Height="26" Width="25" Grid.Column="1"/>
+            <Button x:Name="btnFlaecheBerechnen" Content="Fläche Berechnen" Margin="312,23,0,0" RenderTransformOrigin="-0.057,0.708" Click="btnFlaecheBerechnen_Click" Grid.Row="1" HorizontalAlignment="Left" Width="116" Height="25" Grid.Column="1" VerticalAlignment="Top"/>
+            <Label Content="Tapete" HorizontalAlignment="Left" Margin="15,10,0,0" Grid.Row="2" VerticalAlignment="Top" Height="25" Width="45"/>
+            <ComboBox HorizontalAlignment="Left" Margin="10,12,0,0" Grid.Row="2" VerticalAlignment="Top" Width="237" IsReadOnly="True" SelectedIndex="0" Height="25" Grid.Column="1">
+                <ComboBoxItem Content="Tapeten zur Auswahl"/>
+            </ComboBox>
+            <Button x:Name="btnKalkulieren" Content="Kalkulation starten" Margin="312,12,0,0" RenderTransformOrigin="-0.057,0.708" Click="btnRollenBerechnen_Click" Grid.Row="2" HorizontalAlignment="Left" Width="116" Grid.Column="1" Height="25" VerticalAlignment="Top"/>
+
+        </Grid>
+
     </Grid>
 </Window>

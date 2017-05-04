@@ -23,5 +23,19 @@ namespace tfMarktMain.Tapetenkalkulation
         {
             InitializeComponent();
         }
+
+        private void btnFlaecheBerechnen_Click(object sender, RoutedEventArgs e)
+        {
+            //FlächeBerechnenfenster muss noch eingefügt werden.
+
+            //Window FlaecheBerechnenFenster = new FlaecheBerechnen();
+            //FlaecheBerechnenFenster.ShowDialog();
+            //txtGroesse.Text = kalkulation.getFlaeche().ToString();
+        }
+
+        private void btnRollenBerechnen_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
