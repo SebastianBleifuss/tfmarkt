@@ -113,6 +113,10 @@ namespace AdministrationDerProdukte
             {
                 speicherFliese();
             }
+            else if ((bool)rbTapete.IsChecked)
+            {
+                speicherTapete();
+            }
             this.Close();
         }
 
@@ -125,6 +129,13 @@ namespace AdministrationDerProdukte
         private void speicherFliese()
         {
             Fliese neueFliese = new Fliese(txtArtikelbezeichnung.Text, Convert.ToDecimal(txtOptionOne.Text), Convert.ToDecimal(txtOptionTwo.Text), Convert.ToDecimal(txtPreis.Text));
+            xmlserializer.xmlserializer.serialize(neueFliese);
+        }
+
+        private void speicherTapete()
+        {
+            Tapete neueTapete = new Tapete(txtArtikelbezeichnung.Text, Convert.ToDecimal(txtOptionOne.Text), Convert.ToDecimal(txtOptionTwo.Text), Convert.ToDecimal(txtOptionThree.Text), Convert.ToDecimal(txtPreis.Text));
+            xmlserializer.xmlserializer.serialize(neueTapete);
         }
 
         public void setProdukt(Product produkt)
