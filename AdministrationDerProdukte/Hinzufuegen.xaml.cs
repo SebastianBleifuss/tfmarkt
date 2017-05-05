@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Text.RegularExpressions;
+using xmlserializer.Models.Products;
+using xmlserializer.Models;
 
 namespace AdministrationDerProdukte
 {
@@ -20,6 +22,7 @@ namespace AdministrationDerProdukte
     /// </summary>
     public partial class Hinzufuegen : Window
     {
+
         public Hinzufuegen()
         {
             InitializeComponent();
@@ -34,31 +37,46 @@ namespace AdministrationDerProdukte
                 lblOptionOne.Content = "Länge Tapetenrolle";
                 lblOptionOne.Visibility = Visibility.Visible;
                 txtOptionOne.Visibility = Visibility.Visible;
+                txtOptionOne.TextChanged += checkDecimal_TextChanged;
+
                 lblOptionTwo.Content = "Tapetenbreite";
                 lblOptionTwo.Visibility = Visibility.Visible;
                 txtOptionTwo.Visibility = Visibility.Visible;
+                txtOptionTwo.TextChanged += checkDecimal_TextChanged;
+
                 lblOptionThree.Content = "Rapport";
                 lblOptionThree.Visibility = Visibility.Visible;
                 txtOptionThree.Visibility = Visibility.Visible;
+                txtOptionThree.TextChanged += checkDecimal_TextChanged;
             }
             else if (sender == rbFliese)
             {
                 lblOptionOne.Content = "Länge";
                 lblOptionOne.Visibility = Visibility.Visible;
+                txtOptionOne.TextChanged += checkDecimal_TextChanged;
+
                 lblOptionTwo.Content = "Breite";
                 lblOptionTwo.Visibility = Visibility.Visible;
+                txtOptionTwo.TextChanged += checkDecimal_TextChanged;
+
                 lblOptionThree.Visibility = Visibility.Hidden;
                 txtOptionThree.Visibility = Visibility.Hidden;
+                txtOptionThree.TextChanged -= checkDecimal_TextChanged;
             }
-            else if (sender == rbFugenfüller || sender == rbFliesenkleber || sender == rbTapetenkleber)
+            else if (sender == rbHilfsmittel)
             {
                 lblOptionOne.Content = "Ergiebigkeit";
                 lblOptionOne.Visibility = Visibility.Visible;
                 txtOptionOne.Visibility = Visibility.Visible;
+                txtOptionOne.TextChanged += checkDecimal_TextChanged;
+
                 lblOptionTwo.Visibility = Visibility.Hidden;
                 txtOptionTwo.Visibility = Visibility.Hidden;
+                txtOptionTwo.TextChanged -= checkDecimal_TextChanged;
+
                 lblOptionThree.Visibility = Visibility.Hidden;
                 txtOptionThree.Visibility = Visibility.Hidden;
+                txtOptionThree.TextChanged -= checkDecimal_TextChanged;
             }
         }
 
@@ -76,11 +94,83 @@ namespace AdministrationDerProdukte
             if (checkTxtPreis())
             {
                 txtSender.Foreground = Brushes.Black;
+                btnSpeichern.IsEnabled = true;
             }
             else
             {
                 txtSender.Foreground = Brushes.Red;
+                btnSpeichern.IsEnabled = false;
             }
+        }
+
+        private void btnSpeichern_Click(object sender, RoutedEventArgs e)
+        {
+            if ((bool)rbHilfsmittel.IsChecked)
+            {
+                speicherHilfsmittel();
+            }
+            else if ((bool)rbFliese.IsChecked)
+            {
+                speicherFliese();
+            }
+            this.Close();
+        }
+
+        private void speicherHilfsmittel()
+        {
+            Hilfsmittel neuesHilfsmittel = new Hilfsmittel(txtArtikelbezeichnung.Text, Convert.ToDecimal(txtOptionOne.Text), Convert.ToDecimal(txtPreis.Text));
+            xmlserializer.xmlserializer.serialize(neuesHilfsmittel);
+        }
+
+        private void speicherFliese()
+        {
+            Fliese neueFliese = new Fliese(txtArtikelbezeichnung.Text, Convert.ToDecimal(txtOptionOne.Text), Convert.ToDecimal(txtOptionTwo.Text), Convert.ToDecimal(txtPreis.Text));
+        }
+
+        public void setProdukt(Product produkt)
+        {
+            Type produktTyp = produkt.getProductType();
+            if (produktTyp.Equals(typeof(Fliese)))
+            {
+                loadGUIFliese((Fliese)produkt);
+            }
+            else if (produktTyp.Equals(typeof(Tapete)))
+            {
+                loadGUITapete((Tapete)produkt);
+            }
+            else if (produktTyp.Equals(typeof(Hilfsmittel)))
+            {
+                loadGUIHilfsmittel((Hilfsmittel)produkt);
+            }
+        }
+
+        private void loadGUIFliese(Fliese fliese)
+        {
+            rbFliese.IsChecked = true;
+            txtArtikelbezeichnung.Text = fliese.getArtikelbezeichnung();
+            txtArtikelnummer.Text = fliese.getArtikelnummer().ToString();
+            txtPreis.Text = fliese.getPreis().ToString();
+            txtOptionOne.Text = fliese.Laenge.ToString();
+            txtOptionTwo.Text = fliese.Breite.ToString();
+        }
+
+        private void loadGUITapete(Tapete tapete)
+        {
+            rbTapete.IsChecked = true;
+            txtArtikelnummer.Text = tapete.getArtikelnummer().ToString();
+            txtArtikelbezeichnung.Text = tapete.getArtikelbezeichnung();
+            txtPreis.Text = tapete.getPreis().ToString();
+            txtOptionTwo.Text = tapete.Breite.ToString();
+            txtOptionThree.Text = tapete.Rapport.ToString();
+        }
+
+        private void loadGUIHilfsmittel(Hilfsmittel hilfsmittel)
+        {
+            rbHilfsmittel.IsChecked = true;
+            txtArtikelbezeichnung.Text = hilfsmittel.getArtikelbezeichnung();
+            txtArtikelnummer.Text = hilfsmittel.getArtikelnummer().ToString();
+            txtPreis.Text = hilfsmittel.getPreis().ToString();
+            txtOptionOne.Text = hilfsmittel.Ergiebigkeit.ToString();
         }
     }
 }

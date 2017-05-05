@@ -44,6 +44,8 @@ namespace tfMarktMain
             }
             CustomersBox.SelectedIndex = 0;
             SelectedCustomer = new Customer();
+            Window temp = new Fliesenkalkulation.FliesenkalkulationGUI();
+            temp.Show();
         }
 
         private void customer_selected(object sender, RoutedEventArgs e)
