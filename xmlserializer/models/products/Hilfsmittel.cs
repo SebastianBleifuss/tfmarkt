@@ -25,6 +25,11 @@ namespace xmlserializer.Models.Products
             this.ProductType = typeof(Hilfsmittel);
         }
 
+        public Hilfsmittel()
+        {
+
+        }
+
         
     }
 }

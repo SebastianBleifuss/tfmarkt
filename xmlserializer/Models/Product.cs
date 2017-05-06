@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using xmlserializer.Models.Products;
 
 namespace xmlserializer.Models
 {
@@ -99,6 +100,18 @@ namespace xmlserializer.Models
             if (AssemblyQualifiedName.Equals(typeof(FooBarProduct).AssemblyQualifiedName))//Check if passed type inherit base type
             {
                 return typeof(FooBarProduct);
+            }
+            else if (AssemblyQualifiedName.Equals(typeof(Fliese).AssemblyQualifiedName))//Check if passed type inherit base type
+            {
+                return typeof(Fliese);
+            }
+            else if (AssemblyQualifiedName.Equals(typeof(Tapete).AssemblyQualifiedName))//Check if passed type inherit base type
+            {
+                return typeof(Tapete);
+            }
+            else if (AssemblyQualifiedName.Equals(typeof(Hilfsmittel).AssemblyQualifiedName))//Check if passed type inherit base type
+            {
+                return typeof(Hilfsmittel);
             }
             else
             {

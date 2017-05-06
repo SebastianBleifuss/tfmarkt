@@ -41,6 +41,11 @@ namespace xmlserializer.Models.Products
             this.ProductType = typeof(Tapete);
         }
 
+        public Tapete()
+        {
+
+        }
+
         
     }
 }

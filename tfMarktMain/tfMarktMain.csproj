@@ -85,9 +85,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+<<<<<<< HEAD
     <Compile Include="Tapetenkalkulation\TapetenkalkulationGUI.xaml.cs">
       <DependentUpon>TapetenkalkulationGUI.xaml</DependentUpon>
     </Compile>
+=======
+    <Page Include="Fliesenkalkulation\FlaecheBerechnen.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+>>>>>>> feature/Fliesenkalkulation
     <Page Include="Fliesenkalkulation\FliesenkalkulationGUI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -101,6 +108,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Export\PDFFactory.cs" />
+    <Compile Include="Fliesenkalkulation\FlaecheBerechnen.xaml.cs">
+      <DependentUpon>FlaecheBerechnen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Fliesenkalkulation\Fliesenkalkulation.cs" />
     <Compile Include="Fliesenkalkulation\FliesenkalkulationGUI.xaml.cs">
       <DependentUpon>FliesenkalkulationGUI.xaml</DependentUpon>
     </Compile>
