@@ -55,12 +55,12 @@ namespace xmlserializer.Models
             }
         }
 
-        internal protected Type getProductType()
+        public Type getProductType()
         {
             return ProductType;
         }
 
-        internal protected int getArtikelnummer()
+        public int getArtikelnummer()
         {
             return artikelnummer;
         }
@@ -88,36 +88,6 @@ namespace xmlserializer.Models
         internal protected void setPreis(decimal price)
         {
             preis = price;
-        }
-
-        /// <summary>
-        /// Return ProductType of product if the AssemblyQualifiedName matches
-        /// </summary>
-        /// <param name="AssemblyQualifiedName">AssemblyQualifiedName</param>
-        /// <returns>Type of calculation</returns>
-        public static Type GetType(String AssemblyQualifiedName)
-        {
-            if (AssemblyQualifiedName.Equals(typeof(FooBarProduct).AssemblyQualifiedName))//Check if passed type inherit base type
-            {
-                return typeof(FooBarProduct);
-            }
-            else if (AssemblyQualifiedName.Equals(typeof(Fliese).AssemblyQualifiedName))//Check if passed type inherit base type
-            {
-                return typeof(Fliese);
-            }
-            else if (AssemblyQualifiedName.Equals(typeof(Tapete).AssemblyQualifiedName))//Check if passed type inherit base type
-            {
-                return typeof(Tapete);
-            }
-            else if (AssemblyQualifiedName.Equals(typeof(Hilfsmittel).AssemblyQualifiedName))//Check if passed type inherit base type
-            {
-                return typeof(Hilfsmittel);
-            }
-            else
-            {
-                throw new NotSupportedException(AssemblyQualifiedName + " is not supported!");
-            }
-            //Erweitern!
         }
 
     }

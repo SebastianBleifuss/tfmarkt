@@ -301,9 +301,18 @@ namespace tfMarktMain.Export
             /// <summary>
             /// Display PDF file
             /// </summary>
-            public void showPDF()
+            public TabItem displayPDF()
             {
-                Process.Start(TemporaryFile.FullName);//Send PDF to Process to trigger windows opening sequence
+                
+
+                WebBrowser wb = new WebBrowser();
+                wb.Navigate(new Uri(TemporaryFile.FullName));
+
+                TabItem GesamtItem = new TabItem();
+                GesamtItem.Header = "Geamtkalkulation";
+                GesamtItem.Content = wb;
+
+                return GesamtItem;
             }
 
 
@@ -312,13 +321,15 @@ namespace tfMarktMain.Export
             /// </summary>
             public void printPDF()
             {
+                Process.Start(TemporaryFile.FullName);//Send PDF to Process to trigger windows opening sequence
+
                 //Create PrintDialog and configure it
                 PrintDialog printDialog = new PrintDialog();
                 PrinterSettings settings = new PrinterSettings();
                 printDialog.PageRangeSelection = PageRangeSelection.AllPages;
                 printDialog.UserPageRangeEnabled = true;
                 String printerExtraParameters = "";
-
+                
                 if (printDialog.ShowDialog() == true)
                 {
                     //Create and execute print process

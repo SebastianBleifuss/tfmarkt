@@ -71,9 +71,9 @@ namespace xmlserializer.XmlDocuments
         public static Calculation GetCalculationFromNode(this XmlDocument doc, XmlNode CalculationNode)
         {
             String AssemblyQualifiedName = CalculationNode.SelectSingleNode("CalculationType").InnerText;//Get AssemblyQualifiedName to identify class type
-            Type CalculationType = Calculation.GetType(AssemblyQualifiedName);//Get type from AssemblyQualifiedName
+            Type CalculationType = Type.GetType(AssemblyQualifiedName);
 
-
+            
             //Instances created from CalculationType
             Calculation LoadingCalculation = (Calculation)Activator.CreateInstance(CalculationType);
 

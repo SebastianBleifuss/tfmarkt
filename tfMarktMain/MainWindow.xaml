@@ -13,10 +13,10 @@
         </Grid.RowDefinitions>
         <Menu x:Name="menu" HorizontalAlignment="Left" Height="{Binding ActualHeight, ElementName=menuItem, Mode=OneWay}" VerticalAlignment="Top" Width="{Binding ActualWidth, ElementName=grid, Mode=OneWay}" Grid.ColumnSpan="2" Grid.RowSpan="2">
             <MenuItem x:Name="dateiMenu" Header="Datei" RenderTransformOrigin="0.381,0.5">
-                <MenuItem Header="Gesamtkalkulation anzeigen" x:Name="gesamtAnzeigenMenuItem" Click="Generate_TotalCalculation_Click"/>
-                <MenuItem Header="Gesamtkalkulation drucken" x:Name="druckenMenuItem" Click="Generate_TotalCalculation_Click"/>
-                <MenuItem Header="Kunde speichern" x:Name="kundeMenuItem" Click="Save_Customer_Click"/>
-                <MenuItem Header="Kunde löschen" x:Name="deleteMenuItem" Click="Delete_Customer_Click"/>
+                <MenuItem Header="Gesamtkalkulation speichern" x:Name="gesamtSpeichernMenuItem" Click="saveGesamtkalkulation" />
+                <MenuItem Header="Gesamtkalkulation drucken" x:Name="gesamtDruckenMenuItem" Click="printGesamtkalkulation" />
+                <MenuItem Header="Kunde speichern" x:Name="kundeSpeichernMenuItem" Click="Save_Customer_Click"/>
+                <MenuItem Header="Kunde löschen" x:Name="kundeLöschenMenuItem" Click="Delete_Customer_Click"/>
                 <Separator />
                 <MenuItem Header="Beenden" x:Name="beendenMenuItem" Click="cmdBeenden_Click"/>
             </MenuItem>

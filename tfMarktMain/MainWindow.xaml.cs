@@ -29,6 +29,8 @@ namespace tfMarktMain
         private int gesamtTab = 0;
         private bool isCustomerChanged = true;
         private Customer SelectedCustomer;
+        private PDFFactory.CustomerPDFDocument GesamtkalkualtionsPDF;
+        private TabItem GesamtKalkulationsTab;
 
         public MainWindow()
         {
@@ -55,16 +57,14 @@ namespace tfMarktMain
 
             String[] namen = SelectedCustomer.Name.Split(new[] { ", " }, StringSplitOptions.None);
 
-            KundenNameTextbox.Text=namen[1];
+
             KundenNachnameTextbox.Text = namen[0];
+            KundenNameTextbox.Text = namen[1];
             KundenNummerTextbox.Text = SelectedCustomer.Customernumber.ToString();
 
-            CalculationListBox.Items.Clear();
 
-            foreach (Calculation calc in SelectedCustomer.Calculations.Values)
-            {
-                CalculationListBox.Items.Add(calc);
-            }
+            CalculationListBox.ItemsSource = SelectedCustomer.Calculations.Values;
+					
             //entferneAlleTabs
         }
 
@@ -82,11 +82,12 @@ namespace tfMarktMain
         {
             if (CustomersBox.SelectedIndex == 0)
             {
-                CalculationListBox.Items.Clear();
+                
                 SelectedCustomer = new Customer();
                 KundenNameTextbox.Clear();
                 KundenNachnameTextbox.Clear();
                 KundenNummerTextbox.Text = SelectedCustomer.Customernumber.ToString();
+                CalculationListBox.ItemsSource = SelectedCustomer.Calculations.Values;
             }
         }
 
@@ -97,11 +98,8 @@ namespace tfMarktMain
                 if (SelectedCustomer.Calculations.Count > 0)
                 {
                     xmlserializer.xmlserializer.serialize(SelectedCustomer);
-
-                    xmlserializer.xmlserializer.serialize(new Hilfsmittel("SuperHilfsmittel",23.5m,0.99m));
-                    xmlserializer.xmlserializer.serialize(new Fliese("SuperFliese", 2m,5m, 0.99m));
-                    xmlserializer.xmlserializer.serialize(new Tapete("SuperTapete", 2m,3m,5m, 0.99m));
-
+                    CustomersBox.Items.Add(SelectedCustomer.Name);
+                    CustomersBox.SelectedValue = SelectedCustomer.Name;
                 }
                 else {
                     MessageBox.Show("Keine Kalkualtionen zum speichern!");
@@ -147,16 +145,33 @@ namespace tfMarktMain
 
         private void cmdGesamtbetragAuf_Click(object sender, RoutedEventArgs e)
         {
-            //GUI für Gesamtübersicht fehlt noch
-            if (gesamtTab == 0)
+            if (SelectedCustomer.Calculations.Count > 0)
             {
-                neuerTab("Gesamt", "tabGesamt", 0);
-                gesamtTab++;
-            }
-            else
-            {
-                //Erneuern, da nur einmal Übersicht
-            }
+                if (gesamtTab == 0)
+                {
+                    gesamtTab++;
+
+                    GesamtkalkualtionsPDF = new PDFFactory.CustomerPDFDocument(SelectedCustomer);
+                    TabItem PDFTab = GesamtkalkualtionsPDF.displayPDF();
+
+                    ContextMenu PDFTabContextMenue = new ContextMenu();
+                    MenuItem VerwerfItem = new MenuItem();
+                    VerwerfItem.Header = "Verwerfen";
+                    VerwerfItem.Click += VerwerfItem_Click;
+                    VerwerfItem.Tag = PDFTab;
+                    PDFTabContextMenue.Items.Add(VerwerfItem);
+                    PDFTab.ContextMenu = PDFTabContextMenue;
+                    tabAnsicht.Items.Add(PDFTab);
+                    GesamtKalkulationsTab = PDFTab;
+                    PDFTab.Focus();
+                }
+                else
+                {
+                    tabAnsicht.Items.Remove(GesamtKalkulationsTab);
+                    gesamtTab = 0;
+                    cmdGesamtbetragAuf_Click(sender, e);
+                }
+            } 
         }
 
         private KalkulationsTab<Calculation> neuerTab(String tabname, String tabBezeichnung, int anzahl)
@@ -172,23 +187,38 @@ namespace tfMarktMain
                 tab.Name = tabname;
                 tab.Header = tabname;
             }
+            ContextMenu TabContextMenue = new ContextMenu();
+            MenuItem VerwerfItem = new MenuItem();
+            VerwerfItem.Header = "Verwerfen";
+            VerwerfItem.Click += VerwerfItem_Click;
+            VerwerfItem.Tag = tab;
+            TabContextMenue.Items.Add(VerwerfItem);
+            tab.ContextMenu = TabContextMenue;
             tabAnsicht.Items.Add(tab);
-            
+            tabAnsicht.SelectedItem = tab;
             return tab;
+
         }
 
-         private void Generate_TotalCalculation_Click(object sender, RoutedEventArgs e)
+        private void Geamtkalkulation_Speichern(object sender, RoutedEventArgs e)
         {
-            if (SelectedCustomer.Calculations.Count > 0)
-            {
-                tfMarktMain.Export.PDFFactory.CustomerPDFDocument cpd = new tfMarktMain.Export.PDFFactory.CustomerPDFDocument(SelectedCustomer);
-                cpd.showPDF();
-                cpd.printPDF();
-                //cpd.savePDF(true);
-            }
-            else {
-                MessageBox.Show("Keine Kalkulationen vorhanden!");
-            }
+            MenuItem ConItem = (MenuItem)sender;
+            TabItem TabItem = (TabItem)ConItem.Tag;
+        }
+
+        private void VerwerfItem_Click(object sender, RoutedEventArgs e)
+        {
+            MenuItem ConItem = (MenuItem)sender;
+            TabItem TabItem = (TabItem)ConItem.Tag;
+            tabAnsicht.Items.Remove(TabItem);
+        }
+        private void SpeicherItem_Click(object sender, RoutedEventArgs e)
+        {
+            MenuItem ConItem = (MenuItem)sender;
+            KalkulationsTab<Calculation> TabItem = (KalkulationsTab<Calculation>)ConItem.Tag;
+            SelectedCustomer.addCalculation(TabItem.getKalkulation(), /*OVERRIDE SETZEN!*/ true); //Wirft Exception wenn die Kalkulation nicht vollständig initialisiert wurde
+            CalculationListBox.ItemsSource = SelectedCustomer.Calculations.Values;
+            tabAnsicht.Items.Remove(TabItem);
         }
 
         private Guid generateGuid()
@@ -223,7 +253,31 @@ namespace tfMarktMain
         {
             //Schauen, wie man am Besten die Administartion reinbekommt
             MessageBox.Show("Hier sollte sich eigentlich die administration öffnen, aber C# ist bescheuert");
+            
         }
-      
+
+        private void saveGesamtkalkulation(object sender, RoutedEventArgs e)
+        {
+            if (SelectedCustomer.Calculations.Count > 0)
+            {
+                if (GesamtkalkualtionsPDF == null)
+                {
+                    GesamtkalkualtionsPDF = new PDFFactory.CustomerPDFDocument(SelectedCustomer);
+                }
+                GesamtkalkualtionsPDF.savePDF(true);
+            }
+        }
+
+        private void printGesamtkalkulation(object sender, RoutedEventArgs e)
+        {
+            if (SelectedCustomer.Calculations.Count > 0)
+            {
+                if (GesamtkalkualtionsPDF == null)
+                {
+                    GesamtkalkualtionsPDF = new PDFFactory.CustomerPDFDocument(SelectedCustomer);
+                }
+                GesamtkalkualtionsPDF.printPDF();
+            }
+        }
     }
 }
