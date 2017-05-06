@@ -142,6 +142,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AdministrationDerProdukte\AdministrationDerProdukte.csproj">
+      <Project>{06737ae5-1e7f-468b-9388-4cffc4bad8fe}</Project>
+      <Name>AdministrationDerProdukte</Name>
+    </ProjectReference>
     <ProjectReference Include="..\xmlserializer\xmlserializer.csproj">
       <Project>{94efa374-32f8-48fb-9ec1-4ae906645218}</Project>
       <Name>xmlserializer</Name>
