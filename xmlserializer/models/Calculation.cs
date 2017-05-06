@@ -67,24 +67,5 @@ namespace xmlserializer.Models
 
         }
 
-        /// <summary>
-        /// Return CalculationType of calculation if the AssemblyQualifiedName matches
-        /// </summary>
-        /// <param name="AssemblyQualifiedName">AssemblyQualifiedName</param>
-        /// <returns>Type of calculation</returns>
-        public static Type GetType(String AssemblyQualifiedName)
-        {
-            if (AssemblyQualifiedName.Equals(typeof(FooBarCalculation).AssemblyQualifiedName))//Check if passed type inherit base type
-            {
-                return typeof(FooBarCalculation);
-            }
-            else
-            {
-                throw new NotSupportedException(AssemblyQualifiedName + " is not supported!");
-            }
-            //Erweitern!
-        }
-
-
     }
 }

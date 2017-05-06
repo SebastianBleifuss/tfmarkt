@@ -306,13 +306,13 @@ namespace tfMarktMain.Export
                 
 
                 WebBrowser wb = new WebBrowser();
-                wb.Navigate("file:///" + new Uri(TemporaryFile.FullName));
+                wb.Navigate(new Uri(TemporaryFile.FullName));
 
                 TabItem GesamtItem = new TabItem();
                 GesamtItem.Header = "Geamtkalkulation";
                 GesamtItem.Content = wb;
 
-                return displayPDF();
+                return GesamtItem;
             }
 
 

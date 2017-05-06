@@ -127,7 +127,7 @@ namespace xmlserializer.XmlDocuments
             String AssemblyQualifiedName = ProductNode.SelectSingleNode("ProductType").InnerText;//Get AssemblyQualifiedName to identify class type
 
             //Instances created from CalculationType
-            Type ProductType = Product.GetType(AssemblyQualifiedName);//Get type from AssemblyQualifiedName
+            Type ProductType = Type.GetType(AssemblyQualifiedName);
 
             //Set Properties from Nodes of the xml-file
             Product LoadingProduct = (Product)Activator.CreateInstance(ProductType);

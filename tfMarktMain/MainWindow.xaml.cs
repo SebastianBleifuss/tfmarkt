@@ -30,6 +30,7 @@ namespace tfMarktMain
         private bool isCustomerChanged = true;
         private Customer SelectedCustomer;
         private PDFFactory.CustomerPDFDocument GesamtkalkualtionsPDF;
+        private TabItem GesamtKalkulationsTab;
 
         public MainWindow()
         {
@@ -144,35 +145,33 @@ namespace tfMarktMain
 
         private void cmdGesamtbetragAuf_Click(object sender, RoutedEventArgs e)
         {
-            //GUI für Gesamtübersicht fehlt noch
-           
-
-            if (gesamtTab == 0)
+            if (SelectedCustomer.Calculations.Count > 0)
             {
-                gesamtTab++;
+                if (gesamtTab == 0)
+                {
+                    gesamtTab++;
 
-                GesamtkalkualtionsPDF = new PDFFactory.CustomerPDFDocument(SelectedCustomer);
-                TabItem PDFTab = GesamtkalkualtionsPDF.displayPDF();
+                    GesamtkalkualtionsPDF = new PDFFactory.CustomerPDFDocument(SelectedCustomer);
+                    TabItem PDFTab = GesamtkalkualtionsPDF.displayPDF();
 
-                ContextMenu PDFTabContextMenue = new ContextMenu();
-                MenuItem SpeicherItem = new MenuItem();
-                SpeicherItem.Header = "Speichern";
-                SpeicherItem.Click += SpeicherItem_Click;
-                SpeicherItem.Tag = PDFTab;
-                MenuItem VerwerfItem = new MenuItem();
-                VerwerfItem.Header = "Verwerfen";
-                VerwerfItem.Click += VerwerfItem_Click;
-                VerwerfItem.Tag = PDFTab;
-                PDFTabContextMenue.Items.Add(SpeicherItem);
-                PDFTabContextMenue.Items.Add(VerwerfItem);
-                PDFTab.ContextMenu = PDFTabContextMenue;
-                PDFTab.Focus();
-                tabAnsicht.Items.Add(PDFTab);
-            }
-            else
-            {
-                //Erneuern, da nur einmal Übersicht
-            }
+                    ContextMenu PDFTabContextMenue = new ContextMenu();
+                    MenuItem VerwerfItem = new MenuItem();
+                    VerwerfItem.Header = "Verwerfen";
+                    VerwerfItem.Click += VerwerfItem_Click;
+                    VerwerfItem.Tag = PDFTab;
+                    PDFTabContextMenue.Items.Add(VerwerfItem);
+                    PDFTab.ContextMenu = PDFTabContextMenue;
+                    tabAnsicht.Items.Add(PDFTab);
+                    GesamtKalkulationsTab = PDFTab;
+                    PDFTab.Focus();
+                }
+                else
+                {
+                    tabAnsicht.Items.Remove(GesamtKalkulationsTab);
+                    gesamtTab = 0;
+                    cmdGesamtbetragAuf_Click(sender, e);
+                }
+            } 
         }
 
         private KalkulationsTab<Calculation> neuerTab(String tabname, String tabBezeichnung, int anzahl)
