@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using xmlserializer.Models;
 using xmlserializer.Models.Products;
 using tfMarktMain.Export;
+using AdministrationDerProdukte;
 
 
 namespace tfMarktMain
@@ -57,13 +58,7 @@ namespace tfMarktMain
             KundenNachnameTextbox.Text = namen[0];
             KundenNummerTextbox.Text = SelectedCustomer.Customernumber.ToString();
 
-            CalculationListBox.Items.Clear();
-
-            foreach (Calculation calc in SelectedCustomer.Calculations.Values)
-            {
-                CalculationListBox.Items.Add(calc);
-            }
-            //entferneAlleTabs
+            CalculationListBox.ItemsSource = SelectedCustomer.Calculations.Values;
         }
 
         private void CalculationListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -80,11 +75,11 @@ namespace tfMarktMain
         {
             if (CustomersBox.SelectedIndex == 0)
             {
-                CalculationListBox.Items.Clear();
                 SelectedCustomer = new Customer();
                 KundenNameTextbox.Clear();
                 KundenNachnameTextbox.Clear();
                 KundenNummerTextbox.Text = SelectedCustomer.Customernumber.ToString();
+                CalculationListBox.ItemsSource = SelectedCustomer.Calculations.Values;
             }
         }
 
@@ -95,11 +90,8 @@ namespace tfMarktMain
                 if (SelectedCustomer.Calculations.Count > 0)
                 {
                     xmlserializer.xmlserializer.serialize(SelectedCustomer);
-
-                    xmlserializer.xmlserializer.serialize(new Hilfsmittel("SuperHilfsmittel",23.5m,0.99m));
-                    xmlserializer.xmlserializer.serialize(new Fliese("SuperFliese", 2m,5m, 0.99m));
-                    xmlserializer.xmlserializer.serialize(new Tapete("SuperTapete", 2m,3m,5m, 0.99m));
-
+                    CustomersBox.Items.Add(SelectedCustomer.Name);
+                    CustomersBox.SelectedValue = SelectedCustomer.Name;
                 }
                 else {
                     MessageBox.Show("Keine Kalkualtionen zum speichern!");
@@ -182,7 +174,6 @@ namespace tfMarktMain
             VerwerfItem.Header = "Verwerfen";
             VerwerfItem.Click += VerwerfItem_Click;
             VerwerfItem.Tag = tab;
-
             TabContextMenue.Items.Add(SpeicherItem);
             TabContextMenue.Items.Add(VerwerfItem);
             tab.ContextMenu = TabContextMenue;
@@ -236,8 +227,7 @@ namespace tfMarktMain
 
         private void cmdStarteAdministration_Click(object sender, RoutedEventArgs e)
         {
-            //Schauen, wie man am Besten die Administartion reinbekommt
-            MessageBox.Show("Hier sollte sich eigentlich die administration öffnen, aber C# ist bescheuert");
+            new Login().ShowDialog();
         }
 
         private void VerwerfItem_Click(object sender, RoutedEventArgs e)
