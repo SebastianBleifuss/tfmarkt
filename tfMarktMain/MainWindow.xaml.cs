@@ -30,10 +30,12 @@ namespace tfMarktMain
         private int gesamtTab = 0;
         private bool isCustomerChanged = true;
         private Customer SelectedCustomer;
+        List<KalkulationsTab<Calculation>> tabList;
 
         public MainWindow()
         {
             InitializeComponent();
+            tabList = new List<KalkulationsTab<Calculation>>();
             foreach (String CustomerInfo in Customer.getCustomerNames())
             {
                 String[] CustomerInfoSet = CustomerInfo.Split('_');
@@ -73,6 +75,7 @@ namespace tfMarktMain
 
         private void CustomersBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+
             if (CustomersBox.SelectedIndex == 0)
             {
                 SelectedCustomer = new Customer();
@@ -81,6 +84,7 @@ namespace tfMarktMain
                 KundenNummerTextbox.Text = SelectedCustomer.Customernumber.ToString();
                 CalculationListBox.ItemsSource = SelectedCustomer.Calculations.Values;
             }
+            entferneAlleTabs();
         }
 
         private void Save_Customer_Click(object sender, RoutedEventArgs e)
@@ -179,7 +183,7 @@ namespace tfMarktMain
             tab.ContextMenu = TabContextMenue;
             tabAnsicht.Items.Add(tab);
             //tabAnsicht.SelectedItem = tab;
-            
+            tabList.Add(tab);
             return tab;
         }
 
@@ -216,13 +220,10 @@ namespace tfMarktMain
 
         private void entferneAlleTabs() 
         {
-            List<TabItem> tabListe = new List<TabItem>();
-            ItemCollection a= tabAnsicht.Items;
-            foreach(ItemsControl e in a)
+            foreach (KalkulationsTab<Calculation> tab in tabList)
             {
-                Console.WriteLine(e.Name);
+                tabAnsicht.Items.Remove(tab);
             }
-            //tabAnsicht.Items.Remove();
         }
 
         private void cmdStarteAdministration_Click(object sender, RoutedEventArgs e)
