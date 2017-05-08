@@ -145,8 +145,9 @@ namespace tfMarktMain
 
         private void cmdGesamtbetragAuf_Click(object sender, RoutedEventArgs e)
         {
-            if (SelectedCustomer.Calculations.Count > 0)
-            {
+            if (SelectedCustomer.Calculations.Count > 0) { 
+
+            
                 if (gesamtTab == 0)
                 {
                     gesamtTab++;
@@ -171,7 +172,7 @@ namespace tfMarktMain
                     gesamtTab = 0;
                     cmdGesamtbetragAuf_Click(sender, e);
                 }
-            } 
+            }
         }
 
         private KalkulationsTab<Calculation> neuerTab(String tabname, String tabBezeichnung, int anzahl)
@@ -196,9 +197,9 @@ namespace tfMarktMain
             tab.ContextMenu = TabContextMenue;
             tabAnsicht.Items.Add(tab);
             tabAnsicht.SelectedItem = tab;
-            return tab;
+                    return tab;
+										}
 
-        }
 
         private void Geamtkalkulation_Speichern(object sender, RoutedEventArgs e)
         {
@@ -254,6 +255,7 @@ namespace tfMarktMain
             //Schauen, wie man am Besten die Administartion reinbekommt
             MessageBox.Show("Hier sollte sich eigentlich die administration öffnen, aber C# ist bescheuert");
             
+
         }
 
         private void saveGesamtkalkulation(object sender, RoutedEventArgs e)
