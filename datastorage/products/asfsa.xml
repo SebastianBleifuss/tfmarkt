@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Product>
+  <Articlenumber>20</Articlenumber>
+  <Articledescription>asfsa</Articledescription>
+  <Price>50</Price>
+  <ProductType>xmlserializer.Models.Products.Hilfsmittel, xmlserializer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</ProductType>
+  <Productivity>20</Productivity>
+</Product>

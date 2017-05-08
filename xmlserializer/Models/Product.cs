@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using xmlserializer.Models.Products;
 
 namespace xmlserializer.Models
 {
@@ -54,12 +55,12 @@ namespace xmlserializer.Models
             }
         }
 
-        internal protected Type getProductType()
+        public Type getProductType()
         {
             return ProductType;
         }
 
-        internal protected int getArtikelnummer()
+        public int getArtikelnummer()
         {
             return artikelnummer;
         }
@@ -87,24 +88,6 @@ namespace xmlserializer.Models
         internal protected void setPreis(decimal price)
         {
             preis = price;
-        }
-
-        /// <summary>
-        /// Return ProductType of product if the AssemblyQualifiedName matches
-        /// </summary>
-        /// <param name="AssemblyQualifiedName">AssemblyQualifiedName</param>
-        /// <returns>Type of calculation</returns>
-        public static Type GetType(String AssemblyQualifiedName)
-        {
-            if (AssemblyQualifiedName.Equals(typeof(FooBarProduct).AssemblyQualifiedName))//Check if passed type inherit base type
-            {
-                return typeof(FooBarProduct);
-            }
-            else
-            {
-                throw new NotSupportedException(AssemblyQualifiedName + " is not supported!");
-            }
-            //Erweitern!
         }
 
     }

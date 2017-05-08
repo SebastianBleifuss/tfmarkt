@@ -33,5 +33,10 @@ namespace xmlserializer.Models.Products
             this.preis = Preis;
             this.ProductType = typeof(Fliese);
         }
+
+        public Fliese()
+        {
+
+        }
     }
 }

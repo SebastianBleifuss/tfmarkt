@@ -8,22 +8,8 @@
             <RowDefinition Height="313*"/>
         </Grid.RowDefinitions>
         <Label Content="Produkte" Margin="10,10,0,0" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" Width="178" Height="41" VerticalAlignment="Top"/>
-        <Button Content="Hinzufügen" Margin="10,0,0,74" VerticalAlignment="Bottom" Height="24" HorizontalAlignment="Left" Width="106" RenderTransformOrigin="-0.057,0.708" Click="Button_Click"/>
-        <DataGrid Margin="10,10,10,0" Grid.Row="1">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="">
-                    
-                </DataGridTextColumn>
-                <DataGridTextColumn Header="ArtikelNr.">
-
-                </DataGridTextColumn>
-                <DataGridTextColumn Header="Name">
-
-                </DataGridTextColumn>
-                <DataGridTextColumn Header="Preis">
-
-                </DataGridTextColumn>
-            </DataGrid.Columns>
+        <Button Content="Hinzufügen" Margin="10,0,0,74" VerticalAlignment="Bottom" Height="24" HorizontalAlignment="Left" Width="106" RenderTransformOrigin="-0.057,0.708" Click="Hinzufuegen_Click"/>
+        <DataGrid x:Name="ProdukteGrid" Margin="10,10,10,0" Grid.Row="1" IsReadOnly="True" MouseDoubleClick="ItemAuswahl" SelectedCellsChanged="ProdukteGrid_SelectedCellsChanged">
         </DataGrid>
         <Button Content="Löschen" Margin="10,0,0,30" VerticalAlignment="Bottom" Height="24" HorizontalAlignment="Left" Width="106" RenderTransformOrigin="-0.057,0.708" ToolTip="Ausgewählte Elemente Löschen"/>
 

@@ -28,8 +28,6 @@ namespace AdministrationDerProdukte
         {
             if (txtBenutzer.Text == "admin" && txtPasswort.Password == "admin")
             {
-                AdministrationDerProdukteGUI starti = new AdministrationDerProdukteGUI();
-                starti.Show();
                 this.Hide();
             }
         }

@@ -31,6 +31,8 @@ namespace tfMarktMain
         private bool isCustomerChanged = true;
         private Customer SelectedCustomer;
         List<KalkulationsTab<Calculation>> tabList;
+        private PDFFactory.CustomerPDFDocument GesamtkalkualtionsPDF;
+        private TabItem GesamtKalkulationsTab;
 
         public MainWindow()
         {
@@ -47,6 +49,8 @@ namespace tfMarktMain
             }
             CustomersBox.SelectedIndex = 0;
             SelectedCustomer = new Customer();
+            Window temp = new Fliesenkalkulation.FliesenkalkulationGUI();
+            temp.Show();
         }
 
         private void customer_selected(object sender, RoutedEventArgs e)
@@ -56,11 +60,13 @@ namespace tfMarktMain
 
             String[] namen = SelectedCustomer.Name.Split(new[] { ", " }, StringSplitOptions.None);
 
-            KundenNameTextbox.Text=namen[1];
+
             KundenNachnameTextbox.Text = namen[0];
+            KundenNameTextbox.Text = namen[1];
             KundenNummerTextbox.Text = SelectedCustomer.Customernumber.ToString();
 
             CalculationListBox.ItemsSource = SelectedCustomer.Calculations.Values;
+
         }
 
         private void CalculationListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -141,15 +147,33 @@ namespace tfMarktMain
 
         private void cmdGesamtbetragAuf_Click(object sender, RoutedEventArgs e)
         {
-            //GUI für Gesamtübersicht fehlt noch
-            if (gesamtTab == 0)
-            {
-                neuerTab("Gesamt", "tabGesamt", 0);
-                gesamtTab++;
-            }
-            else
-            {
-                //Erneuern, da nur einmal Übersicht
+            if (SelectedCustomer.Calculations.Count > 0) { 
+
+            
+                if (gesamtTab == 0)
+                {
+                    gesamtTab++;
+
+                    GesamtkalkualtionsPDF = new PDFFactory.CustomerPDFDocument(SelectedCustomer);
+                    TabItem PDFTab = GesamtkalkualtionsPDF.displayPDF();
+
+                    ContextMenu PDFTabContextMenue = new ContextMenu();
+                    MenuItem VerwerfItem = new MenuItem();
+                    VerwerfItem.Header = "Verwerfen";
+                    VerwerfItem.Click += VerwerfItem_Click;
+                    VerwerfItem.Tag = PDFTab;
+                    PDFTabContextMenue.Items.Add(VerwerfItem);
+                    PDFTab.ContextMenu = PDFTabContextMenue;
+                    tabAnsicht.Items.Add(PDFTab);
+                    GesamtKalkulationsTab = PDFTab;
+                    PDFTab.Focus();
+                }
+                else
+                {
+                    tabAnsicht.Items.Remove(GesamtKalkulationsTab);
+                    gesamtTab = 0;
+                    cmdGesamtbetragAuf_Click(sender, e);
+                }
             }
         }
 
@@ -166,13 +190,13 @@ namespace tfMarktMain
                 tab.Name = tabname;
                 tab.Header = tabname;
             }
-          
-			ContextMenu TabContextMenue = new ContextMenu();
 
+            ContextMenu TabContextMenue = new ContextMenu();
             MenuItem SpeicherItem = new MenuItem();
             SpeicherItem.Header = "Speichern";
             SpeicherItem.Click += SpeicherItem_Click;
             SpeicherItem.Tag = tab;
+
 
             MenuItem VerwerfItem = new MenuItem();
             VerwerfItem.Header = "Verwerfen";
@@ -182,23 +206,24 @@ namespace tfMarktMain
             TabContextMenue.Items.Add(VerwerfItem);
             tab.ContextMenu = TabContextMenue;
             tabAnsicht.Items.Add(tab);
-            //tabAnsicht.SelectedItem = tab;
+            tabAnsicht.SelectedItem = tab;
             tabList.Add(tab);
             return tab;
         }
 
-         private void Generate_TotalCalculation_Click(object sender, RoutedEventArgs e)
+        private void VerwerfItem_Click(object sender, RoutedEventArgs e)
         {
-            if (SelectedCustomer.Calculations.Count > 0)
-            {
-                tfMarktMain.Export.PDFFactory.CustomerPDFDocument cpd = new tfMarktMain.Export.PDFFactory.CustomerPDFDocument(SelectedCustomer);
-                cpd.showPDF();
-                cpd.printPDF();
-                //cpd.savePDF(true);
-            }
-            else {
-                MessageBox.Show("Keine Kalkulationen vorhanden!");
-            }
+            MenuItem ConItem = (MenuItem)sender;
+            TabItem TabItem = (TabItem)ConItem.Tag;
+            tabAnsicht.Items.Remove(TabItem);
+        }
+        private void SpeicherItem_Click(object sender, RoutedEventArgs e)
+        {
+            MenuItem ConItem = (MenuItem)sender;
+            KalkulationsTab<Calculation> TabItem = (KalkulationsTab<Calculation>)ConItem.Tag;
+            SelectedCustomer.addCalculation(TabItem.getKalkulation(), /*OVERRIDE SETZEN!*/ true); //Wirft Exception wenn die Kalkulation nicht vollständig initialisiert wurde
+            CalculationListBox.ItemsSource = SelectedCustomer.Calculations.Values;
+            tabAnsicht.Items.Remove(TabItem);
         }
 
         private Guid generateGuid()
@@ -230,25 +255,28 @@ namespace tfMarktMain
         {
             new Login().ShowDialog();
         }
-
-        private void VerwerfItem_Click(object sender, RoutedEventArgs e)
+        private void saveGesamtkalkulation(object sender, RoutedEventArgs e)
         {
-            MenuItem ConItem = (MenuItem)sender;
-            KalkulationsTab<Calculation> TabItem = (KalkulationsTab<Calculation>)ConItem.Tag;
-
-
-            tabAnsicht.Items.Remove(TabItem);
+            if (SelectedCustomer.Calculations.Count > 0)
+            {
+                if (GesamtkalkualtionsPDF == null)
+                {
+                    GesamtkalkualtionsPDF = new PDFFactory.CustomerPDFDocument(SelectedCustomer);
+                }
+                GesamtkalkualtionsPDF.savePDF(true);
+            }
         }
 
-        private void SpeicherItem_Click(object sender, RoutedEventArgs e)
+        private void printGesamtkalkulation(object sender, RoutedEventArgs e)
         {
-            MenuItem ConItem = (MenuItem)sender;
-            KalkulationsTab<Calculation> TabItem = (KalkulationsTab<Calculation>)ConItem.Tag;
-
-            SelectedCustomer.addCalculation(TabItem.getKalkulation(), /*OVERRIDE SETZEN!*/ true); //Wirft Exception wenn die Kalkulation nicht vollständig initialisiert wurde
-            CalculationListBox.ItemsSource = SelectedCustomer.Calculations.Values;
-            tabAnsicht.Items.Remove(TabItem);
+            if (SelectedCustomer.Calculations.Count > 0)
+            {
+                if (GesamtkalkualtionsPDF == null)
+                {
+                    GesamtkalkualtionsPDF = new PDFFactory.CustomerPDFDocument(SelectedCustomer);
+                }
+                GesamtkalkualtionsPDF.printPDF();
+            }
         }
-      
     }
 }
