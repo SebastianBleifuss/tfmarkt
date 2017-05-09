@@ -37,6 +37,7 @@ namespace AdministrationDerProdukte
         private void Hinzufuegen_Click(object sender, RoutedEventArgs e)
         {
             Hinzufuegen fenster = new Hinzufuegen();
+            fenster.setArtikelnummerBeimHinzufuegenAufruf(gridListe.Last().ArtikelNr + 1);
             fenster.ShowDialog();
             AblaufProduktListeNeuLaden();
         }

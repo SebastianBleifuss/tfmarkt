@@ -17,8 +17,9 @@ namespace xmlserializer.Models.Products
             set { ergiebigkeit = value; }
         }
 
-        public Hilfsmittel(String Artikelbezeichnung, decimal Ergiebigkeit, decimal Preis)
+        public Hilfsmittel(int Artikelnummer, String Artikelbezeichnung, decimal Ergiebigkeit, decimal Preis)
         {
+            this.artikelnummer = Artikelnummer;
             this.artikelbezeichnung = Artikelbezeichnung;
             this.ergiebigkeit = Ergiebigkeit;
             this.preis = Preis;
