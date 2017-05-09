@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.ComponentModel;
+using xmlserializer.Models.Products;
 
 namespace tfMarktMain.Fliesenkalkulation
 {
@@ -27,13 +28,27 @@ namespace tfMarktMain.Fliesenkalkulation
         {
             InitializeComponent();
             kalkulation = new Fliesenkalkulation();
+            fuelleComboBox();
+        }
+
+        private void fuelleComboBox()
+        {
+            foreach(Fliese fliese in kalkulation.getFliesenListe()) 
+            {
+                cbFliese.Items.Add(fliese.getArtikelbezeichnung());
+            }
         }
 
         private void btnFlaecheBerechnen_Click(object sender, RoutedEventArgs e)
         {
-            Window FlaecheBerechnenFenster = new FlaecheBerechnen();
-            FlaecheBerechnenFenster.ShowDialog();
+            Window flaecheBerechnenFenster = new FlaecheBerechnen();
+            flaecheBerechnenFenster.ShowDialog();
             txtGroesse.Text = kalkulation.getFlaeche().ToString();
+        }
+
+        private void btnKalkulieren_Click(object sender, RoutedEventArgs e)
+        {
+            kalkulation.berechneFliesen(cbFliese.SelectedItem + "");
         }
     }
 }

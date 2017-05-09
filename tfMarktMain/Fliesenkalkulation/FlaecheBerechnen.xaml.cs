@@ -25,8 +25,8 @@ namespace tfMarktMain.Fliesenkalkulation
 
         public FlaecheBerechnen()
         {
+            this.kalkulation = Fliesenkalkulation.getMe();
             InitializeComponent();
-            kalkulation = Fliesenkalkulation.getInstance();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

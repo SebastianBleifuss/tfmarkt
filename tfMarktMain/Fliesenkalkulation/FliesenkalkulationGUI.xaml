@@ -18,10 +18,9 @@
         <Label Content="m²" HorizontalAlignment="Left" Margin="252,24,0,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="8.361,0.668" Height="26" Width="25" Grid.Column="1"/>
         <Button x:Name="btnFlaecheBerechnen" Content="Fläche Berechnen" Margin="312,24,0,14" RenderTransformOrigin="-0.057,0.708" Click="btnFlaecheBerechnen_Click" Grid.Row="1" HorizontalAlignment="Left" Width="116" Grid.Column="1"/>
         <Label Content="Fliese" HorizontalAlignment="Left" Margin="15,10,0,0" Grid.Row="2" VerticalAlignment="Top" Height="25" Width="42"/>
-        <ComboBox HorizontalAlignment="Left" Margin="10,12,0,0" Grid.Row="2" VerticalAlignment="Top" Width="237" IsReadOnly="True" SelectedIndex="0" Height="22" Grid.Column="1">
-            <ComboBoxItem Content="Eine supertolle Standardfliese"/>
+        <ComboBox x:Name="cbFliese" HorizontalAlignment="Left" Margin="10,12,0,0" Grid.Row="2" VerticalAlignment="Top" Width="237" IsReadOnly="True" SelectedIndex="0" Height="22" Grid.Column="1">
         </ComboBox>
-        <Button x:Name="btnKalkulieren" Content="Kalkulation starten" Margin="312,0,0,10" RenderTransformOrigin="-0.057,0.708" Click="btnFlaecheBerechnen_Click" Grid.Row="2" HorizontalAlignment="Left" Width="116" Grid.Column="1" Height="25" VerticalAlignment="Bottom"/>
+        <Button x:Name="btnKalkulieren" Content="Kalkulation starten" Margin="312,0,0,10" RenderTransformOrigin="-0.057,0.708" Click="btnKalkulieren_Click" Grid.Row="2" HorizontalAlignment="Left" Width="116" Grid.Column="1" Height="25" VerticalAlignment="Bottom"/>
 
     </Grid>
 </Window>
