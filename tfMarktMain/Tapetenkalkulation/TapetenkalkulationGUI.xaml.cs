@@ -48,23 +48,16 @@ namespace tfMarktMain.Tapetenkalkulation
 
         private void holeTapetenListe() 
         {
-            //productList = xmlserializer.xmlserializer.deserializeAllProducts();
-            //foreach (Product tapete in productList) 
-            //{
-                //MessageBox.Show(tapete.ToString());
-                //MessageBox.Show(tapete.GetType().ToString());
-               // if (tapete.GetType().ToString().Equals("Tapete")) 
-               // {
-
-               // }
-                //Hilfmittel für Tapete auch ziehen
-            //}
-            for (int i = 1; i <= 10; i++) 
+            productList = xmlserializer.xmlserializer.deserializeAllProducts();
+            foreach (Product tapete in productList) 
             {
-                ComboBoxItem item= new ComboBoxItem();
-                item.Content="Tapete"+i;//Tapetenbezeichnung
-                item.Name = "_" + i;   //guid des Produkts 
-                tapetenComboBox.Items.Add(item);
+                if (tapete.GetType().Equals(typeof(Tapete)))
+                {
+                    ComboBoxItem item = new ComboBoxItem();
+                    item.Content = tapete.getArtikelbezeichnung();
+                    item.Name = "_" + tapete.getArtikelnummer().ToString();
+                    tapetenComboBox.Items.Add(item);
+                }              
             }
         }
     }

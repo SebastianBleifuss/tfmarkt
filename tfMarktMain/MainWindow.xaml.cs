@@ -100,6 +100,7 @@ namespace tfMarktMain
                     xmlserializer.xmlserializer.serialize(SelectedCustomer);
                     CustomersBox.Items.Add(SelectedCustomer.Name);
                     CustomersBox.SelectedValue = SelectedCustomer.Name;
+                    create_calc();
                 }
                 else {
                     MessageBox.Show("Keine Kalkualtionen zum speichern!");
@@ -276,6 +277,13 @@ namespace tfMarktMain
                 }
                 GesamtkalkualtionsPDF.printPDF();
             }
+        }
+
+        private void create_calc() 
+        {
+            Product p =new Tapete(){Breite=0.53m, Laenge=10.05m,Rapport=0.73m};
+            //Tapetenkalkulation.Tapetenkalkulation tapete = new Tapetenkalkulation.Tapetenkalkulation{Amount=4,CalculationType=typeof(Tapetenkalkulation.Tapetenkalkulation),Description="RAUM1", Identifier=generateGuid(),SelectedProduct=new Tapete(){Breite=0.53m, Laenge=10.05m,Rapport=0.73m}};
+            //this.SelectedCustomer.addCalculation(tapete, false);
         }
     }
 }
