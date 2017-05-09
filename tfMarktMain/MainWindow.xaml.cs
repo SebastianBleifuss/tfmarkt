@@ -49,8 +49,6 @@ namespace tfMarktMain
             }
             CustomersBox.SelectedIndex = 0;
             SelectedCustomer = new Customer();
-            Window temp = new Fliesenkalkulation.FliesenkalkulationGUI();
-            temp.Show();
         }
 
         private void customer_selected(object sender, RoutedEventArgs e)
@@ -215,6 +213,7 @@ namespace tfMarktMain
         {
             MenuItem ConItem = (MenuItem)sender;
             TabItem TabItem = (TabItem)ConItem.Tag;
+            tabList.Remove((KalkulationsTab<Calculation>) TabItem);
             tabAnsicht.Items.Remove(TabItem);
         }
         private void SpeicherItem_Click(object sender, RoutedEventArgs e)
@@ -253,7 +252,7 @@ namespace tfMarktMain
 
         private void cmdStarteAdministration_Click(object sender, RoutedEventArgs e)
         {
-            new Login().ShowDialog();
+            new AdministrationDerProdukteGUI().Show();
         }
         private void saveGesamtkalkulation(object sender, RoutedEventArgs e)
         {
