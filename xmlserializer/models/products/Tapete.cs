@@ -31,8 +31,9 @@ namespace xmlserializer.Models.Products
             set { rapport = value; }
         }
 
-        public Tapete(String Artikelbezeichnung, decimal Laenge, decimal Breite, decimal Rapport, decimal Preis)
+        public Tapete(int artikelnummer, String Artikelbezeichnung, decimal Laenge, decimal Breite, decimal Rapport, decimal Preis)
         {
+            this.artikelnummer = artikelnummer;
             this.artikelbezeichnung = Artikelbezeichnung;
             this.laenge = Laenge;
             this.breite = Breite;

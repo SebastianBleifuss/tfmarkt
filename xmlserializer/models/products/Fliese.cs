@@ -25,8 +25,9 @@ namespace xmlserializer.Models.Products
         }
 
 
-        public Fliese(String Artikelbezeichnung, decimal Laenge, decimal Breite, decimal Preis)
+        public Fliese(int artikelnummer, String Artikelbezeichnung, decimal Laenge, decimal Breite, decimal Preis)
         {
+            this.artikelnummer = artikelnummer;
             this.artikelbezeichnung = Artikelbezeichnung;
             this.Laenge = Laenge;
             this.breite = Breite;

@@ -122,19 +122,19 @@ namespace AdministrationDerProdukte
 
         private void speicherHilfsmittel()
         {
-            Hilfsmittel neuesHilfsmittel = new Hilfsmittel(txtArtikelbezeichnung.Text, Convert.ToDecimal(txtOptionOne.Text), Convert.ToDecimal(txtPreis.Text));
+            Hilfsmittel neuesHilfsmittel = new Hilfsmittel(Convert.ToInt32(txtArtikelnummer.Text), txtArtikelbezeichnung.Text, Convert.ToDecimal(txtOptionOne.Text), Convert.ToDecimal(txtPreis.Text));
             xmlserializer.xmlserializer.serialize(neuesHilfsmittel);
         }
 
         private void speicherFliese()
         {
-            Fliese neueFliese = new Fliese(txtArtikelbezeichnung.Text, Convert.ToDecimal(txtOptionOne.Text), Convert.ToDecimal(txtOptionTwo.Text), Convert.ToDecimal(txtPreis.Text));
+            Fliese neueFliese = new Fliese(Convert.ToInt32(txtArtikelnummer.Text), txtArtikelbezeichnung.Text, Convert.ToDecimal(txtOptionOne.Text), Convert.ToDecimal(txtOptionTwo.Text), Convert.ToDecimal(txtPreis.Text));
             xmlserializer.xmlserializer.serialize(neueFliese);
         }
 
         private void speicherTapete()
         {
-            Tapete neueTapete = new Tapete(txtArtikelbezeichnung.Text, Convert.ToDecimal(txtOptionOne.Text), Convert.ToDecimal(txtOptionTwo.Text), Convert.ToDecimal(txtOptionThree.Text), Convert.ToDecimal(txtPreis.Text));
+            Tapete neueTapete = new Tapete(Convert.ToInt32(txtArtikelnummer.Text), txtArtikelbezeichnung.Text, Convert.ToDecimal(txtOptionOne.Text), Convert.ToDecimal(txtOptionTwo.Text), Convert.ToDecimal(txtOptionThree.Text), Convert.ToDecimal(txtPreis.Text));
             xmlserializer.xmlserializer.serialize(neueTapete);
         }
 
@@ -153,6 +153,11 @@ namespace AdministrationDerProdukte
             {
                 loadGUIHilfsmittel((Hilfsmittel)produkt);
             }
+        }
+
+        public void setArtikelnummerBeimHinzufuegenAufruf(int artikelnummer)
+        {
+            txtArtikelnummer.Text = artikelnummer + "";
         }
 
         private void loadGUIFliese(Fliese fliese)
