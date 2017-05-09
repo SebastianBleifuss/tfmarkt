@@ -49,5 +49,15 @@ namespace tfMarktMain.Tapetenkalkulation
                 btnBerechnen.IsEnabled = true;
             }
         }
+
+        public decimal getLaenge() 
+        {
+            return Convert.ToDecimal(txtLaenge.Text);
+        }
+
+        public decimal getBreite() 
+        {
+            return Convert.ToDecimal(txtBreite.Text);
+        }
     }
 }

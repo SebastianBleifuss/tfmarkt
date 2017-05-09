@@ -34,15 +34,14 @@ namespace tfMarktMain.Tapetenkalkulation
         private void btnFlaecheBerechnen_Click(object sender, RoutedEventArgs e)
         {
 
-            Window FlaecheBerechnenFenster = new  FlaecheBerechnen();
+            FlaecheBerechnen FlaecheBerechnenFenster = new  FlaecheBerechnen();
             FlaecheBerechnenFenster.ShowDialog();
-            txtGroesse.Text = kalkulation.getFlaeche().ToString();
+            decimal flaeche = Math.Round(Convert.ToDecimal(FlaecheBerechnenFenster.getBreite()) * Convert.ToDecimal(FlaecheBerechnenFenster.getLaenge()));
+            txtGroesse.Text = flaeche.ToString();
         }
 
         private void btnRollenBerechnen_Click(object sender, RoutedEventArgs e)
         {
-            Tapete tapete = new Tapete("Testtapete", 0.53m,10.05m,0.72m, 2.99m);
-            kalkulation.rollenBerechnen(tapete, 2.65m, 5.00m);
 
         }
 
@@ -60,5 +59,9 @@ namespace tfMarktMain.Tapetenkalkulation
                 }              
             }
         }
+        //public Tapetenkalkulation getKalkulation() 
+        //{
+        //    return this.kalkulation;
+        //}
     }
 }

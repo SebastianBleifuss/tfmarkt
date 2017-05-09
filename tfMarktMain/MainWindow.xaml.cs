@@ -30,14 +30,16 @@ namespace tfMarktMain
         private int gesamtTab = 0;
         private bool isCustomerChanged = true;
         private Customer SelectedCustomer;
-        List<KalkulationsTab<Calculation>> tabList;
+        //List<KalkulationsTab<Calculation>> tabList;
+        List<TabItem> tabList;
         private PDFFactory.CustomerPDFDocument GesamtkalkualtionsPDF;
         private TabItem GesamtKalkulationsTab;
 
         public MainWindow()
         {
             InitializeComponent();
-            tabList = new List<KalkulationsTab<Calculation>>();
+            //tabList = new List<KalkulationsTab<Calculation>>();
+            tabList = new List<TabItem>();
             foreach (String CustomerInfo in Customer.getCustomerNames())
             {
                 String[] CustomerInfoSet = CustomerInfo.Split('_');
@@ -72,6 +74,7 @@ namespace tfMarktMain
             if (CalculationListBox.SelectedIndex != -1)
             {
                 Calculation calc = SelectedCustomer.Calculations.Values.ToArray()[CalculationListBox.SelectedIndex];
+                Console.WriteLine((Tapetenkalkulation.Tapetenkalkulation)calc);
                 MessageBox.Show(calc.Identifier.ToString() + " - " + calc.Description);
                 MessageBox.Show(calc.SelectedProduct.getArtikelbezeichnung());
             }
@@ -171,6 +174,7 @@ namespace tfMarktMain
             TabContextMenue.Items.Add(SpeicherItem);
             TabContextMenue.Items.Add(VerwerfItem);
             tab.ContextMenu = TabContextMenue;
+            tabList.Add(tab);
             tabAnsicht.Items.Add(tab);
             tabAnsicht.SelectedItem = tab;
             return tab;
@@ -207,7 +211,7 @@ namespace tfMarktMain
                 }
             }
         }
-
+//>>>>>>>>>>>>>>>>>>>Kalkulationstab muss noch entfernt werden. Ist noch drin wegen FliesenTab 
         private KalkulationsTab<Calculation> neuerTab(String tabname, String tabBezeichnung, int anzahl)
         {
             KalkulationsTab<Calculation> tab = new KalkulationsTab<Calculation>();
@@ -241,21 +245,45 @@ namespace tfMarktMain
             tabList.Add(tab);
             return tab;
         }
-
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
         private void VerwerfItem_Click(object sender, RoutedEventArgs e)
         {
             MenuItem ConItem = (MenuItem)sender;
             TabItem TabItem = (TabItem)ConItem.Tag;
-            tabList.Remove((KalkulationsTab<Calculation>) TabItem);
+            tabList.Remove(TabItem);
             tabAnsicht.Items.Remove(TabItem);
         }
+
         private void SpeicherItem_Click(object sender, RoutedEventArgs e)
         {
             MenuItem ConItem = (MenuItem)sender;
-            KalkulationsTab<Calculation> TabItem = (KalkulationsTab<Calculation>)ConItem.Tag;
-            SelectedCustomer.addCalculation(TabItem.getKalkulation(), /*OVERRIDE SETZEN!*/ true); //Wirft Exception wenn die Kalkulation nicht vollständig initialisiert wurde
-            CalculationListBox.ItemsSource = SelectedCustomer.Calculations.Values;
-            tabAnsicht.Items.Remove(TabItem);
+            Console.WriteLine(ConItem.Tag.GetType());
+            if (ConItem.Tag.GetType().Equals(typeof(tfMarktMain.TapetenTab)))
+            {
+                TapetenTab tabItem = (TapetenTab)ConItem.Tag;
+                //tabItem.setKalkulation(tabItem.getTapetenGUI().getKalkulation());
+                Tapetenkalkulation.Tapetenkalkulation tapetenKalkulation = tabItem.getKalkulation();
+              
+                tabItem.setKalkulation(tapetenKalkulation);
+                SelectedCustomer.addCalculation(tabItem.getKalkulation(), /*OVERRIDE SETZEN!*/ true); //Wirft Exception wenn die Kalkulation nicht vollständig initialisiert wurde
+                CalculationListBox.ItemsSource = SelectedCustomer.Calculations.Values;
+               // tabAnsicht.Items.Remove(tabItem);
+            }
+            if (ConItem.Tag.GetType().Equals("tfMarktMain.FliesenTab"))
+            {
+                //FliesenTab tabItem = (FliesenTab)ConItem.Tag;
+                //SelectedCustomer.addCalculation(tabItem.getKalkulation(), /*OVERRIDE SETZEN!*/ true); //Wirft Exception wenn die Kalkulation nicht vollständig initialisiert wurde
+                //CalculationListBox.ItemsSource = SelectedCustomer.Calculations.Values;
+                //tabAnsicht.Items.Remove(tabItem);
+            }
+            
+           
+            
+            //MenuItem ConItem = (MenuItem)sender;
+            //KalkulationsTab<Calculation> TabItem = (KalkulationsTab<Calculation>)ConItem.Tag;
+            //SelectedCustomer.addCalculation(TabItem.getKalkulation(), /*OVERRIDE SETZEN!*/ true); //Wirft Exception wenn die Kalkulation nicht vollständig initialisiert wurde
+            //CalculationListBox.ItemsSource = SelectedCustomer.Calculations.Values;
+            //tabAnsicht.Items.Remove(TabItem);
         }
 
         private Guid generateGuid()
@@ -277,7 +305,7 @@ namespace tfMarktMain
 
         private void entferneAlleTabs() 
         {
-            foreach (KalkulationsTab<Calculation> tab in tabList)
+            foreach (TabItem tab in tabList)
             {
                 tabAnsicht.Items.Remove(tab);
             }
