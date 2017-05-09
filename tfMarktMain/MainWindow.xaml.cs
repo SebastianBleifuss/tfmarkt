@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using xmlserializer.Models;
 using xmlserializer.Models.Products;
 using tfMarktMain.Export;
+using AdministrationDerProdukte;
 
 
 namespace tfMarktMain
@@ -29,12 +30,14 @@ namespace tfMarktMain
         private int gesamtTab = 0;
         private bool isCustomerChanged = true;
         private Customer SelectedCustomer;
+        List<KalkulationsTab<Calculation>> tabList;
         private PDFFactory.CustomerPDFDocument GesamtkalkualtionsPDF;
         private TabItem GesamtKalkulationsTab;
 
         public MainWindow()
         {
             InitializeComponent();
+            tabList = new List<KalkulationsTab<Calculation>>();
             foreach (String CustomerInfo in Customer.getCustomerNames())
             {
                 String[] CustomerInfoSet = CustomerInfo.Split('_');
@@ -46,8 +49,6 @@ namespace tfMarktMain
             }
             CustomersBox.SelectedIndex = 0;
             SelectedCustomer = new Customer();
-            Window temp = new Fliesenkalkulation.FliesenkalkulationGUI();
-            temp.Show();
         }
 
         private void customer_selected(object sender, RoutedEventArgs e)
@@ -62,10 +63,8 @@ namespace tfMarktMain
             KundenNameTextbox.Text = namen[1];
             KundenNummerTextbox.Text = SelectedCustomer.Customernumber.ToString();
 
-
             CalculationListBox.ItemsSource = SelectedCustomer.Calculations.Values;
-					
-            //entferneAlleTabs
+
         }
 
         private void CalculationListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -80,15 +79,16 @@ namespace tfMarktMain
 
         private void CustomersBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+
             if (CustomersBox.SelectedIndex == 0)
             {
-                
                 SelectedCustomer = new Customer();
                 KundenNameTextbox.Clear();
                 KundenNachnameTextbox.Clear();
                 KundenNummerTextbox.Text = SelectedCustomer.Customernumber.ToString();
                 CalculationListBox.ItemsSource = SelectedCustomer.Calculations.Values;
             }
+            entferneAlleTabs();
         }
 
         private void Save_Customer_Click(object sender, RoutedEventArgs e)
@@ -188,29 +188,32 @@ namespace tfMarktMain
                 tab.Name = tabname;
                 tab.Header = tabname;
             }
+
             ContextMenu TabContextMenue = new ContextMenu();
+            MenuItem SpeicherItem = new MenuItem();
+            SpeicherItem.Header = "Speichern";
+            SpeicherItem.Click += SpeicherItem_Click;
+            SpeicherItem.Tag = tab;
+
+
             MenuItem VerwerfItem = new MenuItem();
             VerwerfItem.Header = "Verwerfen";
             VerwerfItem.Click += VerwerfItem_Click;
             VerwerfItem.Tag = tab;
+            TabContextMenue.Items.Add(SpeicherItem);
             TabContextMenue.Items.Add(VerwerfItem);
             tab.ContextMenu = TabContextMenue;
             tabAnsicht.Items.Add(tab);
             tabAnsicht.SelectedItem = tab;
-                    return tab;
-										}
-
-
-        private void Geamtkalkulation_Speichern(object sender, RoutedEventArgs e)
-        {
-            MenuItem ConItem = (MenuItem)sender;
-            TabItem TabItem = (TabItem)ConItem.Tag;
+            tabList.Add(tab);
+            return tab;
         }
 
         private void VerwerfItem_Click(object sender, RoutedEventArgs e)
         {
             MenuItem ConItem = (MenuItem)sender;
             TabItem TabItem = (TabItem)ConItem.Tag;
+            tabList.Remove((KalkulationsTab<Calculation>) TabItem);
             tabAnsicht.Items.Remove(TabItem);
         }
         private void SpeicherItem_Click(object sender, RoutedEventArgs e)
@@ -241,23 +244,16 @@ namespace tfMarktMain
 
         private void entferneAlleTabs() 
         {
-            List<TabItem> tabListe = new List<TabItem>();
-            ItemCollection a= tabAnsicht.Items;
-            foreach(ItemsControl e in a)
+            foreach (KalkulationsTab<Calculation> tab in tabList)
             {
-                Console.WriteLine(e.Name);
+                tabAnsicht.Items.Remove(tab);
             }
-            //tabAnsicht.Items.Remove();
         }
 
         private void cmdStarteAdministration_Click(object sender, RoutedEventArgs e)
         {
-            //Schauen, wie man am Besten die Administartion reinbekommt
-            MessageBox.Show("Hier sollte sich eigentlich die administration öffnen, aber C# ist bescheuert");
-            
-
+            new AdministrationDerProdukteGUI().Show();
         }
-
         private void saveGesamtkalkulation(object sender, RoutedEventArgs e)
         {
             if (SelectedCustomer.Calculations.Count > 0)
