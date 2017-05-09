@@ -135,13 +135,45 @@ namespace tfMarktMain
 
         private void cmdTapetenAuf_Click(object sender, RoutedEventArgs e)
         {
-            KalkulationsTab<Calculation> tab= neuerTab("Tapeten", "tabTapetenAnsicht", tapetenTabs);
+            TapetenTab tab = neueTapetenKalkulationTab();
             Frame tabFrame = new Frame();
-            Tapetenkalkulation.TapetenkalkulationGUI ladeSeite = new Tapetenkalkulation.TapetenkalkulationGUI();
-            tabFrame.Content = ladeSeite.Content;
+            tabFrame.Content = tab.getTapetenGUI().Content;
             tab.Content = tabFrame;
             tab.Focus();
             tapetenTabs++;
+        }
+
+        private TapetenTab neueTapetenKalkulationTab() 
+        {
+            TapetenTab tab = new TapetenTab();
+            String tabname="Tapeten";
+            if (tapetenTabs > 0)
+            {
+                tab.Name = tabname + tapetenTabs;
+                tab.Header = tabname + tapetenTabs;
+            }
+            else
+            {
+                tab.Name = tabname;
+                tab.Header = tabname;
+            }
+            ContextMenu TabContextMenue = new ContextMenu();
+            MenuItem SpeicherItem = new MenuItem();
+            SpeicherItem.Header = "Speichern";
+            SpeicherItem.Click += SpeicherItem_Click;
+            SpeicherItem.Tag = tab;
+
+
+            MenuItem VerwerfItem = new MenuItem();
+            VerwerfItem.Header = "Verwerfen";
+            VerwerfItem.Click += VerwerfItem_Click;
+            VerwerfItem.Tag = tab;
+            TabContextMenue.Items.Add(SpeicherItem);
+            TabContextMenue.Items.Add(VerwerfItem);
+            tab.ContextMenu = TabContextMenue;
+            tabAnsicht.Items.Add(tab);
+            tabAnsicht.SelectedItem = tab;
+            return tab;
         }
 
         private void cmdGesamtbetragAuf_Click(object sender, RoutedEventArgs e)
