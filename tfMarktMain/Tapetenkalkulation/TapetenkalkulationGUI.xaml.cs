@@ -42,7 +42,7 @@ namespace tfMarktMain.Tapetenkalkulation
 
         private void btnRollenBerechnen_Click(object sender, RoutedEventArgs e)
         {
-
+            kalkulation.Amount = kalkulation.rollenBerechnen(gewaehlteTapete());
         }
 
         private void holeTapetenListe() 
@@ -59,9 +59,37 @@ namespace tfMarktMain.Tapetenkalkulation
                 }              
             }
         }
-        //public Tapetenkalkulation getKalkulation() 
-        //{
-        //    return this.kalkulation;
-        //}
+        public Tapetenkalkulation getKalkulation()
+        {
+            kalkulation.SelectedProduct = gewaehlteTapete();
+            return this.kalkulation;
+        }
+
+        private void txtKalkulationsBeschreibung_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            kalkulation.Description = txtKalkulationsBeschreibung.Text;
+        }
+
+        private Tapete gewaehlteTapete()
+        {
+            int artikelnummer;
+            productList = xmlserializer.xmlserializer.deserializeAllProducts();
+            ComboBoxItem item = (ComboBoxItem)tapetenComboBox.SelectedItem;
+            if (item.Name != null)
+            {
+                artikelnummer = Convert.ToInt32(item.Name.TrimStart('_'));
+                foreach (Product tapete in productList)
+                {
+                    if (tapete.GetType().Equals(typeof(Tapete)))
+                    {
+                        if (artikelnummer == tapete.getArtikelnummer())
+                        {
+                            return (Tapete)tapete;
+                        }
+                    }
+                }
+            }
+            return null;
+        }
     }
 }

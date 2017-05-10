@@ -8,12 +8,13 @@ using xmlserializer.Models.Products;
 
 namespace tfMarktMain.Tapetenkalkulation
 {
-    class Tapetenkalkulation : Calculation
+    public class Tapetenkalkulation : Calculation
     {
         private decimal laenge, breite;
 
         public Tapetenkalkulation()
         {
+            this.CalculationType = typeof(Tapetenkalkulation);
         }
 
         public decimal getLaenge()

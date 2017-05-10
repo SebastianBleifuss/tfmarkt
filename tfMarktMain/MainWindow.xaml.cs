@@ -96,19 +96,32 @@ namespace tfMarktMain
 
         private void Save_Customer_Click(object sender, RoutedEventArgs e)
         {
-            if(isCustomerChanged)
+            if (isCustomerChanged)
             {
                 if (SelectedCustomer.Calculations.Count > 0)
                 {
                     xmlserializer.xmlserializer.serialize(SelectedCustomer);
-                    CustomersBox.Items.Add(SelectedCustomer.Name);
-                    CustomersBox.SelectedValue = SelectedCustomer.Name;
-                    create_calc();
+
+                    if (CustomersBox.SelectedIndex != 0)
+                    {
+                        CustomersBox.Items.Remove(CustomersBox.SelectedItem);
+                    }
+
+                    ComboBoxItem NewComboItem = new ComboBoxItem();
+                    NewComboItem.Content = SelectedCustomer.Name;
+                    NewComboItem.Selected += customer_selected;
+                    NewComboItem.ToolTip = SelectedCustomer.Customernumber;
+                    CustomersBox.Items.Add(NewComboItem);
+
+                    CustomersBox.SelectedItem = NewComboItem;
+
                 }
-                else {
+                else
+                {
                     MessageBox.Show("Keine Kalkualtionen zum speichern!");
                 }
             }
+
         }
 
 
@@ -261,9 +274,9 @@ namespace tfMarktMain
             if (ConItem.Tag.GetType().Equals(typeof(tfMarktMain.TapetenTab)))
             {
                 TapetenTab tabItem = (TapetenTab)ConItem.Tag;
-                //tabItem.setKalkulation(tabItem.getTapetenGUI().getKalkulation());
+                tabItem.setKalkulation(tabItem.getTapetenGUI().getKalkulation());
                 Tapetenkalkulation.Tapetenkalkulation tapetenKalkulation = tabItem.getKalkulation();
-              
+                tapetenKalkulation.Identifier = generateGuid();
                 tabItem.setKalkulation(tapetenKalkulation);
                 SelectedCustomer.addCalculation(tabItem.getKalkulation(), /*OVERRIDE SETZEN!*/ true); //Wirft Exception wenn die Kalkulation nicht vollständig initialisiert wurde
                 CalculationListBox.ItemsSource = SelectedCustomer.Calculations.Values;
@@ -339,11 +352,6 @@ namespace tfMarktMain
             }
         }
 
-        private void create_calc() 
-        {
-            Product p =new Tapete(){Breite=0.53m, Laenge=10.05m,Rapport=0.73m};
-            //Tapetenkalkulation.Tapetenkalkulation tapete = new Tapetenkalkulation.Tapetenkalkulation{Amount=4,CalculationType=typeof(Tapetenkalkulation.Tapetenkalkulation),Description="RAUM1", Identifier=generateGuid(),SelectedProduct=new Tapete(){Breite=0.53m, Laenge=10.05m,Rapport=0.73m}};
-            //this.SelectedCustomer.addCalculation(tapete, false);
-        }
+
     }
 }

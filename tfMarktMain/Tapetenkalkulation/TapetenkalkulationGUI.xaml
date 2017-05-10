@@ -23,6 +23,7 @@
                 <ComboBoxItem Content="Tapeten zur Auswahl"/>
             </ComboBox>
             <Button x:Name="btnKalkulieren" Content="Kalkulation starten" Margin="312,12,0,0" RenderTransformOrigin="-0.057,0.708" Click="btnRollenBerechnen_Click" Grid.Row="2" HorizontalAlignment="Left" Width="116" Grid.Column="1" Height="25" VerticalAlignment="Top"/>
+            <TextBox x:Name="txtKalkulationsBeschreibung" TextChanged="txtKalkulationsBeschreibung_TextChanged" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="312,21,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="116" ToolTip="Name der Kalkulation"/>
 
         </Grid>
 

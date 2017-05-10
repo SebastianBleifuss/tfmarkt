@@ -15,27 +15,27 @@ namespace xmlserializer.Models
         /// <summary>
         /// Identifier of calculations
         /// </summary>
-        public Guid Identifier { get; internal protected set; }
+        public Guid Identifier { get; set; }
 
         /// <summary>
         /// Description used as displayed name
         /// </summary>
-        public String Description { get; internal protected set; }
+        public String Description { get;  set; }
 
         /// <summary>
         /// Type of calculation
         /// </summary>
-        public Type CalculationType { get; internal protected set; }
+        public Type CalculationType { get; set; }
 
         /// <summary>
         /// Amount of the selected product
         /// </summary>
-        public int Amount { get; internal protected set; }
+        public int Amount { get; set; }
 
         /// <summary>
         /// Selected product
         /// </summary>
-        public Product SelectedProduct { get; internal protected set; }
+        public Product SelectedProduct { get; set; }
 
         public Calculation(){
         Description = "undefined";
