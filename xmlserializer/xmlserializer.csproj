@@ -41,8 +41,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FooBarCalculation.cs" />
-    <Compile Include="FooBarProduct.cs" />
     <Compile Include="Models\Calculation.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Product.cs" />
