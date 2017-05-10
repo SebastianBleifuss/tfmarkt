@@ -34,28 +34,28 @@ namespace AdministrationDerProdukte
         {
             if (sender == rbTapete)
             {
-                lblOptionOne.Content = "Länge Tapetenrolle";
+                lblOptionOne.Content = "Länge Tapetenrolle (in m)";
                 lblOptionOne.Visibility = Visibility.Visible;
                 txtOptionOne.Visibility = Visibility.Visible;
                 txtOptionOne.TextChanged += checkDecimal_TextChanged;
 
-                lblOptionTwo.Content = "Tapetenbreite";
+                lblOptionTwo.Content = "Tapetenbreite (in m)";
                 lblOptionTwo.Visibility = Visibility.Visible;
                 txtOptionTwo.Visibility = Visibility.Visible;
                 txtOptionTwo.TextChanged += checkDecimal_TextChanged;
 
-                lblOptionThree.Content = "Rapport";
+                lblOptionThree.Content = "Rapport (in m)";
                 lblOptionThree.Visibility = Visibility.Visible;
                 txtOptionThree.Visibility = Visibility.Visible;
                 txtOptionThree.TextChanged += checkDecimal_TextChanged;
             }
             else if (sender == rbFliese)
             {
-                lblOptionOne.Content = "Länge";
+                lblOptionOne.Content = "Länge (in cm)";
                 lblOptionOne.Visibility = Visibility.Visible;
                 txtOptionOne.TextChanged += checkDecimal_TextChanged;
 
-                lblOptionTwo.Content = "Breite";
+                lblOptionTwo.Content = "Breite (in cm)";
                 lblOptionTwo.Visibility = Visibility.Visible;
                 txtOptionTwo.TextChanged += checkDecimal_TextChanged;
 
@@ -65,7 +65,7 @@ namespace AdministrationDerProdukte
             }
             else if (sender == rbHilfsmittel)
             {
-                lblOptionOne.Content = "Ergiebigkeit";
+                lblOptionOne.Content = "Ergiebigkeit (in m²)";
                 lblOptionOne.Visibility = Visibility.Visible;
                 txtOptionOne.Visibility = Visibility.Visible;
                 txtOptionOne.TextChanged += checkDecimal_TextChanged;
@@ -122,19 +122,19 @@ namespace AdministrationDerProdukte
 
         private void speicherHilfsmittel()
         {
-            Hilfsmittel neuesHilfsmittel = new Hilfsmittel(txtArtikelbezeichnung.Text, Convert.ToDecimal(txtOptionOne.Text), Convert.ToDecimal(txtPreis.Text));
+            Hilfsmittel neuesHilfsmittel = new Hilfsmittel(Convert.ToInt32(txtArtikelnummer.Text), txtArtikelbezeichnung.Text, Convert.ToDecimal(txtOptionOne.Text), Convert.ToDecimal(txtPreis.Text));
             xmlserializer.xmlserializer.serialize(neuesHilfsmittel);
         }
 
         private void speicherFliese()
         {
-            Fliese neueFliese = new Fliese(txtArtikelbezeichnung.Text, Convert.ToDecimal(txtOptionOne.Text), Convert.ToDecimal(txtOptionTwo.Text), Convert.ToDecimal(txtPreis.Text));
+            Fliese neueFliese = new Fliese(Convert.ToInt32(txtArtikelnummer.Text), txtArtikelbezeichnung.Text, Convert.ToDecimal(txtOptionOne.Text), Convert.ToDecimal(txtOptionTwo.Text), Convert.ToDecimal(txtPreis.Text));
             xmlserializer.xmlserializer.serialize(neueFliese);
         }
 
         private void speicherTapete()
         {
-            Tapete neueTapete = new Tapete(txtArtikelbezeichnung.Text, Convert.ToDecimal(txtOptionOne.Text), Convert.ToDecimal(txtOptionTwo.Text), Convert.ToDecimal(txtOptionThree.Text), Convert.ToDecimal(txtPreis.Text));
+            Tapete neueTapete = new Tapete(Convert.ToInt32(txtArtikelnummer.Text), txtArtikelbezeichnung.Text, Convert.ToDecimal(txtOptionOne.Text), Convert.ToDecimal(txtOptionTwo.Text), Convert.ToDecimal(txtOptionThree.Text), Convert.ToDecimal(txtPreis.Text));
             xmlserializer.xmlserializer.serialize(neueTapete);
         }
 
@@ -153,6 +153,11 @@ namespace AdministrationDerProdukte
             {
                 loadGUIHilfsmittel((Hilfsmittel)produkt);
             }
+        }
+
+        public void setArtikelnummerBeimHinzufuegenAufruf(int artikelnummer)
+        {
+            txtArtikelnummer.Text = artikelnummer + "";
         }
 
         private void loadGUIFliese(Fliese fliese)
