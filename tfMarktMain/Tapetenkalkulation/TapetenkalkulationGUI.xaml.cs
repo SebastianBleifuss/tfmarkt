@@ -23,6 +23,7 @@ namespace tfMarktMain.Tapetenkalkulation
     {
         private Tapetenkalkulation kalkulation;
         private List<Product> productList;
+        private bool istLaengeBreiteBekannt = false;
 
         public TapetenkalkulationGUI()
         {
@@ -33,15 +34,18 @@ namespace tfMarktMain.Tapetenkalkulation
 
         private void btnFlaecheBerechnen_Click(object sender, RoutedEventArgs e)
         {
-
+            istLaengeBreiteBekannt = true;
             FlaecheBerechnen FlaecheBerechnenFenster = new  FlaecheBerechnen();
             FlaecheBerechnenFenster.ShowDialog();
             decimal flaeche = Math.Round(Convert.ToDecimal(FlaecheBerechnenFenster.getBreite()) * Convert.ToDecimal(FlaecheBerechnenFenster.getLaenge()));
             txtGroesse.Text = flaeche.ToString();
+            this.kalkulation.setLaenge(FlaecheBerechnenFenster.getLaenge());
+            this.kalkulation.setBreite(FlaecheBerechnenFenster.getBreite());
         }
 
         private void btnRollenBerechnen_Click(object sender, RoutedEventArgs e)
         {
+            txbErgebnis.Visibility = System.Windows.Visibility.Visible;
             kalkulation.Amount = kalkulation.rollenBerechnen(gewaehlteTapete());
         }
 
@@ -63,6 +67,16 @@ namespace tfMarktMain.Tapetenkalkulation
         {
             kalkulation.SelectedProduct = gewaehlteTapete();
             return this.kalkulation;
+        }
+
+        public void setKalkulation(Tapetenkalkulation kalkulation) 
+        {
+            Console.WriteLine("Kalkulation");
+            this.kalkulation = kalkulation;
+            Console.WriteLine(this.kalkulation.getBreite());
+            Console.WriteLine(this.kalkulation.getLaenge());
+            txtGroesse.Text = kalkulation.getFlaeche().ToString();
+            txtKalkulationsBeschreibung.Text = kalkulation.Description;
         }
 
         private void txtKalkulationsBeschreibung_TextChanged(object sender, TextChangedEventArgs e)
@@ -90,6 +104,38 @@ namespace tfMarktMain.Tapetenkalkulation
                 }
             }
             return null;
+        }
+
+        private void ergebnisAusgabeAendern() 
+        {
+            if (tapetenComboBox.SelectedItem != null)
+            {
+                Console.WriteLine("SelectBox gefüllt.");
+                if (this.kalkulation.getLaenge() == 0 || this.kalkulation.getBreite() == 0 || !istLaengeBreiteBekannt)
+                {
+                    lblRollen.Content = kalkulation.rollenBerechnen(gewaehlteTapete());
+                    lblGesamt.Content = kalkulation.getGesamtpreis();
+                    lblKleister.Content = kalkulation.getKleistermenge();
+                }
+                else if(txtGroesse.Text!=null)
+                {
+                    lblRollen.Content = kalkulation.rollenBerechnen(gewaehlteTapete());
+                    lblGesamt.Content = kalkulation.getGesamtpreis();
+                    lblKleister.Content = kalkulation.getKleistermenge();
+                }
+            }
+            else { Console.WriteLine("SelectBox nicht gefüllt."); }
+            
+        }
+
+        private void tapetenComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //ergebnisAusgabeAendern();
+        }
+
+        private void txtGroesse_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            //ergebnisAusgabeAendern();
         }
     }
 }

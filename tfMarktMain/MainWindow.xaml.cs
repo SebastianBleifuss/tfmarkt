@@ -74,7 +74,18 @@ namespace tfMarktMain
             if (CalculationListBox.SelectedIndex != -1)
             {
                 Calculation calc = SelectedCustomer.Calculations.Values.ToArray()[CalculationListBox.SelectedIndex];
-                Console.WriteLine((Tapetenkalkulation.Tapetenkalkulation)calc);
+                
+                if (calc.CalculationType.Equals(typeof(Tapetenkalkulation.Tapetenkalkulation))) 
+                {
+                    Console.WriteLine("Tapetenkalkulation");
+                    Console.WriteLine((Tapetenkalkulation.Tapetenkalkulation)calc);
+                    Tapetenkalkulation.Tapetenkalkulation tapCalc = (Tapetenkalkulation.Tapetenkalkulation)calc;
+                    TapetenTab tab= neueTapetenKalkulationTab(tapCalc.Description, tapCalc);
+                }
+                if (calc.CalculationType.Equals(typeof(Fliesenkalkulation.Fliesenkalkulation))) 
+                {
+                    Console.WriteLine("Fliesenkalkulation");
+                }
                 MessageBox.Show(calc.Identifier.ToString() + " - " + calc.Description);
                 MessageBox.Show(calc.SelectedProduct.getArtikelbezeichnung());
             }
@@ -151,18 +162,12 @@ namespace tfMarktMain
 
         private void cmdTapetenAuf_Click(object sender, RoutedEventArgs e)
         {
-            TapetenTab tab = neueTapetenKalkulationTab();
-            Frame tabFrame = new Frame();
-            tabFrame.Content = tab.getTapetenGUI().Content;
-            tab.Content = tabFrame;
-            tab.Focus();
-            tapetenTabs++;
+            neueTapetenKalkulationTab("Tapete", new Tapetenkalkulation.Tapetenkalkulation());
         }
 
-        private TapetenTab neueTapetenKalkulationTab() 
+        private TapetenTab neueTapetenKalkulationTab(String tabname, Tapetenkalkulation.Tapetenkalkulation kalkulation) 
         {
             TapetenTab tab = new TapetenTab();
-            String tabname="Tapeten";
             if (tapetenTabs > 0)
             {
                 tab.Name = tabname + tapetenTabs;
@@ -178,8 +183,6 @@ namespace tfMarktMain
             SpeicherItem.Header = "Speichern";
             SpeicherItem.Click += SpeicherItem_Click;
             SpeicherItem.Tag = tab;
-
-
             MenuItem VerwerfItem = new MenuItem();
             VerwerfItem.Header = "Verwerfen";
             VerwerfItem.Click += VerwerfItem_Click;
@@ -190,18 +193,21 @@ namespace tfMarktMain
             tabList.Add(tab);
             tabAnsicht.Items.Add(tab);
             tabAnsicht.SelectedItem = tab;
+            Frame tabFrame = new Frame();
+            tab.setKalkulation(kalkulation);
+            tabFrame.Content = tab.getTapetenGUI().Content;
+            tab.Content = tabFrame;
+            tab.Focus();
+            tapetenTabs++;
             return tab;
         }
 
         private void cmdGesamtbetragAuf_Click(object sender, RoutedEventArgs e)
         {
             if (SelectedCustomer.Calculations.Count > 0) { 
-
-            
                 if (gesamtTab == 0)
                 {
                     gesamtTab++;
-
                     GesamtkalkualtionsPDF = new PDFFactory.CustomerPDFDocument(SelectedCustomer);
                     TabItem PDFTab = GesamtkalkualtionsPDF.displayPDF();
 
@@ -289,14 +295,6 @@ namespace tfMarktMain
                 //CalculationListBox.ItemsSource = SelectedCustomer.Calculations.Values;
                 //tabAnsicht.Items.Remove(tabItem);
             }
-            
-           
-            
-            //MenuItem ConItem = (MenuItem)sender;
-            //KalkulationsTab<Calculation> TabItem = (KalkulationsTab<Calculation>)ConItem.Tag;
-            //SelectedCustomer.addCalculation(TabItem.getKalkulation(), /*OVERRIDE SETZEN!*/ true); //Wirft Exception wenn die Kalkulation nicht vollständig initialisiert wurde
-            //CalculationListBox.ItemsSource = SelectedCustomer.Calculations.Values;
-            //tabAnsicht.Items.Remove(TabItem);
         }
 
         private Guid generateGuid()

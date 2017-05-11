@@ -61,6 +61,16 @@ namespace tfMarktMain.Tapetenkalkulation
             //Noch bestimmen bei anderen tapeten 
         }
 
+        public decimal getGesamtpreis() 
+        {
+            return 9.99m;
+        }
+
+        public int getKleistermenge() 
+        {
+            return 4;
+        }
+
 
 
     }
