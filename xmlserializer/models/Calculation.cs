@@ -33,6 +33,21 @@ namespace xmlserializer.Models
         public int Amount { get; internal protected set; }
 
         /// <summary>
+        /// Length of the room
+        /// </summary>
+        public decimal Length { get; internal protected set; }
+
+        /// <summary>
+        /// Width of the room
+        /// </summary>
+        public decimal Width { get; internal protected set; }
+
+        /// <summary>
+        /// With Fliesenkleber for the Fliesenkalkuation
+        /// </summary>
+        public bool WithFliesenkleber { get; internal protected set; }
+
+        /// <summary>
         /// Selected product
         /// </summary>
         public Product SelectedProduct { get; internal protected set; }

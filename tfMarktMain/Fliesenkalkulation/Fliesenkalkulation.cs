@@ -31,16 +31,19 @@ namespace tfMarktMain.Fliesenkalkulation
             this.anzahlFliesenPakete = berechneAnzahlPakete();
         }
 
-        public Fliesenkalkulation(Fliese ausgewaehlteFliese, bool mitFliesenkleber,decimal raumFlaeche, Hilfsmittel fugenfueller, Hilfsmittel fliesenkleber, int anzahlFliesenPakete, int anzahlFugenfueller, int anzahlFliesenkleber)
+        public Fliesenkalkulation(String artikelbezeichnung, List<Fliese> fliesenliste, bool mitFliesenkleber,decimal raumFlaeche, Hilfsmittel fugenfueller, Hilfsmittel fliesenkleber)
         {
-            this.ausgewaehlteFliese = ausgewaehlteFliese;
+            this.ausgewaehlteFliese = getFliesenObjektZuArtikelbezeichnung(artikelbezeichnung, fliesenliste);
             this.raumFlaeche = raumFlaeche;
             this.fugenfueller = fugenfueller;
             this.fliesenkleber = fliesenkleber;
             this.mitFliesenkleber = mitFliesenkleber;
-            this.anzahlFliesenPakete = anzahlFliesenPakete;
-            this.anzahlFliesenkleber = anzahlFliesenkleber;
-            this.anzahlFugenfueller = anzahlFugenfueller;
+            if (mitFliesenkleber)
+            {
+                this.anzahlFliesenkleber = berechneAnzahlFliesenkleber();
+            }
+            this.anzahlFugenfueller = berechneAnzahlFugenfueller();
+            this.anzahlFliesenPakete = berechneAnzahlPakete();
         }
 
 

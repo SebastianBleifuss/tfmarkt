@@ -91,9 +91,9 @@ namespace tfMarktMain.Fliesenkalkulation
             }
         }
 
-        public void ladeVorhandeneKalkulation(Fliesenkalkulation vorhandeneKalkulation) 
+        public void ladeVorhandeneKalkulation(Calculation vorhandeneKalkulation) 
         {
-            this.kalkulation = vorhandeneKalkulation;
+            this.kalkulation = new Fliesenkalkulation(vorhandeneKalkulation.SelectedProduct.getArtikelbezeichnung(), this.fliesenliste,vorhandeneKalkulation.WithFliesenkleber, (vorhandeneKalkulation.Length * vorhandeneKalkulation.Width), this.fugenfueller, this.fliesenkleber);
             dgAnzeigeDerKalkulation.Visibility = Visibility.Visible;
             lblGesamtsumme.Visibility = Visibility.Visible;
             ladeKalkulationInDasGrid();
