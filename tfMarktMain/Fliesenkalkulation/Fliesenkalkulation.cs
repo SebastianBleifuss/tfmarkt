@@ -10,52 +10,45 @@ namespace tfMarktMain.Fliesenkalkulation
 {
     public class Fliesenkalkulation: Calculation
     {
-        private decimal flaeche;
-        private static Fliesenkalkulation aktuelleInstanz;
-        private List<Fliese> fliesenliste;
+        private decimal raumFlaeche;
+        private bool mitFliesenkleber;
+        private Fliese ausgewaehlteFliese;
+        private Hilfsmittel fugenfueller, fliesenkleber;
 
-        public Fliesenkalkulation()
+        public Fliesenkalkulation(String Artikelbezeichnung, bool mitFliesenkleber, decimal raumFlaeche, List<Fliese> fliesenliste, Hilfsmittel fugenfueller, Hilfsmittel fliesenkleber)
         {
-            fliesenliste = new List<Fliese>();
-            aktuelleInstanz = this;
-            fuelleFliesenliste();
+            this.ausgewaehlteFliese = getFliesenObjektZuArtikelbezeichnung(Artikelbezeichnung, fliesenliste);
+            this.mitFliesenkleber = mitFliesenkleber;
+            this.raumFlaeche = raumFlaeche;
+            this.fliesenkleber = fliesenkleber;
+            this.fugenfueller = fugenfueller;
         }
 
 
         public decimal getFlaeche()
         {
-            return flaeche;
+            return raumFlaeche;
         }
 
-        private void fuelleFliesenliste()
+        private int berechneAnzahlPakete()
         {
-            List<Product> alleProdukte = xmlserializer.xmlserializer.deserializeAllProducts();
-            foreach (Product produkt in alleProdukte)
-            {
-                Type produktTyp = produkt.getProductType();
-                if (produktTyp.Equals(typeof(Fliese)))
-                {
-                    fliesenliste.Add((Fliese)produkt);
-                }
-            }
+            decimal fliesenFlaeche = (ausgewaehlteFliese.Breite / 100) * (ausgewaehlteFliese.Laenge / 100);
+            int anzFliesen = (int)Math.Ceiling(raumFlaeche * 1.05m / fliesenFlaeche);
+            int anzPakete = (int) Math.Ceiling((decimal)anzFliesen / (decimal)ausgewaehlteFliese.Paketgroesse);
+            return anzPakete;
         }
 
-        public void setFlaeche(decimal flaeche)
+        private int berechneAnzahlFugenfueller()
         {
-            this.flaeche = flaeche;
+            return (int) Math.Ceiling(raumFlaeche / fugenfueller.Ergiebigkeit);
         }
 
-        public static Fliesenkalkulation getMe()
+        private int berechneAnzahlFliesenkleber()
         {
-            return aktuelleInstanz;
+            return (int) Math.Ceiling(raumFlaeche / fliesenkleber.Ergiebigkeit);
         }
 
-        public void berechneFliesen(String fliesenname)
-        {
-            Fliese ausgewaehlteFliese = getFliesenObjektZuArtikelbezeichnung(fliesenname);
-        }
-
-        private Fliese getFliesenObjektZuArtikelbezeichnung(String name)
+        private Fliese getFliesenObjektZuArtikelbezeichnung(String name, List<Fliese> fliesenliste)
         {
             foreach (Fliese fliese in fliesenliste)
             {
@@ -66,11 +59,5 @@ namespace tfMarktMain.Fliesenkalkulation
             }
             return null;
         }
-
-        public List<Fliese> getFliesenListe()
-        {
-            return fliesenliste;
-        }
-
     }
 }

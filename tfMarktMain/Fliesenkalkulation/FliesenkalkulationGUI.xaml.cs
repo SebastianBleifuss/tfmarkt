@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.ComponentModel;
 using xmlserializer.Models.Products;
+using xmlserializer.Models;
 
 namespace tfMarktMain.Fliesenkalkulation
 {
@@ -22,18 +23,21 @@ namespace tfMarktMain.Fliesenkalkulation
     /// </summary>
     public partial class FliesenkalkulationGUI : Window
     {
-        private Fliesenkalkulation kalkulation;
+        private List<Fliese> fliesenliste;
+        private Hilfsmittel fugenfueller;
+        private Hilfsmittel fliesenkleber;
         
         public FliesenkalkulationGUI()
         {
+            this.fliesenliste = new List<Fliese>();
             InitializeComponent();
-            kalkulation = new Fliesenkalkulation();
             fuelleComboBox();
         }
 
         private void fuelleComboBox()
         {
-            foreach(Fliese fliese in kalkulation.getFliesenListe()) 
+            fuelleFliesenliste();
+            foreach(Fliese fliese in fliesenliste) 
             {
                 cbFliese.Items.Add(fliese.getArtikelbezeichnung());
             }
@@ -41,14 +45,39 @@ namespace tfMarktMain.Fliesenkalkulation
 
         private void btnFlaecheBerechnen_Click(object sender, RoutedEventArgs e)
         {
-            Window flaecheBerechnenFenster = new FlaecheBerechnen();
+            FlaecheBerechnen flaecheBerechnenFenster = new FlaecheBerechnen();
             flaecheBerechnenFenster.ShowDialog();
-            txtGroesse.Text = kalkulation.getFlaeche().ToString();
+            txtGroesse.Text = flaecheBerechnenFenster.getFlaeche().ToString();
         }
 
         private void btnKalkulieren_Click(object sender, RoutedEventArgs e)
         {
-            kalkulation.berechneFliesen(cbFliese.SelectedItem + "");
+            Fliesenkalkulation kalkulation = new Fliesenkalkulation(cbFliese.SelectedValue.ToString(), (bool)chkFliesenkleber.IsChecked, Convert.ToDecimal(txtGroesse.Text), fliesenliste, fugenfueller, fliesenkleber);
+        }
+
+        private void fuelleFliesenliste()
+        {
+            List<Product> alleProdukte = xmlserializer.xmlserializer.deserializeAllProducts();
+            foreach (Product produkt in alleProdukte)
+            {
+                Type produktTyp = produkt.getProductType();
+                if (produktTyp.Equals(typeof(Fliese)))
+                {
+                    fliesenliste.Add((Fliese)produkt);
+                }
+                else if(produktTyp.Equals(typeof(Hilfsmittel)))
+                {
+                    Hilfsmittel temp = (Hilfsmittel)produkt;
+                    if (temp.getArtikelbezeichnung() == "Fugenfüller")
+                    {
+                        this.fugenfueller = temp;
+                    }
+                    else if (temp.getArtikelbezeichnung() == "Fliesenkleber")
+                    {
+                        this.fliesenkleber = temp;
+                    }
+                }
+            }
         }
     }
 }
