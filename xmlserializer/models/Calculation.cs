@@ -28,11 +28,6 @@ namespace xmlserializer.Models
         public Type CalculationType { get; internal protected set; }
 
         /// <summary>
-        /// Amount of the selected product
-        /// </summary>
-        public int Amount { get; internal protected set; }
-
-        /// <summary>
         /// Length of the room
         /// </summary>
         public decimal Length { get; internal protected set; }
@@ -45,7 +40,7 @@ namespace xmlserializer.Models
         /// <summary>
         /// With Fliesenkleber for the Fliesenkalkuation
         /// </summary>
-        public bool WithFliesenkleber { get; internal protected set; }
+        public bool WithExtraProduct { get; internal protected set; }
 
         /// <summary>
         /// Selected product

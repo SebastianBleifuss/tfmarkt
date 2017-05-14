@@ -32,6 +32,8 @@ namespace xmlserializer.Models
         /// </summary>
         protected Type ProductType;
 
+      
+
         /// <summary>
         /// Default constructor
         /// </summary>

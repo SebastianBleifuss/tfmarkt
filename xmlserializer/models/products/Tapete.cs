@@ -11,6 +11,7 @@ namespace xmlserializer.Models.Products
     {
         private decimal laenge;
 
+
         public decimal Laenge
         {
             get { return laenge; }
