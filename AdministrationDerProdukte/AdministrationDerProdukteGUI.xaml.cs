@@ -52,7 +52,7 @@ namespace AdministrationDerProdukte
                 {
                     ArtikelNr = p.getArtikelnummer(),
                     Name = p.getArtikelbezeichnung(),
-                    Preis = p.getPreis(),
+                    Preis = p.getPreis().ToString("C"),
                 });
             }
 
@@ -81,7 +81,7 @@ namespace AdministrationDerProdukte
                 Hinzufuegen gui = new Hinzufuegen();
                 gui.setProdukt(selectedProduct);
                 gui.ShowDialog();
-
+                AblaufProduktListeNeuLaden();
             }
         }
 
@@ -89,7 +89,7 @@ namespace AdministrationDerProdukte
         {
             public int ArtikelNr { get; set; }
             public String Name { get; set; }
-            public decimal Preis { get; set; }
+            public String Preis { get; set; }
         }
 
         private void ProdukteGrid_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
