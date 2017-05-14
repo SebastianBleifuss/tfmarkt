@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.ComponentModel;
 using xmlserializer.Models.Products;
 using xmlserializer.Models;
+using System.Collections.ObjectModel;
 
 namespace tfMarktMain.Fliesenkalkulation
 {
@@ -26,12 +27,18 @@ namespace tfMarktMain.Fliesenkalkulation
         private List<Fliese> fliesenliste;
         private Hilfsmittel fugenfueller;
         private Hilfsmittel fliesenkleber;
+        private Fliesenkalkulation kalkulation;
+        private ObservableCollection<Kalkulationsanzeige> dataGridSource;
         
         public FliesenkalkulationGUI()
         {
             this.fliesenliste = new List<Fliese>();
             InitializeComponent();
             fuelleComboBox();
+            dgAnzeigeDerKalkulation.Visibility = Visibility.Hidden;
+            lblGesamtsumme.Visibility = Visibility.Hidden;
+            lblAngebot.Visibility = Visibility.Hidden;
+            dataGridSource = new ObservableCollection<Kalkulationsanzeige>();
         }
 
         private void fuelleComboBox()
@@ -52,7 +59,11 @@ namespace tfMarktMain.Fliesenkalkulation
 
         private void btnKalkulieren_Click(object sender, RoutedEventArgs e)
         {
-            Fliesenkalkulation kalkulation = new Fliesenkalkulation(cbFliese.SelectedValue.ToString(), (bool)chkFliesenkleber.IsChecked, Convert.ToDecimal(txtGroesse.Text), fliesenliste, fugenfueller, fliesenkleber);
+            kalkulation = new Fliesenkalkulation(cbFliese.SelectedValue.ToString(), (bool)chkFliesenkleber.IsChecked, Convert.ToDecimal(txtGroesse.Text), fliesenliste, fugenfueller, fliesenkleber);
+            dgAnzeigeDerKalkulation.Visibility = Visibility.Visible;
+            lblGesamtsumme.Visibility = Visibility.Visible;
+            lblAngebot.Visibility = Visibility.Visible;
+            ladeKalkulationInDasGrid();
         }
 
         private void fuelleFliesenliste()
@@ -79,5 +90,69 @@ namespace tfMarktMain.Fliesenkalkulation
                 }
             }
         }
+
+        public void ladeVorhandeneKalkulation(Fliesenkalkulation vorhandeneKalkulation) 
+        {
+            this.kalkulation = vorhandeneKalkulation;
+            dgAnzeigeDerKalkulation.Visibility = Visibility.Visible;
+            lblGesamtsumme.Visibility = Visibility.Visible;
+            ladeKalkulationInDasGrid();
+            txtGroesse.Text = kalkulation.raumFlaeche + "";
+            for (int i = 0; i < cbFliese.Items.Count; i++)
+            {
+                if (cbFliese.Items[i].ToString() == kalkulation.ausgewaehlteFliese.getArtikelbezeichnung())
+                {
+                    cbFliese.SelectedIndex = i;
+                }
+            }
+        }
+
+        private void ladeKalkulationInDasGrid()
+        {
+            decimal gesamtpreis = 0;
+            
+            Kalkulationsanzeige fliese = new Kalkulationsanzeige();
+            fliese.Artikelbezeichnung = kalkulation.ausgewaehlteFliese.getArtikelbezeichnung();
+            fliese.ArtNr = kalkulation.ausgewaehlteFliese.getArtikelnummer()+"";
+            fliese.Einzelpreis = kalkulation.ausgewaehlteFliese.getPreis().ToString("C");
+            fliese.Menge = kalkulation.anzahlFliesenPakete + "";
+            fliese.Gesamtpreis = (kalkulation.ausgewaehlteFliese.getPreis() * (decimal)kalkulation.anzahlFliesenPakete).ToString("C");
+            dataGridSource.Add(fliese);
+            gesamtpreis += kalkulation.ausgewaehlteFliese.getPreis() * (decimal)kalkulation.anzahlFliesenPakete;
+
+            Kalkulationsanzeige fugenfueller = new Kalkulationsanzeige();
+            fugenfueller.Artikelbezeichnung = kalkulation.fugenfueller.getArtikelbezeichnung();
+            fugenfueller.ArtNr = kalkulation.fugenfueller.getArtikelnummer() + "";
+            fugenfueller.Einzelpreis = kalkulation.fugenfueller.getPreis().ToString("C");
+            fugenfueller.Menge = kalkulation.anzahlFugenfueller + "";
+            fugenfueller.Gesamtpreis = (kalkulation.fugenfueller.getPreis() * (decimal)kalkulation.anzahlFugenfueller).ToString("C");
+            dataGridSource.Add(fugenfueller);
+            gesamtpreis += kalkulation.fugenfueller.getPreis() * (decimal)kalkulation.anzahlFugenfueller;
+
+            if (kalkulation.mitFliesenkleber)
+            {
+                Kalkulationsanzeige fliesenkleber = new Kalkulationsanzeige();
+                fliesenkleber.Artikelbezeichnung = kalkulation.fliesenkleber.getArtikelbezeichnung();
+                fliesenkleber.ArtNr = kalkulation.fliesenkleber.getArtikelnummer() + "";
+                fliesenkleber.Einzelpreis = kalkulation.fliesenkleber.getPreis().ToString("C");
+                fliesenkleber.Menge = kalkulation.anzahlFliesenkleber + "";
+                fliesenkleber.Gesamtpreis = (kalkulation.fliesenkleber.getPreis() * (decimal)kalkulation.anzahlFliesenkleber).ToString("C");
+                dataGridSource.Add(fliesenkleber);
+                gesamtpreis += kalkulation.fliesenkleber.getPreis() * (decimal)kalkulation.anzahlFliesenkleber;
+            }
+
+            dgAnzeigeDerKalkulation.ItemsSource = dataGridSource;
+            dgAnzeigeDerKalkulation.Items.Refresh();
+            lblGesamtsumme.Content = "Gesamtsumme: " + gesamtpreis.ToString("C");
+        }
+    }
+
+    class Kalkulationsanzeige
+    {
+        public string ArtNr { get; set; }
+        public string Artikelbezeichnung { get; set; }
+        public string Menge { get; set; }
+        public string Einzelpreis { get; set; }
+        public string Gesamtpreis { get; set; }
     }
 }

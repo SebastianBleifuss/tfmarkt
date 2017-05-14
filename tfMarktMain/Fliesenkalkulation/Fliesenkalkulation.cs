@@ -10,10 +10,11 @@ namespace tfMarktMain.Fliesenkalkulation
 {
     public class Fliesenkalkulation: Calculation
     {
-        private decimal raumFlaeche;
-        private bool mitFliesenkleber;
-        private Fliese ausgewaehlteFliese;
-        private Hilfsmittel fugenfueller, fliesenkleber;
+        public decimal raumFlaeche;
+        public bool mitFliesenkleber;
+        public Fliese ausgewaehlteFliese;
+        public Hilfsmittel fugenfueller, fliesenkleber;
+        public int anzahlFliesenPakete, anzahlFugenfueller, anzahlFliesenkleber;
 
         public Fliesenkalkulation(String Artikelbezeichnung, bool mitFliesenkleber, decimal raumFlaeche, List<Fliese> fliesenliste, Hilfsmittel fugenfueller, Hilfsmittel fliesenkleber)
         {
@@ -22,6 +23,24 @@ namespace tfMarktMain.Fliesenkalkulation
             this.raumFlaeche = raumFlaeche;
             this.fliesenkleber = fliesenkleber;
             this.fugenfueller = fugenfueller;
+            if (mitFliesenkleber)
+            {
+                this.anzahlFliesenkleber = berechneAnzahlFliesenkleber();
+            }
+            this.anzahlFugenfueller = berechneAnzahlFugenfueller();
+            this.anzahlFliesenPakete = berechneAnzahlPakete();
+        }
+
+        public Fliesenkalkulation(Fliese ausgewaehlteFliese, bool mitFliesenkleber,decimal raumFlaeche, Hilfsmittel fugenfueller, Hilfsmittel fliesenkleber, int anzahlFliesenPakete, int anzahlFugenfueller, int anzahlFliesenkleber)
+        {
+            this.ausgewaehlteFliese = ausgewaehlteFliese;
+            this.raumFlaeche = raumFlaeche;
+            this.fugenfueller = fugenfueller;
+            this.fliesenkleber = fliesenkleber;
+            this.mitFliesenkleber = mitFliesenkleber;
+            this.anzahlFliesenPakete = anzahlFliesenPakete;
+            this.anzahlFliesenkleber = anzahlFliesenkleber;
+            this.anzahlFugenfueller = anzahlFugenfueller;
         }
 
 
