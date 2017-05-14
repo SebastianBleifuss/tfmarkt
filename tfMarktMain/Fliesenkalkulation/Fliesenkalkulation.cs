@@ -18,7 +18,11 @@ namespace tfMarktMain.Fliesenkalkulation
 
         public Fliesenkalkulation(String Artikelbezeichnung, bool mitFliesenkleber, decimal raumFlaeche, List<Fliese> fliesenliste, Hilfsmittel fugenfueller, Hilfsmittel fliesenkleber)
         {
+            this.CalculationType = typeof(Fliesenkalkulation);
             this.ausgewaehlteFliese = getFliesenObjektZuArtikelbezeichnung(Artikelbezeichnung, fliesenliste);
+
+            SelectedProduct = ausgewaehlteFliese;
+
             this.mitFliesenkleber = mitFliesenkleber;
             this.raumFlaeche = raumFlaeche;
             this.Length = (decimal) Math.Sqrt((double)raumFlaeche);
@@ -35,7 +39,11 @@ namespace tfMarktMain.Fliesenkalkulation
 
         public Fliesenkalkulation(String artikelbezeichnung, List<Fliese> fliesenliste, bool mitFliesenkleber,decimal raumFlaeche, Hilfsmittel fugenfueller, Hilfsmittel fliesenkleber)
         {
+            this.CalculationType = typeof(Fliesenkalkulation);
             this.ausgewaehlteFliese = getFliesenObjektZuArtikelbezeichnung(artikelbezeichnung, fliesenliste);
+
+            SelectedProduct = ausgewaehlteFliese;
+
             this.raumFlaeche = raumFlaeche;
             this.Length = (decimal)Math.Sqrt((double)raumFlaeche);
             this.Width = (decimal)Math.Sqrt((double)raumFlaeche);

@@ -56,9 +56,18 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Complete-Working.orderedtest">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <ProjectReference Include="..\AdministrationDerProdukte\AdministrationDerProdukte.csproj">
+      <Project>{06737ae5-1e7f-468b-9388-4cffc4bad8fe}</Project>
+      <Name>AdministrationDerProdukte</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\tfMarktMain\tfMarktMain.csproj">
+      <Project>{7999f399-7acf-4e15-8439-3dc5003245e6}</Project>
+      <Name>tfMarktMain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\xmlserializer\xmlserializer.csproj">
+      <Project>{94efa374-32f8-48fb-9ec1-4ae906645218}</Project>
+      <Name>xmlserializer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
