@@ -23,6 +23,8 @@ namespace xmlserializer.Models.Products
             set { breite = value; }
         }
 
+       
+
         private int paketgroesse;
         public int Paketgroesse
         {
