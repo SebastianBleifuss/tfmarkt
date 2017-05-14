@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Customer>
+  <Name>Larm, Lara</Name>
+  <Customernumber>5d86764b-8cd4-4568-b904-1ee67b3a9ba3</Customernumber>
+  <Calculations>
+    <Calculation>
+      <Identifier>ee29e0b8-eb5d-4c3e-8a82-d426d31d0c64</Identifier>
+      <Description>dfd</Description>
+      <CalculationType>tfMarktMain.Tapetenkalkulation.Tapetenkalkulation, tfMarktMain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</CalculationType>
+      <Amount>2</Amount>
+      <Product>
+        <Articlenumber>11</Articlenumber>
+        <Articledescription>Mustertapete grün</Articledescription>
+        <Price>10</Price>
+        <ProductType>xmlserializer.Models.Products.Tapete, xmlserializer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</ProductType>
+        <Width>0,50</Width>
+        <Lenght>20</Lenght>
+        <Rapport>0</Rapport>
+      </Product>
+    </Calculation>
+  </Calculations>
+</Customer>

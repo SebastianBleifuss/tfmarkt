@@ -4,7 +4,7 @@
   <Articledescription>Mustertapete grün</Articledescription>
   <Price>10</Price>
   <ProductType>xmlserializer.Models.Products.Tapete, xmlserializer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</ProductType>
-  <Width>50</Width>
+  <Width>0,50</Width>
   <Lenght>20</Lenght>
   <Rapport>0</Rapport>
 </Product>

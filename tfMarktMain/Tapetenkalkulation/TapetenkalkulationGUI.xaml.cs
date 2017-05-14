@@ -23,7 +23,6 @@ namespace tfMarktMain.Tapetenkalkulation
     {
         private Tapetenkalkulation kalkulation;
         private List<Product> productList;
-        private bool istLaengeBreiteBekannt = false;
 
         public TapetenkalkulationGUI()
         {
@@ -32,16 +31,6 @@ namespace tfMarktMain.Tapetenkalkulation
             holeTapetenListe();
         }
 
-        private void btnFlaecheBerechnen_Click(object sender, RoutedEventArgs e)
-        {
-            istLaengeBreiteBekannt = true;
-            FlaecheBerechnen FlaecheBerechnenFenster = new  FlaecheBerechnen();
-            FlaecheBerechnenFenster.ShowDialog();
-            decimal flaeche = Math.Round(Convert.ToDecimal(FlaecheBerechnenFenster.getBreite()) * Convert.ToDecimal(FlaecheBerechnenFenster.getLaenge()));
-            txtGroesse.Text = flaeche.ToString();
-            this.kalkulation.setLaenge(FlaecheBerechnenFenster.getLaenge());
-            this.kalkulation.setBreite(FlaecheBerechnenFenster.getBreite());
-        }
 
         private void btnRollenBerechnen_Click(object sender, RoutedEventArgs e)
         {
@@ -60,7 +49,14 @@ namespace tfMarktMain.Tapetenkalkulation
                     item.Content = tapete.getArtikelbezeichnung();
                     item.Name = "_" + tapete.getArtikelnummer().ToString();
                     tapetenComboBox.Items.Add(item);
-                }              
+                } 
+                if(tapete.GetType().Equals(typeof(Hilfsmittel)))
+                {
+                    if(tapete.getArtikelbezeichnung().Equals("Tapetenkleister"))
+                    {
+                        this.kalkulation.setHilfsmittel((Hilfsmittel)tapete);
+                    }
+                }
             }
         }
         public Tapetenkalkulation getKalkulation()
@@ -71,17 +67,35 @@ namespace tfMarktMain.Tapetenkalkulation
 
         public void setKalkulation(Tapetenkalkulation kalkulation) 
         {
-            Console.WriteLine("Kalkulation");
-            this.kalkulation = kalkulation;
-            Console.WriteLine(this.kalkulation.getBreite());
-            Console.WriteLine(this.kalkulation.getLaenge());
-            txtGroesse.Text = kalkulation.getFlaeche().ToString();
-            txtKalkulationsBeschreibung.Text = kalkulation.Description;
+            if (kalkulation != null)
+            {
+                this.kalkulation = kalkulation;
+                txtKalkulationsBeschreibung.Text = kalkulation.Description;
+                if (kalkulation.getBreite() != 0 && kalkulation.getLaenge() != 0)
+                {
+                    txtBreite.Text = kalkulation.getBreite().ToString();
+                    txtLaenge.Text = kalkulation.getLaenge().ToString();
+                }
+                else
+                {
+                    txtBreite.Text = "0";
+                    txtLaenge.Text = "0";
+                }
+                for (int i = 0; i < tapetenComboBox.Items.Count; i++)
+                {
+                    ComboBoxItem item = (ComboBoxItem)tapetenComboBox.Items[i];
+                    if (item.Content.ToString() == kalkulation.SelectedProduct.getArtikelbezeichnung())
+                    {
+                        tapetenComboBox.SelectedIndex = i;
+                    }
+                }
+            }
         }
 
         private void txtKalkulationsBeschreibung_TextChanged(object sender, TextChangedEventArgs e)
         {
-            kalkulation.Description = txtKalkulationsBeschreibung.Text;
+            String beschreibung = txtKalkulationsBeschreibung.Text.Replace(' ', '_');
+            kalkulation.Description = beschreibung;
         }
 
         private Tapete gewaehlteTapete()
@@ -89,7 +103,7 @@ namespace tfMarktMain.Tapetenkalkulation
             int artikelnummer;
             productList = xmlserializer.xmlserializer.deserializeAllProducts();
             ComboBoxItem item = (ComboBoxItem)tapetenComboBox.SelectedItem;
-            if (item.Name != null)
+            if (item !=null && item.Name != null)
             {
                 artikelnummer = Convert.ToInt32(item.Name.TrimStart('_'));
                 foreach (Product tapete in productList)
@@ -108,20 +122,16 @@ namespace tfMarktMain.Tapetenkalkulation
 
         private void ergebnisAusgabeAendern() 
         {
-            if (tapetenComboBox.SelectedItem != null)
+            if (tapetenComboBox.SelectedIndex > 0)
             {
-                Console.WriteLine("SelectBox gefüllt.");
-                if (this.kalkulation.getLaenge() == 0 || this.kalkulation.getBreite() == 0 || !istLaengeBreiteBekannt)
+                if (!String.IsNullOrWhiteSpace(txtBreite.Text) && !String.IsNullOrWhiteSpace(txtLaenge.Text))
                 {
-                    lblRollen.Content = kalkulation.rollenBerechnen(gewaehlteTapete());
-                    lblGesamt.Content = kalkulation.getGesamtpreis();
-                    lblKleister.Content = kalkulation.getKleistermenge();
-                }
-                else if(txtGroesse.Text!=null)
-                {
-                    lblRollen.Content = kalkulation.rollenBerechnen(gewaehlteTapete());
-                    lblGesamt.Content = kalkulation.getGesamtpreis();
-                    lblKleister.Content = kalkulation.getKleistermenge();
+                    this.kalkulation.setLaenge(Convert.ToDecimal(txtLaenge.Text));
+                    this.kalkulation.setBreite(Convert.ToDecimal(txtBreite.Text));
+                    int rollen = this.kalkulation.rollenBerechnen(gewaehlteTapete());
+                    lblRollen.Content = rollen;
+                    lblGesamt.Content = this.kalkulation.getGesamtpreis(gewaehlteTapete(), rollen);
+                    lblKleister.Content = this.kalkulation.getKleistermenge();
                 }
             }
             else { Console.WriteLine("SelectBox nicht gefüllt."); }
@@ -130,12 +140,18 @@ namespace tfMarktMain.Tapetenkalkulation
 
         private void tapetenComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //ergebnisAusgabeAendern();
+            if (kalkulation != null)
+            {
+                ergebnisAusgabeAendern();
+            }
         }
 
         private void txtGroesse_TextChanged(object sender, TextChangedEventArgs e)
         {
-            //ergebnisAusgabeAendern();
+            if (kalkulation != null)
+            {
+                ergebnisAusgabeAendern();
+            }
         }
     }
 }

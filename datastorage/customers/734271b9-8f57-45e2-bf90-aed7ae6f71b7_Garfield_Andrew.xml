@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Customer>
+  <Name>Garfield, Andrew</Name>
+  <Customernumber>734271b9-8f57-45e2-bf90-aed7ae6f71b7</Customernumber>
+  <Calculations>
+    <Calculation>
+      <Identifier>48ad2831-c458-44eb-ac23-ad5c782e0990</Identifier>
+      <Description>oi</Description>
+      <CalculationType>tfMarktMain.Tapetenkalkulation.Tapetenkalkulation, tfMarktMain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</CalculationType>
+      <Amount>400</Amount>
+      <Product>
+        <Articlenumber>13</Articlenumber>
+        <Articledescription>Wolkentapete</Articledescription>
+        <Price>5,99</Price>
+        <ProductType>xmlserializer.Models.Products.Tapete, xmlserializer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</ProductType>
+        <Width>0,53</Width>
+        <Lenght>10,05</Lenght>
+        <Rapport>0,73</Rapport>
+      </Product>
+    </Calculation>
+  </Calculations>
+</Customer>

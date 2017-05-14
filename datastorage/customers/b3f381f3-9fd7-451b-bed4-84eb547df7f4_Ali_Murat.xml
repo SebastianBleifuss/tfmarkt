@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Customer>
+  <Name>Ali, Murat</Name>
+  <Customernumber>b3f381f3-9fd7-451b-bed4-84eb547df7f4</Customernumber>
+  <Calculations>
+    <Calculation>
+      <Identifier>4e399b10-9a71-46c7-a445-e1fb81ea657e</Identifier>
+      <Description>Raum78</Description>
+      <CalculationType>tfMarktMain.Tapetenkalkulation.Tapetenkalkulation, tfMarktMain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</CalculationType>
+      <Amount>63</Amount>
+      <Product>
+        <Articlenumber>13</Articlenumber>
+        <Articledescription>Wolkentapete</Articledescription>
+        <Price>5,99</Price>
+        <ProductType>xmlserializer.Models.Products.Tapete, xmlserializer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</ProductType>
+        <Width>0,53</Width>
+        <Lenght>10,05</Lenght>
+        <Rapport>0,73</Rapport>
+      </Product>
+    </Calculation>
+  </Calculations>
+</Customer>

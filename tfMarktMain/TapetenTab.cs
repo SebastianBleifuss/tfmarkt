@@ -26,9 +26,12 @@ namespace tfMarktMain
 
         public void setKalkulation(Tapetenkalkulation.Tapetenkalkulation kalkulation) 
         {
-            Console.WriteLine("Tapetentab");
-            tapetenSeite.setKalkulation(kalkulation);
-            this.kalkulation = kalkulation;
+            if (kalkulation != null)
+            {
+                Console.WriteLine("Tapetentab");
+                tapetenSeite.setKalkulation(kalkulation);
+                this.kalkulation = kalkulation;
+            }
         }
 
         public Tapetenkalkulation.TapetenkalkulationGUI getTapetenGUI()

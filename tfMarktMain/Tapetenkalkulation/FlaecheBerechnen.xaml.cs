@@ -19,18 +19,14 @@ namespace tfMarktMain.Tapetenkalkulation
     /// </summary>
     public partial class FlaecheBerechnen : Window
     {
-        private Tapetenkalkulation kalkulation;
 
         public FlaecheBerechnen()
         {
             InitializeComponent();
-            kalkulation = new Tapetenkalkulation();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            kalkulation.setBreite(Convert.ToDecimal(txtBreite.Text));
-            kalkulation.setLaenge(Convert.ToDecimal(txtLaenge.Text));
             this.Hide();
         }
 
