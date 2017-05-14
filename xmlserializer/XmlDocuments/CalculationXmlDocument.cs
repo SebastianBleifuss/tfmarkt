@@ -47,12 +47,27 @@ namespace xmlserializer.XmlDocuments
             );
             root.AppendChild(CalculationType);
 
-            //Create AmountElement
-            XmlElement Amount = doc.CreateElement(string.Empty, "Amount", string.Empty);
-            Amount.AppendChild(
-                doc.CreateTextNode(calc.Amount.ToString())//Create and add TextNode to AmountElement child
+
+            //Create LengthElement
+            XmlElement Length = doc.CreateElement(string.Empty, "Length", string.Empty);
+            Length.AppendChild(
+                doc.CreateTextNode(calc.Length.ToString())//Create and add TextNode to LengthElement child
             );
-            root.AppendChild(Amount);
+            root.AppendChild(Length);
+
+            //Create WidthElement
+            XmlElement Width = doc.CreateElement(string.Empty, "Width", string.Empty);
+            Width.AppendChild(
+                doc.CreateTextNode(calc.Width.ToString())//Create and add TextNode to WidthElement child
+            );
+            root.AppendChild(Width);
+
+            //Create WithExtraProductElement
+            XmlElement WithExtraProduct = doc.CreateElement(string.Empty, "WithExtraProduct", string.Empty);
+            WithExtraProduct.AppendChild(
+                doc.CreateTextNode(calc.WithExtraProduct.ToString())//Create and add TextNode to WithExtraProductElement child
+            );
+            root.AppendChild(WithExtraProduct);
 
             //Create ProductElement
             XmlElement Product = doc.CreateElement(string.Empty, "Product", string.Empty);
@@ -82,7 +97,11 @@ namespace xmlserializer.XmlDocuments
             LoadingCalculation.Identifier = Guid.Parse(CalculationNode.SelectSingleNode("Identifier").InnerText);
             LoadingCalculation.Description = CalculationNode.SelectSingleNode("Description").InnerText;
             LoadingCalculation.CalculationType = CalculationType;
-            LoadingCalculation.Amount = Int32.Parse(CalculationNode.SelectSingleNode("Amount").InnerText);
+            LoadingCalculation.Length = Decimal.Parse(CalculationNode.SelectSingleNode("Length").InnerText);
+            LoadingCalculation.Width = Decimal.Parse(CalculationNode.SelectSingleNode("Width").InnerText);
+            LoadingCalculation.WithExtraProduct = Boolean.Parse(CalculationNode.SelectSingleNode("WithExtraProduct").InnerText);
+
+
             LoadingCalculation.SelectedProduct = doc.GetProductFromNode(CalculationNode.SelectSingleNode("Product"));
 
             return LoadingCalculation;//Return Calculation

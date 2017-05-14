@@ -59,9 +59,10 @@ namespace AdministrationDerProdukte
                 lblOptionTwo.Visibility = Visibility.Visible;
                 txtOptionTwo.TextChanged += checkDecimal_TextChanged;
 
-                lblOptionThree.Visibility = Visibility.Hidden;
-                txtOptionThree.Visibility = Visibility.Hidden;
-                txtOptionThree.TextChanged -= checkDecimal_TextChanged;
+                lblOptionThree.Content = "Paketgröße (Stück)";
+                lblOptionThree.Visibility = Visibility.Visible;
+                txtOptionThree.Visibility = Visibility.Visible;
+                txtOptionThree.TextChanged += checkDecimal_TextChanged;
             }
             else if (sender == rbHilfsmittel)
             {
@@ -128,7 +129,7 @@ namespace AdministrationDerProdukte
 
         private void speicherFliese()
         {
-            Fliese neueFliese = new Fliese(Convert.ToInt32(txtArtikelnummer.Text), txtArtikelbezeichnung.Text, Convert.ToDecimal(txtOptionOne.Text), Convert.ToDecimal(txtOptionTwo.Text), Convert.ToDecimal(txtPreis.Text));
+            Fliese neueFliese = new Fliese(Convert.ToInt32(txtArtikelnummer.Text), txtArtikelbezeichnung.Text, Convert.ToDecimal(txtOptionOne.Text), Convert.ToDecimal(txtOptionTwo.Text), Convert.ToInt32(txtOptionThree.Text), Convert.ToDecimal(txtPreis.Text));
             xmlserializer.xmlserializer.serialize(neueFliese);
         }
 
@@ -168,6 +169,7 @@ namespace AdministrationDerProdukte
             txtPreis.Text = fliese.getPreis().ToString();
             txtOptionOne.Text = fliese.Laenge.ToString();
             txtOptionTwo.Text = fliese.Breite.ToString();
+            txtOptionThree.Text = fliese.Paketgroesse.ToString();
         }
 
         private void loadGUITapete(Tapete tapete)

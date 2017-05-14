@@ -73,6 +73,13 @@ namespace xmlserializer.XmlDocuments
                 );
                 root.AppendChild(Lenght);//Add LenghtElement to root Element
 
+                //Create PacketSizeElement
+                XmlElement PacketSize = doc.CreateElement(string.Empty, "PacketSize", string.Empty);
+                PacketSize.AppendChild(
+                    doc.CreateTextNode(FliesenProduct.Laenge.ToString())//Create and add TextNode to PacketSizeElement child
+                );
+                root.AppendChild(PacketSize);//Add PacketSizeElement to root Element
+
             } else if (prod.getProductType().Equals(typeof(Tapete)))
             {
                 Tapete TapetenProduct = (Tapete)prod;
@@ -140,8 +147,8 @@ namespace xmlserializer.XmlDocuments
             {
                 ((Fliese)LoadingProduct).Laenge = Decimal.Parse(ProductNode.SelectSingleNode("Lenght").InnerText);
                 ((Fliese)LoadingProduct).Breite = Decimal.Parse(ProductNode.SelectSingleNode("Width").InnerText);
-
-
+                ((Fliese)LoadingProduct).Paketgroesse = Int32.Parse(ProductNode.SelectSingleNode("PacketSize").InnerText);
+                
             }
             else if (ProductType.Equals(typeof(Tapete)))
             {
