@@ -21,6 +21,8 @@ namespace tfMarktMain.Fliesenkalkulation
             this.ausgewaehlteFliese = getFliesenObjektZuArtikelbezeichnung(Artikelbezeichnung, fliesenliste);
             this.mitFliesenkleber = mitFliesenkleber;
             this.raumFlaeche = raumFlaeche;
+            this.Length = (decimal) Math.Sqrt((double)raumFlaeche);
+            this.Width = (decimal)Math.Sqrt((double)raumFlaeche);
             this.fliesenkleber = fliesenkleber;
             this.fugenfueller = fugenfueller;
             if (mitFliesenkleber)
@@ -35,6 +37,8 @@ namespace tfMarktMain.Fliesenkalkulation
         {
             this.ausgewaehlteFliese = getFliesenObjektZuArtikelbezeichnung(artikelbezeichnung, fliesenliste);
             this.raumFlaeche = raumFlaeche;
+            this.Length = (decimal)Math.Sqrt((double)raumFlaeche);
+            this.Width = (decimal)Math.Sqrt((double)raumFlaeche);
             this.fugenfueller = fugenfueller;
             this.fliesenkleber = fliesenkleber;
             this.mitFliesenkleber = mitFliesenkleber;
