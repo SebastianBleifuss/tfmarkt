@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<OrderedTest name="Complete-Working" storage="x:\berufschule\itm\2block\projekt\tfmarktrepository\trunk\tfmarktunittest\complete-working.orderedtest" id="b87004d6-ab75-4385-940c-4639cf4bf5bc" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestLinks>
+    <TestLink id="97f369bc-d20f-6dcc-3738-a9f079b1762e" name="LoadAllProducts" storage="bin\debug\tfmarktunittest.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <TestLink id="d889369b-6d37-0ed5-dfe2-9f10e1af4e28" name="SaveProducts" storage="bin\debug\tfmarktunittest.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <TestLink id="2eacd714-a5a6-ef3b-17b4-aa7242a17de1" name="LoadCustomer" storage="bin\debug\tfmarktunittest.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <TestLink id="e2472c6d-acfd-fe20-5566-1ec3486c5dd1" name="SaveCustomer" storage="bin\debug\tfmarktunittest.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  </TestLinks>
+</OrderedTest>

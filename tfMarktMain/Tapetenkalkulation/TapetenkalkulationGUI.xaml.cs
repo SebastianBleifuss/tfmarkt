@@ -41,7 +41,7 @@ namespace tfMarktMain.Tapetenkalkulation
 
         private void btnRollenBerechnen_Click(object sender, RoutedEventArgs e)
         {
-            Tapete tapete = new Tapete("Testtapete", 0.53m,10.05m,0.72m, 2.99m);
+            Tapete tapete = new Tapete(0,"Testtapete", 0.53m,10.05m,0.72m, 2.99m);
             kalkulation.rollenBerechnen(tapete, 2.65m, 5.00m);
 
         }

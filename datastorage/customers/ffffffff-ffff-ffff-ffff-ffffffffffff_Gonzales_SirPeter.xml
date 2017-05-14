@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Customer>
+  <Name>Gonzales, SirPeter</Name>
+  <Customernumber>ffffffff-ffff-ffff-ffff-ffffffffffff</Customernumber>
+  <Calculations>
+    <Calculation>
+      <Identifier>8ff9221b-188c-44df-bfbb-7e29a072c116</Identifier>
+      <Description>RAUM1</Description>
+      <CalculationType>tfMarktMain.Tapetenkalkulation.Tapetenkalkulation, tfMarktMain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</CalculationType>
+      <Amount>4</Amount>
+      <Product>
+        <Articlenumber>1</Articlenumber>
+        <Articledescription>Wundertapete</Articledescription>
+        <Price>0,99</Price>
+        <ProductType>xmlserializer.Models.Products.Tapete, xmlserializer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</ProductType>
+        <Width>0,35</Width>
+        <Lenght>10,05</Lenght>
+        <Rapport>0,73</Rapport>
+      </Product>
+    </Calculation>
+    <Calculation>
+      <Identifier>4107ab8b-95c5-49c4-83f1-5a50600f1cab</Identifier>
+      <Description>RAUM1</Description>
+      <CalculationType>tfMarktMain.Tapetenkalkulation.Tapetenkalkulation, tfMarktMain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</CalculationType>
+      <Amount>4</Amount>
+      <Product>
+        <Articlenumber>1</Articlenumber>
+        <Articledescription>Wundertapete</Articledescription>
+        <Price>0,99</Price>
+        <ProductType>xmlserializer.Models.Products.Tapete, xmlserializer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</ProductType>
+        <Width>0,35</Width>
+        <Lenght>10,05</Lenght>
+        <Rapport>0,73</Rapport>
+      </Product>
+    </Calculation>
+    <Calculation>
+      <Identifier>6c48e6f0-1783-430d-93b5-77bc0437e28b</Identifier>
+      <Description>RAUM1</Description>
+      <CalculationType>tfMarktMain.Tapetenkalkulation.Tapetenkalkulation, tfMarktMain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</CalculationType>
+      <Amount>4</Amount>
+      <Product>
+        <Articlenumber>1</Articlenumber>
+        <Articledescription>Wundertapete</Articledescription>
+        <Price>0,99</Price>
+        <ProductType>xmlserializer.Models.Products.Tapete, xmlserializer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</ProductType>
+        <Width>0,35</Width>
+        <Lenght>10,05</Lenght>
+        <Rapport>0,73</Rapport>
+      </Product>
+    </Calculation>
+    <Calculation>
+      <Identifier>38c6529d-0cb6-4378-ac09-3e704d921436</Identifier>
+      <Description>RAUM1</Description>
+      <CalculationType>tfMarktMain.Tapetenkalkulation.Tapetenkalkulation, tfMarktMain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</CalculationType>
+      <Amount>4</Amount>
+      <Product>
+        <Articlenumber>1</Articlenumber>
+        <Articledescription>Wundertapete</Articledescription>
+        <Price>0,99</Price>
+        <ProductType>xmlserializer.Models.Products.Tapete, xmlserializer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</ProductType>
+        <Width>0,35</Width>
+        <Lenght>10,05</Lenght>
+        <Rapport>0,73</Rapport>
+      </Product>
+    </Calculation>
+    <Calculation>
+      <Identifier>8c3955ea-65ce-4e4f-b067-bdb19b0a7aa5</Identifier>
+      <Description>RAUM1</Description>
+      <CalculationType>tfMarktMain.Tapetenkalkulation.Tapetenkalkulation, tfMarktMain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</CalculationType>
+      <Amount>4</Amount>
+      <Product>
+        <Articlenumber>1</Articlenumber>
+        <Articledescription>Wundertapete</Articledescription>
+        <Price>0,99</Price>
+        <ProductType>xmlserializer.Models.Products.Tapete, xmlserializer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</ProductType>
+        <Width>0,35</Width>
+        <Lenght>10,05</Lenght>
+        <Rapport>0,73</Rapport>
+      </Product>
+    </Calculation>
+    <Calculation>
+      <Identifier>82cea4c7-a7ef-42ca-8b57-4e67945fcab4</Identifier>
+      <Description>RAUM1</Description>
+      <CalculationType>tfMarktMain.Tapetenkalkulation.Tapetenkalkulation, tfMarktMain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</CalculationType>
+      <Amount>4</Amount>
+      <Product>
+        <Articlenumber>1</Articlenumber>
+        <Articledescription>Wundertapete</Articledescription>
+        <Price>0,99</Price>
+        <ProductType>xmlserializer.Models.Products.Tapete, xmlserializer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</ProductType>
+        <Width>0,35</Width>
+        <Lenght>10,05</Lenght>
+        <Rapport>0,73</Rapport>
+      </Product>
+    </Calculation>
+    <Calculation>
+      <Identifier>6fd164fd-af59-4e11-925e-107461fea626</Identifier>
+      <Description>RAUM1</Description>
+      <CalculationType>tfMarktMain.Tapetenkalkulation.Tapetenkalkulation, tfMarktMain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</CalculationType>
+      <Amount>4</Amount>
+      <Product>
+        <Articlenumber>1</Articlenumber>
+        <Articledescription>Wundertapete</Articledescription>
+        <Price>0,99</Price>
+        <ProductType>xmlserializer.Models.Products.Tapete, xmlserializer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</ProductType>
+        <Width>0,35</Width>
+        <Lenght>10,05</Lenght>
+        <Rapport>0,73</Rapport>
+      </Product>
+    </Calculation>
+    <Calculation>
+      <Identifier>40b58ca4-5df3-45e7-b646-75e19d56977a</Identifier>
+      <Description>RAUM1</Description>
+      <CalculationType>tfMarktMain.Tapetenkalkulation.Tapetenkalkulation, tfMarktMain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</CalculationType>
+      <Amount>4</Amount>
+      <Product>
+        <Articlenumber>1</Articlenumber>
+        <Articledescription>Wundertapete</Articledescription>
+        <Price>0,99</Price>
+        <ProductType>xmlserializer.Models.Products.Tapete, xmlserializer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</ProductType>
+        <Width>0,35</Width>
+        <Lenght>10,05</Lenght>
+        <Rapport>0,73</Rapport>
+      </Product>
+    </Calculation>
+    <Calculation>
+      <Identifier>87f873b0-4154-4eb5-862f-512f773392f4</Identifier>
+      <Description>RAUM1</Description>
+      <CalculationType>tfMarktMain.Tapetenkalkulation.Tapetenkalkulation, tfMarktMain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</CalculationType>
+      <Amount>4</Amount>
+      <Product>
+        <Articlenumber>1</Articlenumber>
+        <Articledescription>Wundertapete</Articledescription>
+        <Price>0,99</Price>
+        <ProductType>xmlserializer.Models.Products.Tapete, xmlserializer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</ProductType>
+        <Width>0,35</Width>
+        <Lenght>10,05</Lenght>
+        <Rapport>0,73</Rapport>
+      </Product>
+    </Calculation>
+    <Calculation>
+      <Identifier>6b85d0d3-9820-425d-aa85-202adf1a5504</Identifier>
+      <Description>RAUM1</Description>
+      <CalculationType>tfMarktMain.Tapetenkalkulation.Tapetenkalkulation, tfMarktMain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</CalculationType>
+      <Amount>4</Amount>
+      <Product>
+        <Articlenumber>1</Articlenumber>
+        <Articledescription>Wundertapete</Articledescription>
+        <Price>0,99</Price>
+        <ProductType>xmlserializer.Models.Products.Tapete, xmlserializer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</ProductType>
+        <Width>0,35</Width>
+        <Lenght>10,05</Lenght>
+        <Rapport>0,73</Rapport>
+      </Product>
+    </Calculation>
+    <Calculation>
+      <Identifier>2acc21d2-232f-4a05-b6ba-73d5e87d2929</Identifier>
+      <Description>RAUM1</Description>
+      <CalculationType>tfMarktMain.Tapetenkalkulation.Tapetenkalkulation, tfMarktMain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</CalculationType>
+      <Amount>4</Amount>
+      <Product>
+        <Articlenumber>1</Articlenumber>
+        <Articledescription>Wundertapete</Articledescription>
+        <Price>0,99</Price>
+        <ProductType>xmlserializer.Models.Products.Tapete, xmlserializer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</ProductType>
+        <Width>0,35</Width>
+        <Lenght>10,05</Lenght>
+        <Rapport>0,73</Rapport>
+      </Product>
+    </Calculation>
+  </Calculations>
+</Customer>
