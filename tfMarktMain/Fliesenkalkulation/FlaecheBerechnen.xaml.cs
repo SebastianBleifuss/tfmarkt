@@ -21,17 +21,16 @@ namespace tfMarktMain.Fliesenkalkulation
     /// </summary>
     public partial class FlaecheBerechnen : Window
     {
-        private Fliesenkalkulation kalkulation;
 
         public FlaecheBerechnen()
         {
             InitializeComponent();
-            kalkulation = Fliesenkalkulation.getInstance();
+            txtBreite.TextChanged += DecimalAllower_TextChanged;
+            txtLaenge.TextChanged += DecimalAllower_TextChanged;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            kalkulation.setFlaeche(Math.Round(Convert.ToDecimal(txtBreite.Text) * Convert.ToDecimal(txtLaenge.Text)));
             this.Hide();
         }
 
@@ -49,6 +48,11 @@ namespace tfMarktMain.Fliesenkalkulation
                 derSender.Foreground = Brushes.Black;
                 btnBerechnen.IsEnabled = true;
             }
+        }
+
+        public decimal getFlaeche()
+        {
+            return Math.Round(Convert.ToDecimal(txtBreite.Text) * Convert.ToDecimal(txtLaenge.Text));
         }
     }
 }

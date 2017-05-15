@@ -5,9 +5,9 @@
     <Grid>
         <Label Content="Fläche Berechnen" Margin="10,10,0,0" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" Width="213" Height="47" VerticalAlignment="Top"/>
         <Label Content="Länge" HorizontalAlignment="Left" Margin="5,105,0,0" VerticalAlignment="Top" Width="90"/>
-        <TextBox x:Name="txtLaenge" TextChanged="DecimalAllower_TextChanged" HorizontalAlignment="Left" Height="26" Margin="100,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="164"/>
+        <TextBox x:Name="txtLaenge" Text="0" HorizontalAlignment="Left" Height="26" Margin="100,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="164" TextAlignment="Right"/>
         <Label Content="Breite" HorizontalAlignment="Left" Margin="5,136,0,0" VerticalAlignment="Top" Width="90"/>
-        <TextBox x:Name="txtBreite" TextChanged="DecimalAllower_TextChanged" HorizontalAlignment="Left" Margin="100,136,0,0" VerticalAlignment="Top" Width="164" Height="26"/>
+        <TextBox x:Name="txtBreite" Text="0" HorizontalAlignment="Left" Margin="100,136,0,0" VerticalAlignment="Top" Width="164" Height="26" TextAlignment="Right"/>
         <Label Content="m" HorizontalAlignment="Left" Margin="264,105,0,0" VerticalAlignment="Top" Width="28"/>
         <Label Content="m" HorizontalAlignment="Left" Margin="264,136,0,0" VerticalAlignment="Top" Width="28"/>
         <Button x:Name="btnBerechnen" Content="Berechnen" Margin="158,0,0,41" VerticalAlignment="Bottom" Height="24" HorizontalAlignment="Left" Width="106" RenderTransformOrigin="-0.057,0.708" Click="Button_Click"/>

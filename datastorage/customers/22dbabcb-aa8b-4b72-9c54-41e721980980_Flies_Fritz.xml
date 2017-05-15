@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Customer>
+  <Name>Flies, Fritz</Name>
+  <Customernumber>22dbabcb-aa8b-4b72-9c54-41e721980980</Customernumber>
+  <Calculations>
+    <Calculation>
+      <Identifier>59291620-4aec-4432-a74b-69e730be2e0f</Identifier>
+      <Description>undefined</Description>
+      <CalculationType>tfMarktMain.Fliesenkalkulation.Fliesenkalkulation, tfMarktMain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</CalculationType>
+      <Length>4,79583152331272</Length>
+      <Width>4,79583152331272</Width>
+      <WithExtraProduct>False</WithExtraProduct>
+      <Product>
+        <Articlenumber>123456</Articlenumber>
+        <Articledescription>Fliese grau</Articledescription>
+        <Price>20</Price>
+        <ProductType>xmlserializer.Models.Products.Fliese, xmlserializer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</ProductType>
+        <Width>50</Width>
+        <Lenght>50</Lenght>
+        <PacketSize>50</PacketSize>
+      </Product>
+    </Calculation>
+  </Calculations>
+</Customer>

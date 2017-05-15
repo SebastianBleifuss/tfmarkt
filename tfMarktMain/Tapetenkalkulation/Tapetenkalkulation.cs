@@ -10,7 +10,6 @@ namespace tfMarktMain.Tapetenkalkulation
 {
     public class Tapetenkalkulation : Calculation
     {
-        private decimal laenge, breite;
         private Hilfsmittel hilfsmittel;
 
         public Tapetenkalkulation()
@@ -19,29 +18,9 @@ namespace tfMarktMain.Tapetenkalkulation
             this.hilfsmittel = new Hilfsmittel();
         }
 
-        public decimal getLaenge()
-        {
-            return this.laenge;
-        }
-
-        public void setLaenge(decimal laenge)
-        {
-            this.laenge = laenge;
-        }
-
-        public decimal getBreite()
-        {
-            return this.breite;
-        }
-
-        public void setBreite(decimal breite)
-        {
-            this.breite = breite;
-        }
-
         public decimal getFlaeche()
         {
-            return this.laenge * this.breite;
+            return this.Width * this.Length;
         }
 
         public void setHilfsmittel(Hilfsmittel hilfsmittel)
@@ -52,23 +31,23 @@ namespace tfMarktMain.Tapetenkalkulation
         public int rollenBerechnen(Tapete tapete)
         {
             //Nur so lange bis sie überegben werden: 
-            if (breite != 0 && laenge != 0) 
+            if (Width != 0 && Length != 0) 
             {
                 int muster;
                 decimal bahnlaenge;
                 //Anzahl benötigter Bahnen Wandbreite:
-                int benoetigteBahnen = Convert.ToInt32(Math.Ceiling(breite / tapete.Breite));
+                int benoetigteBahnen = Convert.ToInt32(Math.Ceiling(Width / tapete.Breite));
                 //Berechnen der Länge einer Bahn:
                 if (tapete.Rapport != 0) 
                 {
                     //Wieviel Muster sind pro bahn?
-                    muster = Convert.ToInt32(laenge / tapete.Rapport);
+                    muster = Convert.ToInt32(Length / tapete.Rapport);
                     bahnlaenge = muster * tapete.Rapport;
                 }
                 else
                 {
                     //kein rapport, keine Muster
-                    bahnlaenge = laenge;
+                    bahnlaenge = Length;
                 }
 
                 int bahnenProRolle = Convert.ToInt32(Math.Round(tapete.Laenge / bahnlaenge, MidpointRounding.ToEven));
@@ -95,7 +74,7 @@ namespace tfMarktMain.Tapetenkalkulation
             // verwendeter Tapetenkleister: https://www.amazon.de/Metylan-spezial-Kleister-Leistungsplus-Henkel-MCX-Technologie/dp/B002QHH5Z8/ref=sr_1_1?s=diy&ie=UTF8&qid=1494791983&sr=1-1
             if (hilfsmittel.Ergiebigkeit != 0)
             {
-                decimal gesamtFlaeche = laenge * breite;
+                decimal gesamtFlaeche = Length * Width;
                 decimal pakete = gesamtFlaeche / hilfsmittel.Ergiebigkeit;
                 return Convert.ToInt32(Math.Ceiling(pakete));
             }

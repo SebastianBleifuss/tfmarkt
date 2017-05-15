@@ -22,11 +22,55 @@ using xmlserializer.Models;
 
 namespace tfMarktMain.Export
 {
-    /// <summary>
+      /// <summary>
     /// Extention class for Customer
     /// </summary>
     public static class PDFFactory
     {
+        //Create a new PDF document
+        private static PdfDocument doc;
+
+        //Create an empty page
+        private static PdfPage PageOne;
+
+        //Get an XGraphics object for drawing
+        private static XGraphics gfx;
+
+        private static double vPos;
+        private static double hPosR;
+        private static double hPosL;
+        private static bool drawRec;
+        private static decimal totalPosGes;
+
+        //Create an set XPdfFontOptions
+        private static XFont ft8Fett = new XFont("Verdana", 8, XFontStyle.Bold);
+        private static XFont ft8Std = new XFont("Verdana", 8, XFontStyle.Regular);
+        private static XFont ft9Fett = new XFont("Verdana", 9, XFontStyle.Bold);
+        private static XFont ft9Std = new XFont("Verdana", 9, XFontStyle.Regular);
+        private static XFont ft11Fett = new XFont("Verdana", 11, XFontStyle.Bold);
+        private static XFont ft11Std = new XFont("Verdana", 11, XFontStyle.Regular);
+        private static XFont ft14Fett = new XFont("Verdana", 14, XFontStyle.Bold);
+        private static XFont ft14Std = new XFont("Verdana", 14, XFontStyle.Regular);
+
+        private static XFont Headerft10Std = new XFont("Sylfaen", 10, XFontStyle.Regular);
+
+        private static XFont Headerft16Fett = new XFont("Sylfaen", 16, XFontStyle.Bold);
+        private static XFont Headerft16Std = new XFont("Sylfaen", 16, XFontStyle.Regular);
+        private static XFont Headerft16U = new XFont("Sylfaen", 16, XFontStyle.Underline);
+        private static XFont Headerft18Fett = new XFont("Sylfaen", 18, XFontStyle.Bold);
+        private static XFont Headerft18Std = new XFont("Sylfaen", 18, XFontStyle.Underline);
+        private static XFont Headerft18U = new XFont("Sylfaen", 18, XFontStyle.Regular);
+        private static XFont Headerft20Fett = new XFont("Sylfaen", 20, XFontStyle.Bold);
+        private static XFont Headerft20Std = new XFont("Sylfaen", 20, XFontStyle.Regular);
+        private static XFont Headerft20U = new XFont("Sylfaen", 20, XFontStyle.Underline);
+
+
+        //Create XColors
+        private static XColor XColorBlack = XColor.FromArgb(0, 0, 0);
+        private static XColor XColorLightBrown = XColor.FromArgb(249, 245, 238);
+        private static XColor XColorLightBrownLine = XColor.FromArgb(220, 197, 156);
+
+
         /// <summary>
         /// Extention method for creating a PDF from a customer and his calculations
         /// </summary>
@@ -37,38 +81,14 @@ namespace tfMarktMain.Export
             //Create an set XPdfFontOptions
             XPdfFontOptions options = new XPdfFontOptions(PdfFontEncoding.Unicode, PdfFontEmbedding.Always);
 
-            //Create a fonts
-            XFont ft8Fett = new XFont("Verdana", 8, XFontStyle.Bold);
-            XFont ft8Std = new XFont("Verdana", 8, XFontStyle.Regular);
-            XFont ft9Fett = new XFont("Verdana", 9, XFontStyle.Bold);
-            XFont ft9Std = new XFont("Verdana", 9, XFontStyle.Regular);
-            XFont ft11Fett = new XFont("Verdana", 11, XFontStyle.Bold);
-            XFont ft11Std = new XFont("Verdana", 11, XFontStyle.Regular);
-            XFont ft14Fett = new XFont("Verdana", 14, XFontStyle.Bold);
-            XFont ft14Std = new XFont("Verdana", 14, XFontStyle.Regular);
-
-            XFont Headerft10Std = new XFont("Sylfaen", 10, XFontStyle.Regular);
-
-            XFont Headerft16Fett = new XFont("Sylfaen", 16, XFontStyle.Bold);
-            XFont Headerft16Std = new XFont("Sylfaen", 16, XFontStyle.Regular);
-            XFont Headerft16U = new XFont("Sylfaen", 16, XFontStyle.Underline);
-            XFont Headerft18Fett = new XFont("Sylfaen", 18, XFontStyle.Bold);
-            XFont Headerft18Std = new XFont("Sylfaen", 18, XFontStyle.Underline);
-            XFont Headerft18U = new XFont("Sylfaen", 18, XFontStyle.Regular);
-            XFont Headerft20Fett = new XFont("Sylfaen", 20, XFontStyle.Bold);
-            XFont Headerft20Std = new XFont("Sylfaen", 20, XFontStyle.Regular);
-            XFont Headerft20U = new XFont("Sylfaen", 20, XFontStyle.Underline);
-
-
-
             //Create a new PDF document
-            PdfDocument doc = new PdfDocument();
+            doc = new PdfDocument();
 
             //Create an empty page
-            PdfPage PageOne = doc.AddPage();
+            PageOne = doc.AddPage();
 
             //Get an XGraphics object for drawing
-            XGraphics gfx = XGraphics.FromPdfPage(PageOne);
+            gfx = XGraphics.FromPdfPage(PageOne);
 
             //Set CompanyLogo
             XImage CompanyLogo = XImage.FromFile("..\\datastorage\\CompanyLogo.png");
@@ -79,15 +99,12 @@ namespace tfMarktMain.Export
             gfx.DrawImage(CompanyLogo, gfx.PageSize.Width - 50 - CompanyLogoWidth, 55, 250, 100);
             
 
-            //Create XColors
-            XColor XColorBlack = XColor.FromArgb(0, 0, 0);
-            XColor XColorLightBrown = XColor.FromArgb(249, 245, 238);
-            XColor XColorLightBrownLine = XColor.FromArgb(220, 197, 156);
+           
 
             //Define positions for vertical and horizontal allignment
-            double vPos = 120;
-            double hPosR = gfx.PageSize.Width - 70;
-            double hPosL = 60;
+            vPos = 120;
+            hPosR = gfx.PageSize.Width - 70;
+            hPosL = 60;
 
             //Create document header
             gfx.DrawString("tfMarkt GmbH & Co. KG", Headerft20Fett, XBrushes.Black, new XRect(hPosL, vPos, PageOne.Width, PageOne.Height), XStringFormats.TopLeft);
@@ -125,52 +142,27 @@ namespace tfMarktMain.Export
             gfx.DrawRectangle(new XSolidBrush(XColorLightBrown), hPosL, vPos - 0.5, hPosR - hPosL, 20);
 
             double LinehPos = vPos;
-            bool drawRec = true;
-            decimal totalPosGes = 0;
+            drawRec = true;
+            totalPosGes = 0;
             foreach (Calculation calc in Calculations.Values)
             {
-                if (drawRec)
+
+                if (calc.CalculationType.Equals(typeof(Fliesenkalkulation.Fliesenkalkulation)))
                 {
-                    drawRec = false;
-                    gfx.DrawRectangle(new XSolidBrush(XColorLightBrown), hPosL, vPos - 0.5, hPosR - hPosL, 20);//Draw colored row
+
+                    Fliesenkalkulation.Fliesenkalkulation FliesenCalc = (Fliesenkalkulation.Fliesenkalkulation)calc;
+                    drawProduct(FliesenCalc.ausgewaehlteFliese, FliesenCalc.anzahlFliesenPakete);
+                    drawProduct(FliesenCalc.fugenfueller, FliesenCalc.anzahlFugenfueller);
+                    if (FliesenCalc.WithExtraProduct) {
+                        drawProduct(FliesenCalc.fliesenkleber, FliesenCalc.anzahlFliesenkleber);
+                    }
                 }
-                else
+                else if (calc.CalculationType.Equals(typeof(Tapetenkalkulation.Tapetenkalkulation)))
                 {
-                    drawRec = true;
+                    Tapetenkalkulation.Tapetenkalkulation TapetenCalc = (Tapetenkalkulation.Tapetenkalkulation)calc;
 
+                    drawProduct(TapetenCalc.SelectedProduct, 999);
                 }
-
-
-                //Write product informations
-                vPos += 5;
-                Product p = calc.SelectedProduct;
-                gfx.DrawString(calc.Amount.ToString(), ft8Std, XBrushes.Black, new XRect(hPosL + 10, vPos, PageOne.Width, PageOne.Height), XStringFormats.TopLeft);
-
-                String Description = p.getArtikelbezeichnung();
-                if (Description.Length > 22)
-                {
-                    Description = Description.Substring(0, 22) + "...";
-                }
-                gfx.DrawString(Description, ft8Std, XBrushes.Black, new XRect(hPosL + 75, vPos, PageOne.Width, PageOne.Height), XStringFormats.TopLeft);
-                gfx.DrawString(p.getPreis().ToFormatStringEuro(), ft8Std, XBrushes.Black, new XRect(hPosL + 275, vPos, PageOne.Width, PageOne.Height), XStringFormats.TopLeft);//Write currency formated price
-                decimal posGes = RoundCurrency((calc.Amount * p.getPreis()));//Calculate total price and round it away from zero
-                totalPosGes += posGes;//Add total position price to global total position price
-                gfx.DrawString(posGes.ToFormatStringEuro(), ft8Std, XBrushes.Black, new XRect(hPosL + 375, vPos, PageOne.Width, PageOne.Height), XStringFormats.TopLeft);
-                vPos += 15;
-
-
-
-                if (vPos >= 800)//Check if page end is reached
-                {
-                    // Create an empty page
-                    PdfPage NextPage = doc.AddPage();
-
-                    // Get an XGraphics object for drawing
-                    gfx = XGraphics.FromPdfPage(NextPage);
-                    drawRec = true;
-                    vPos = 115;
-                }
-
             }
 
             //Draw colored line at top and bottom of the table
@@ -218,6 +210,50 @@ namespace tfMarktMain.Export
             //Save PDF to FilePath with write-only-permissions
             doc.Save(new FileStream(FilePath, FileMode.Create, FileAccess.Write));
         }
+
+        private static void drawProduct(Product prod, int Amount) {
+
+            if (drawRec)
+            {
+                drawRec = false;
+                gfx.DrawRectangle(new XSolidBrush(XColorLightBrown), hPosL, vPos - 0.5, hPosR - hPosL, 20);//Draw colored row
+            }
+            else
+            {
+                drawRec = true;
+
+            }
+
+
+            //Write product informations
+            vPos += 5;
+            gfx.DrawString(Amount.ToString(), ft8Std, XBrushes.Black, new XRect(hPosL + 10, vPos, PageOne.Width, PageOne.Height), XStringFormats.TopLeft);
+            String Description = prod.getArtikelbezeichnung();
+            if (Description.Length > 22)
+            {
+                Description = Description.Substring(0, 22) + "...";
+            }
+            gfx.DrawString(Description, ft8Std, XBrushes.Black, new XRect(hPosL + 75, vPos, PageOne.Width, PageOne.Height), XStringFormats.TopLeft);
+            gfx.DrawString(prod.getPreis().ToFormatStringEuro(), ft8Std, XBrushes.Black, new XRect(hPosL + 275, vPos, PageOne.Width, PageOne.Height), XStringFormats.TopLeft);//Write currency formated price
+            decimal posGes = RoundCurrency((Amount * prod.getPreis()));//Calculate total price and round it away from zero
+            totalPosGes += posGes;//Add total position price to global total position price
+            gfx.DrawString(posGes.ToFormatStringEuro(), ft8Std, XBrushes.Black, new XRect(hPosL + 375, vPos, PageOne.Width, PageOne.Height), XStringFormats.TopLeft);
+            vPos += 15;
+
+
+
+            if (vPos >= 800)//Check if page end is reached
+            {
+                // Create an empty page
+                PdfPage NextPage = doc.AddPage();
+
+                // Get an XGraphics object for drawing
+                gfx = XGraphics.FromPdfPage(NextPage);
+                drawRec = true;
+                vPos = 115;
+            }
+        }
+
 
 
         /// <summary>

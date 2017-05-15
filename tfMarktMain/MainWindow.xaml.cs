@@ -104,7 +104,8 @@ namespace tfMarktMain
                     }
                     if (calc.CalculationType.Equals(typeof(Fliesenkalkulation.Fliesenkalkulation)))
                     {
-                        Console.WriteLine("Fliesenkalkulation");
+                        Fliesenkalkulation.Fliesenkalkulation fliesCalc = (Fliesenkalkulation.Fliesenkalkulation)calc;
+                        FliesenTab tab = neueFliesenKalkulationTab(fliesCalc.Description, fliesCalc);
                     }
                 }
             }
@@ -168,13 +169,14 @@ namespace tfMarktMain
 
         private void cmdFliesenAuf_Click(object sender, RoutedEventArgs e)
         {
-            KalkulationsTab<Calculation> tab= neuerTab("Fliesen", "tabFliesenAnsicht", fliesenTabs);
-            Frame tabFrame = new Frame();
-            Fliesenkalkulation.FliesenkalkulationGUI ladeSeite = new Fliesenkalkulation.FliesenkalkulationGUI();
-            tabFrame.Content = ladeSeite.Content;
-            tab.Content = tabFrame;
-            tab.Focus();
-            fliesenTabs++;
+            //KalkulationsTab<Calculation> tab= neuerTab("Fliesen", "tabFliesenAnsicht", fliesenTabs);
+            //Frame tabFrame = new Frame();
+            //Fliesenkalkulation.FliesenkalkulationGUI ladeSeite = new Fliesenkalkulation.FliesenkalkulationGUI();
+            //tabFrame.Content = ladeSeite.Content;
+            //tab.Content = tabFrame;
+            //tab.Focus();
+            //fliesenTabs++;
+            neueFliesenKalkulationTab("Fliese", null);
         }
 
         private void cmdTapetenAuf_Click(object sender, RoutedEventArgs e)
@@ -216,6 +218,43 @@ namespace tfMarktMain
             tab.Content = tabFrame;
             tab.Focus();
             tapetenTabs++;
+            return tab;
+        }
+
+        private FliesenTab neueFliesenKalkulationTab(String tabname, Fliesenkalkulation.Fliesenkalkulation kalkulation)
+        {
+            FliesenTab tab = new FliesenTab();
+            if (fliesenTabs > 0 && kalkulation == null)
+            {
+                tab.Name = tabname + fliesenTabs;
+                tab.Header = tabname + fliesenTabs;
+            }
+            else
+            {
+                tab.Name = tabname;
+                tab.Header = tabname;
+            }
+            ContextMenu TabContextMenue = new ContextMenu();
+            MenuItem SpeicherItem = new MenuItem();
+            SpeicherItem.Header = "Speichern";
+            SpeicherItem.Click += SpeicherItem_Click;
+            SpeicherItem.Tag = tab;
+            MenuItem VerwerfItem = new MenuItem();
+            VerwerfItem.Header = "Verwerfen";
+            VerwerfItem.Click += VerwerfItem_Click;
+            VerwerfItem.Tag = tab;
+            TabContextMenue.Items.Add(SpeicherItem);
+            TabContextMenue.Items.Add(VerwerfItem);
+            tab.ContextMenu = TabContextMenue;
+            tabList.Add(tab);
+            tabAnsicht.Items.Add(tab);
+            tabAnsicht.SelectedItem = tab;
+            Frame tabFrame = new Frame();
+            tab.setKalkulation(kalkulation);
+            tabFrame.Content = tab.getFliesenGUI().Content;
+            tab.Content = tabFrame;
+            tab.Focus();
+            fliesenTabs++;
             return tab;
         }
 
@@ -305,12 +344,16 @@ namespace tfMarktMain
                 isCustomerChanged = true;
                // tabAnsicht.Items.Remove(tabItem);
             }
-            if (ConItem.Tag.GetType().Equals("tfMarktMain.FliesenTab"))
+            if (ConItem.Tag.GetType().Equals(typeof(tfMarktMain.FliesenTab)))
             {
-                //FliesenTab tabItem = (FliesenTab)ConItem.Tag;
-                //SelectedCustomer.addCalculation(tabItem.getKalkulation(), /*OVERRIDE SETZEN!*/ true); //Wirft Exception wenn die Kalkulation nicht vollständig initialisiert wurde
-                //CalculationListBox.ItemsSource = SelectedCustomer.Calculations.Values;
-                //tabAnsicht.Items.Remove(tabItem);
+                FliesenTab tabItem = (FliesenTab)ConItem.Tag;
+                tabItem.setKalkulation(tabItem.getFliesenGUI().getFliesenKalkulation());
+                Fliesenkalkulation.Fliesenkalkulation fliesenKalkulation = tabItem.getKalkulation();
+                fliesenKalkulation.Identifier = generateGuid();
+                tabItem.setKalkulation(fliesenKalkulation);
+                SelectedCustomer.addCalculation(tabItem.getKalkulation(), /*OVERRIDE SETZEN!*/ true); //Wirft Exception wenn die Kalkulation nicht vollständig initialisiert wurde
+                CalculationListBox.ItemsSource = SelectedCustomer.Calculations.Values;
+                isCustomerChanged = true;
             }
         }
 

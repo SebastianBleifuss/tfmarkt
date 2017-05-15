@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using xmlserializer.Models;
+using xmlserializer.Models.Products;
 
 namespace tfMarktMain
 {
@@ -15,8 +16,9 @@ namespace tfMarktMain
 
         public FliesenTab()
         {
-            kalkulation = new Fliesenkalkulation.Fliesenkalkulation();
             fliesenSeite = new Fliesenkalkulation.FliesenkalkulationGUI();
+            kalkulation = fliesenSeite.getFliesenKalkulation();
+            
         }
 
         public Fliesenkalkulation.Fliesenkalkulation getKalkulation()
@@ -27,17 +29,16 @@ namespace tfMarktMain
         //Entfällt, wenn Tapetenkalkulation nicht mehr so geladen werden muss.
         public void setKalkulation(Fliesenkalkulation.Fliesenkalkulation kalkulation)
         {
-            Console.WriteLine("Tapetentab");
             //fliesenSeite.setKalkulation(kalkulation);
             this.kalkulation = kalkulation;
         }
 
-        public Fliesenkalkulation.FliesenkalkulationGUI getTapetenGUI()
+        public Fliesenkalkulation.FliesenkalkulationGUI getFliesenGUI()
         {
             return this.fliesenSeite;
         }
 
-        public void setTapetenGUI(Fliesenkalkulation.FliesenkalkulationGUI GUI)
+        public void setFliesenGUI(Fliesenkalkulation.FliesenkalkulationGUI GUI)
         {
             this.fliesenSeite = GUI;
         }

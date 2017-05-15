@@ -35,7 +35,7 @@ namespace tfMarktMain.Tapetenkalkulation
         private void btnRollenBerechnen_Click(object sender, RoutedEventArgs e)
         {
             txbErgebnis.Visibility = System.Windows.Visibility.Visible;
-            kalkulation.Amount = kalkulation.rollenBerechnen(gewaehlteTapete());
+            //kalkulation.Amount = kalkulation.rollenBerechnen(gewaehlteTapete());
         }
 
         private void holeTapetenListe() 
@@ -67,14 +67,15 @@ namespace tfMarktMain.Tapetenkalkulation
 
         public void setKalkulation(Tapetenkalkulation kalkulation) 
         {
+            Console.WriteLine(kalkulation);
             if (kalkulation != null)
             {
                 this.kalkulation = kalkulation;
                 txtKalkulationsBeschreibung.Text = kalkulation.Description;
-                if (kalkulation.getBreite() != 0 && kalkulation.getLaenge() != 0)
+                if (kalkulation.Width != 0 && kalkulation.Length != 0)
                 {
-                    txtBreite.Text = kalkulation.getBreite().ToString();
-                    txtLaenge.Text = kalkulation.getLaenge().ToString();
+                    txtBreite.Text = kalkulation.Width.ToString();
+                    txtLaenge.Text = kalkulation.Length.ToString();
                 }
                 else
                 {
@@ -91,6 +92,7 @@ namespace tfMarktMain.Tapetenkalkulation
                 }
             }
         }
+
 
         private void txtKalkulationsBeschreibung_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -126,8 +128,8 @@ namespace tfMarktMain.Tapetenkalkulation
             {
                 if (!String.IsNullOrWhiteSpace(txtBreite.Text) && !String.IsNullOrWhiteSpace(txtLaenge.Text))
                 {
-                    this.kalkulation.setLaenge(Convert.ToDecimal(txtLaenge.Text));
-                    this.kalkulation.setBreite(Convert.ToDecimal(txtBreite.Text));
+                    this.kalkulation.Length=Convert.ToDecimal(txtLaenge.Text);
+                    this.kalkulation.Width=Convert.ToDecimal(txtBreite.Text);
                     int rollen = this.kalkulation.rollenBerechnen(gewaehlteTapete());
                     lblRollen.Content = rollen;
                     lblGesamt.Content = this.kalkulation.getGesamtpreis(gewaehlteTapete(), rollen);

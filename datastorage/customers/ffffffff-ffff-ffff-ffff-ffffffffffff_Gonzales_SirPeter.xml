@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Customer>
+  <Name>Gonzales, SirPeter</Name>
+  <Customernumber>ffffffff-ffff-ffff-ffff-ffffffffffff</Customernumber>
+  <Calculations>
+    <Calculation>
+      <Identifier>8ff9221b-188c-44df-bfbb-7e29a072c116</Identifier>
+      <Description>RAUM1</Description>
+      <CalculationType>tfMarktMain.Tapetenkalkulation.Tapetenkalkulation, tfMarktMain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</CalculationType>
+      <Length>42</Length>
+	  <Width>42</Width>
+	  <WithExtraProduct>TRUE</WithExtraProduct>
+      <Product>
+        <Articlenumber>1</Articlenumber>
+        <Articledescription>Wundertapete</Articledescription>
+        <Price>0,99</Price>
+        <ProductType>xmlserializer.Models.Products.Tapete, xmlserializer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</ProductType>
+        <Width>0,35</Width>
+        <Lenght>10,05</Lenght>
+        <Rapport>0,73</Rapport>
+      </Product>
+    </Calculation>
+  </Calculations>
+</Customer>

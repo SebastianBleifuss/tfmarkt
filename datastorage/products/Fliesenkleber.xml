@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Product>
+  <Articlenumber>13</Articlenumber>
+  <Articledescription>Fliesenkleber</Articledescription>
+  <Price>18,99</Price>
+  <ProductType>xmlserializer.Models.Products.Hilfsmittel, xmlserializer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</ProductType>
+  <Productivity>25</Productivity>
+</Product>

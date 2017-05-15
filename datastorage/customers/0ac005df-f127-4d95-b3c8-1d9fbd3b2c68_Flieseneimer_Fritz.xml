@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Customer>
+  <Name>Flieseneimer, Fritz</Name>
+  <Customernumber>0ac005df-f127-4d95-b3c8-1d9fbd3b2c68</Customernumber>
+  <Calculations>
+    <Calculation>
+      <Identifier>0d7493bd-0366-4a5a-84f6-65ff3bc5a700</Identifier>
+      <Description>undefined</Description>
+      <CalculationType>tfMarktMain.Fliesenkalkulation.Fliesenkalkulation, tfMarktMain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</CalculationType>
+      <Length>3,46410161513775</Length>
+      <Width>3,46410161513775</Width>
+      <WithExtraProduct>False</WithExtraProduct>
+      <Product>
+        <Articlenumber>123456</Articlenumber>
+        <Articledescription>Fliese grau</Articledescription>
+        <Price>20</Price>
+        <ProductType>xmlserializer.Models.Products.Fliese, xmlserializer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</ProductType>
+        <Width>50</Width>
+        <Lenght>50</Lenght>
+        <PacketSize>50</PacketSize>
+      </Product>
+    </Calculation>
+  </Calculations>
+</Customer>

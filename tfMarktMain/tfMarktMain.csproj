@@ -88,7 +88,6 @@
     <Compile Include="Fliesenkalkulation\FlaecheBerechnen.xaml.cs">
       <DependentUpon>FlaecheBerechnen.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Fliesenkalkulation\Fliese.cs" />
     <Compile Include="Fliesenkalkulation\Fliesenkalkulation.cs" />
     <Compile Include="Fliesenkalkulation\FliesenkalkulationGUI.xaml.cs">
       <DependentUpon>FliesenkalkulationGUI.xaml</DependentUpon>
