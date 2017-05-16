@@ -27,8 +27,8 @@ namespace tfMarktUnitTest
                 }
             }
 
-
-            tfMarktMain.Fliesenkalkulation.Fliesenkalkulation NewFliesenCalc = new tfMarktMain.Fliesenkalkulation.Fliesenkalkulation("Fliese grau", true, 42m,
+            //String Artikelbezeichnung,String description ,bool mitFliesenkleber, decimal raumFlaeche, List<Fliese> fliesenliste, Hilfsmittel fugenfueller, Hilfsmittel fliesenkleber
+            tfMarktMain.Fliesenkalkulation.Fliesenkalkulation NewFliesenCalc = new tfMarktMain.Fliesenkalkulation.Fliesenkalkulation("Fliese grau","PDFGen", true, 42m,
                 Fliesen,
                 Filler,
                 Glue

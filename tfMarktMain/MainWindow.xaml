@@ -42,7 +42,7 @@
                     </Grid.ColumnDefinitions>
                     <Label Content="Kundennummer" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
                     <Label Content="Kundenvorname" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Grid.Row="1"/>
-                    <Label Content="Kundenname" Margin="10,70,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Grid.Row="2" HorizontalAlignment="Left" Width="110"/>
+                    <Label Content="Kundenname" Margin="10,70,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Grid.Row="2" HorizontalAlignment="Left" Width="142"/>
                     <TextBox x:Name="KundenNummerTextbox" Grid.Column="1" Margin="10,70,10,0" TextWrapping="Wrap" FontSize="16" FontWeight="Bold" IsEnabled="False" Height="31" VerticalAlignment="Top"/>
                     <TextBox x:Name="KundenNameTextbox" Grid.Column="1" Margin="10,70,10,0" TextWrapping="Wrap" FontSize="16" FontWeight="Bold" Grid.Row="1" TextChanged="KundenNameVeraendern_TextChanged" Height="31" VerticalAlignment="Top"/>
                     <TextBox x:Name="KundenNachnameTextbox" Grid.Column="1" Margin="10,70,10,0" TextWrapping="Wrap" FontSize="16" FontWeight="Bold" Grid.Row="2" TextChanged="KundenNameVeraendern_TextChanged" Height="31" VerticalAlignment="Top"/>
