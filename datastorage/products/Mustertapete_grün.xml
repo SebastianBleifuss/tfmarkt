@@ -5,6 +5,6 @@
   <Price>10</Price>
   <ProductType>xmlserializer.Models.Products.Tapete, xmlserializer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</ProductType>
   <Width>0,50</Width>
-  <Lenght>20</Lenght>
+  <Length>20</Length>
   <Rapport>0</Rapport>
 </Product>
