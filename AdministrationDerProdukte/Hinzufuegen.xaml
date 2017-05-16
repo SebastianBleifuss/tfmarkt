@@ -27,5 +27,6 @@
         <TextBox x:Name="txtArtikelnummer" HorizontalAlignment="Left" Height="26" Margin="192,7,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="217" IsReadOnlyCaretVisible="True" Background="#FFABADB3"/>
         <RadioButton x:Name="rbHilfsmittel" Content="Hilfsmittel" HorizontalAlignment="Left" Margin="192,70,0,0" VerticalAlignment="Top" Height="15" Width="97" Checked="RadioButtons_Checked"/>
         <Button x:Name="btnSpeichern" Content="Speichern" Margin="303,0,0,21" VerticalAlignment="Bottom" Height="24" HorizontalAlignment="Left" Width="106" RenderTransformOrigin="-0.057,0.708" Grid.Row="1" Click="btnSpeichern_Click"/>
+        <Button x:Name="btnLoeschen" Content="Löschen" Margin="183,0,0,21" VerticalAlignment="Bottom" Height="24" HorizontalAlignment="Left" Width="106" RenderTransformOrigin="-0.057,0.708" Grid.Row="1" Click="btnLoeschen_Click" IsEnabled="False"/>
     </Grid>
 </Window>
