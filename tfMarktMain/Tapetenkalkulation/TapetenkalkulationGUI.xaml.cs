@@ -61,7 +61,7 @@ namespace tfMarktMain.Tapetenkalkulation
         }
         public Tapetenkalkulation getKalkulation()
         {
-            kalkulation.SelectedProduct = gewaehlteTapete();
+            kalkulation.tapete = gewaehlteTapete();
             return this.kalkulation;
         }
 
@@ -85,7 +85,7 @@ namespace tfMarktMain.Tapetenkalkulation
                 for (int i = 0; i < tapetenComboBox.Items.Count; i++)
                 {
                     ComboBoxItem item = (ComboBoxItem)tapetenComboBox.Items[i];
-                    if (item.Content.ToString() == kalkulation.SelectedProduct.getArtikelbezeichnung())
+                    if (item.Content.ToString() == kalkulation.tapete.getArtikelbezeichnung())
                     {
                         tapetenComboBox.SelectedIndex = i;
                     }
