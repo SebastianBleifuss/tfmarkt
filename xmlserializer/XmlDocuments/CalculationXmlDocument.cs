@@ -6,7 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using xmlserializer.Models;
-
+using xmlserializer.Models.Calculations;
+using xmlserializer.Models.Products;
 
 namespace xmlserializer.XmlDocuments
 {
@@ -71,11 +72,76 @@ namespace xmlserializer.XmlDocuments
             root.AppendChild(WithExtraProduct);
 
             //Create ProductElement
-            XmlElement Product = doc.CreateElement(string.Empty, "Product", string.Empty);
+            XmlElement Products = doc.CreateElement(string.Empty, "Products", string.Empty);
 
-            root.AppendChild(doc.CreateProductElement(calc.SelectedProduct));//Create product-XmlElement from product instance
+            root.AppendChild(Products);//Create product-XmlElement from product instance
 
-            return root;//Return CalculationElement
+                XmlElement Product;
+                XmlElement Amount;
+                if (calc.CalculationType.Equals(typeof(Fliesenkalkulation)))
+                {
+                    Fliesenkalkulation FliesenCalc = (Fliesenkalkulation)calc;
+
+                    Product = doc.CreateProductElement(FliesenCalc.ausgewaehlteFliese);
+                    Amount = doc.CreateElement(string.Empty, "AmountTile", string.Empty);
+                    Amount.AppendChild(
+                        doc.CreateTextNode(FliesenCalc.anzahlFliesenPakete.ToString())
+                        );
+
+                    Product.AppendChild( Amount);
+                    Products.AppendChild(Product);
+
+                    Product = doc.CreateProductElement(FliesenCalc.fugenfueller);
+                    Amount = doc.CreateElement(string.Empty, "AmountFiller", string.Empty);
+                    Amount.AppendChild(
+                        doc.CreateTextNode(FliesenCalc.anzahlFugenfueller.ToString())
+                        );
+                    
+                    Product.AppendChild(Amount);
+                    Products.AppendChild(Product);
+
+
+                    if (FliesenCalc.WithExtraProduct) { 
+                    Product = doc.CreateProductElement(FliesenCalc.fliesenkleber);
+                        Amount = doc.CreateElement(string.Empty, "AmountGlue", string.Empty);
+                        Amount.AppendChild(
+                            doc.CreateTextNode(FliesenCalc.anzahlFliesenkleber.ToString())
+                            );
+
+
+
+
+                        Product.AppendChild(Amount);
+                        Products.AppendChild(Product);
+                    }
+
+                }
+                else if (calc.CalculationType.Equals(typeof(Tapetenkalkulation)))
+                {
+                    Tapetenkalkulation TapetenCalc = (Tapetenkalkulation)calc;
+
+                    Product = doc.CreateProductElement(TapetenCalc.tapete);
+                    Amount = doc.CreateElement(string.Empty, "AmountWallpaper", string.Empty);
+                    Amount.AppendChild(
+                        doc.CreateTextNode(TapetenCalc.rollen.ToString())
+                        );
+
+                    Product.AppendChild(Amount);
+                    Products.AppendChild(Product);
+
+                    Product = doc.CreateProductElement(TapetenCalc.tapetenkleister);
+                    Amount = doc.CreateElement(string.Empty, "AmountPaste", string.Empty);
+                    Amount.AppendChild(
+                        doc.CreateTextNode(TapetenCalc.kleisterpakete.ToString())
+                        );
+
+                    Product.AppendChild(Amount);
+                    Products.AppendChild(Product);
+                }
+
+
+
+                return root;//Return CalculationElement
             }
             catch (Exception ex)
             {
@@ -116,9 +182,54 @@ namespace xmlserializer.XmlDocuments
             LoadingCalculation.WithExtraProduct = Boolean.Parse(CalculationNode.SelectSingleNode("WithExtraProduct").InnerText);
 
 
-            LoadingCalculation.SelectedProduct = doc.GetProductFromNode(CalculationNode.SelectSingleNode("Product"));
+                XmlNode ProductNode;
+                if (CalculationType.Equals(typeof(Fliesenkalkulation)))
+                {
+                    Fliesenkalkulation LoadingTile = (Fliesenkalkulation)LoadingCalculation;
 
-            return LoadingCalculation;//Return Calculation
+                    XmlNodeList ProductNodes = CalculationNode.SelectSingleNode("Products").ChildNodes;
+
+
+
+
+
+                    ProductNode = ProductNodes[0];
+                    LoadingTile.ausgewaehlteFliese = (Fliese) doc.GetProductFromNode(ProductNode);
+                    LoadingTile.anzahlFliesenPakete = Int32.Parse(ProductNode.SelectSingleNode("AmountTile").InnerText);
+
+                    ProductNode = ProductNodes[1];
+                    LoadingTile.fugenfueller = (Hilfsmittel)doc.GetProductFromNode(ProductNode);
+                    LoadingTile.anzahlFliesenPakete = Int32.Parse(ProductNode.SelectSingleNode("AmountFiller").InnerText);
+                    if (LoadingTile.WithExtraProduct) {
+
+                    ProductNode = ProductNodes[3];
+                    LoadingTile.ausgewaehlteFliese = (Fliese)doc.GetProductFromNode(ProductNode);
+                    LoadingTile.anzahlFliesenPakete = Int32.Parse(ProductNode.SelectSingleNode("AmountGlue").InnerText);
+                    }
+
+                }
+                else if (CalculationType.Equals(typeof(Tapetenkalkulation)))
+                {
+                    Tapetenkalkulation LaodingWallpaper = (Tapetenkalkulation)LoadingCalculation;
+
+                    XmlNodeList ProductNodes = CalculationNode.SelectSingleNode("Products").ChildNodes;
+
+
+
+
+
+                    ProductNode = ProductNodes[0];
+                    LaodingWallpaper.tapete = (Tapete)doc.GetProductFromNode(ProductNode);
+                    LaodingWallpaper.rollen = Int32.Parse(ProductNode.SelectSingleNode("AmountWallpaper").InnerText);
+
+                    ProductNode = ProductNodes[1];
+                    LaodingWallpaper.tapetenkleister = (Hilfsmittel)doc.GetProductFromNode(ProductNode);
+                    LaodingWallpaper.kleisterpakete = Int32.Parse(ProductNode.SelectSingleNode("AmountPaste").InnerText);
+
+
+                }
+
+                return LoadingCalculation;//Return Calculation
             }
             catch (Exception ex)
             {

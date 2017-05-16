@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using xmlserializer.Models;
 using xmlserializer.Models.Products;
 
-namespace tfMarktMain.Fliesenkalkulation
+namespace xmlserializer.Models.Calculations
 {
     public class Fliesenkalkulation: Calculation
     {
@@ -25,7 +25,6 @@ namespace tfMarktMain.Fliesenkalkulation
             this.Description = description;
             this.ausgewaehlteFliese = getFliesenObjektZuArtikelbezeichnung(Artikelbezeichnung, fliesenliste);
 
-            SelectedProduct = ausgewaehlteFliese;
 
             this.mitFliesenkleber = mitFliesenkleber;
             this.raumFlaeche = raumFlaeche;
@@ -46,7 +45,6 @@ namespace tfMarktMain.Fliesenkalkulation
             this.CalculationType = typeof(Fliesenkalkulation);
             this.Description = description;
             this.ausgewaehlteFliese = getFliesenObjektZuArtikelbezeichnung(artikelbezeichnung, fliesenliste);
-            SelectedProduct = ausgewaehlteFliese;
 
             this.raumFlaeche = raumFlaeche;
             this.Length = (decimal)Math.Sqrt((double)raumFlaeche);

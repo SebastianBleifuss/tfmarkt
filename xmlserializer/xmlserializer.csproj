@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Calculation.cs" />
+    <Compile Include="Models\Calculations\Fliesenkalkulation.cs" />
+    <Compile Include="Models\Calculations\Tapetenkalkulation.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Products\Fliese.cs" />

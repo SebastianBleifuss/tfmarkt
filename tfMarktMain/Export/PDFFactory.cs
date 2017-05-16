@@ -147,10 +147,10 @@ namespace tfMarktMain.Export
             foreach (Calculation calc in Calculations.Values)
             {
 
-                if (calc.CalculationType.Equals(typeof(Fliesenkalkulation.Fliesenkalkulation)))
+                if (calc.CalculationType.Equals(typeof(xmlserializer.Models.Calculations.Fliesenkalkulation)))
                 {
 
-                    Fliesenkalkulation.Fliesenkalkulation FliesenCalc = (Fliesenkalkulation.Fliesenkalkulation)calc;
+                    xmlserializer.Models.Calculations.Fliesenkalkulation FliesenCalc = (xmlserializer.Models.Calculations.Fliesenkalkulation)calc;
                     drawProduct(FliesenCalc.ausgewaehlteFliese, FliesenCalc.anzahlFliesenPakete);
                     drawProduct(FliesenCalc.fugenfueller, FliesenCalc.anzahlFugenfueller);
                     if (FliesenCalc.WithExtraProduct)
@@ -158,11 +158,12 @@ namespace tfMarktMain.Export
                         drawProduct(FliesenCalc.fliesenkleber, FliesenCalc.anzahlFliesenkleber);
                     }
                 }
-                else if (calc.CalculationType.Equals(typeof(Tapetenkalkulation.Tapetenkalkulation)))
+                else if (calc.CalculationType.Equals(typeof(xmlserializer.Models.Calculations.Tapetenkalkulation)))
                 {
-                    Tapetenkalkulation.Tapetenkalkulation TapetenCalc = (Tapetenkalkulation.Tapetenkalkulation)calc;
+                    xmlserializer.Models.Calculations.Tapetenkalkulation TapetenCalc = (xmlserializer.Models.Calculations.Tapetenkalkulation)calc;
 
-                    drawProduct(TapetenCalc.SelectedProduct, 999);
+                    drawProduct(TapetenCalc.tapete, TapetenCalc.rollen);
+                    drawProduct(TapetenCalc.tapetenkleister, TapetenCalc.kleisterpakete);
                 }
             }
 

@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using xmlserializer.Models;
 using xmlserializer.Models.Products;
+using xmlserializer.Models.Calculations;
 
 namespace tfMarktMain.Tapetenkalkulation
 {
@@ -21,13 +22,13 @@ namespace tfMarktMain.Tapetenkalkulation
     /// </summary>
     public partial class TapetenkalkulationGUI : Window
     {
-        private Tapetenkalkulation kalkulation;
+        private xmlserializer.Models.Calculations.Tapetenkalkulation kalkulation;
         private List<Product> productList;
 
         public TapetenkalkulationGUI()
         {
             InitializeComponent();
-            kalkulation = new Tapetenkalkulation();
+            kalkulation = new xmlserializer.Models.Calculations.Tapetenkalkulation();
             holeTapetenListe();
         }
 
@@ -59,13 +60,13 @@ namespace tfMarktMain.Tapetenkalkulation
                 }
             }
         }
-        public Tapetenkalkulation getKalkulation()
+        public xmlserializer.Models.Calculations.Tapetenkalkulation getKalkulation()
         {
             kalkulation.tapete = gewaehlteTapete();
             return this.kalkulation;
         }
 
-        public void setKalkulation(Tapetenkalkulation kalkulation) 
+        public void setKalkulation(xmlserializer.Models.Calculations.Tapetenkalkulation kalkulation) 
         {
             Console.WriteLine(kalkulation);
             if (kalkulation != null)

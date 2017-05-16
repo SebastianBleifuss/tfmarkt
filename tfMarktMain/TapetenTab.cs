@@ -10,21 +10,21 @@ namespace tfMarktMain
 {
     class TapetenTab : TabItem
     {
-        private Tapetenkalkulation.Tapetenkalkulation kalkulation;
+        private xmlserializer.Models.Calculations.Tapetenkalkulation kalkulation;
         private Tapetenkalkulation.TapetenkalkulationGUI tapetenSeite;
 
         public TapetenTab() 
         {
-            kalkulation = new Tapetenkalkulation.Tapetenkalkulation();
+            kalkulation = new xmlserializer.Models.Calculations.Tapetenkalkulation();
             tapetenSeite = new Tapetenkalkulation.TapetenkalkulationGUI();
         }
 
-        public Tapetenkalkulation.Tapetenkalkulation getKalkulation() 
+        public xmlserializer.Models.Calculations.Tapetenkalkulation getKalkulation() 
         {
             return this.kalkulation;
         }
 
-        public void setKalkulation(Tapetenkalkulation.Tapetenkalkulation kalkulation) 
+        public void setKalkulation(xmlserializer.Models.Calculations.Tapetenkalkulation kalkulation) 
         {
             if (kalkulation != null)
             {

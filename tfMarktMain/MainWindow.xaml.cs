@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using xmlserializer.Models;
 using xmlserializer.Models.Products;
+using xmlserializer.Models.Calculations;
 using tfMarktMain.Export;
 using AdministrationDerProdukte;
 
@@ -50,7 +51,7 @@ namespace tfMarktMain
                 NewComboItem.ToolTip = CustomerInfoSet[0];
                 CustomersBox.Items.Add(NewComboItem);
             }
-            CustomersBox.SelectedIndex = 0;
+            CustomersBox.SelectedIndex = 0;            
 
         }
 
@@ -98,12 +99,12 @@ namespace tfMarktMain
                 }
                 if (!istTabBekannt)
                 {
-                    if (calc.CalculationType.Equals(typeof(Tapetenkalkulation.Tapetenkalkulation)))
+                    if (calc.CalculationType.Equals(typeof(xmlserializer.Models.Calculations.Tapetenkalkulation)))
                     {
-                        Tapetenkalkulation.Tapetenkalkulation tapCalc = (Tapetenkalkulation.Tapetenkalkulation)calc;
+                        xmlserializer.Models.Calculations.Tapetenkalkulation tapCalc = (xmlserializer.Models.Calculations.Tapetenkalkulation)calc;
                         TapetenTab tab = neueTapetenKalkulationTab(tapCalc.Description, tapCalc);
                     }
-                    if (calc.CalculationType.Equals(typeof(Fliesenkalkulation.Fliesenkalkulation)))
+                    if (calc.CalculationType.Equals(typeof(xmlserializer.Models.Calculations.Fliesenkalkulation)))
                     {
                         FliesenTab tab = neueFliesenKalkulationTab(calc);
                     }
@@ -177,7 +178,7 @@ namespace tfMarktMain
             neueTapetenKalkulationTab("Tapete", null);
         }
 
-        private TapetenTab neueTapetenKalkulationTab(String tabname, Tapetenkalkulation.Tapetenkalkulation kalkulation) 
+        private TapetenTab neueTapetenKalkulationTab(String tabname, xmlserializer.Models.Calculations.Tapetenkalkulation kalkulation) 
         {
             TapetenTab tab = new TapetenTab();
             if (tapetenTabs > 0 && kalkulation==null)
@@ -302,11 +303,12 @@ namespace tfMarktMain
             if (ConItem.Tag.GetType().Equals(typeof(tfMarktMain.TapetenTab)))
             {
                 TapetenTab tabItem = (TapetenTab)ConItem.Tag;
-                Tapetenkalkulation.Tapetenkalkulation tapetenKalkulation = tabItem.getTapetenGUI().getKalkulation();
+                xmlserializer.Models.Calculations.Tapetenkalkulation tapetenKalkulation = tabItem.getTapetenGUI().getKalkulation();
                 if (!hatGUID(tapetenKalkulation.Identifier))
                 {
                     tapetenKalkulation.Identifier = generateGuid();
                 }
+
                 tabItem.setKalkulation(tapetenKalkulation);
                 SelectedCustomer.addCalculation(tabItem.getKalkulation(), /*OVERRIDE SETZEN!*/ true); //Wirft Exception wenn die Kalkulation nicht vollständig initialisiert wurde
                 tabItem.Header = tapetenKalkulation.Description;
@@ -314,7 +316,7 @@ namespace tfMarktMain
             if (ConItem.Tag.GetType().Equals(typeof(tfMarktMain.FliesenTab)))
             {
                 FliesenTab tabItem = (FliesenTab)ConItem.Tag;
-                Fliesenkalkulation.Fliesenkalkulation fliesenKalkulation = tabItem.getFliesenGUI().getFliesenKalkulation();
+                xmlserializer.Models.Calculations.Fliesenkalkulation fliesenKalkulation = tabItem.getFliesenGUI().getFliesenKalkulation();
                 if (!hatGUID(fliesenKalkulation.Identifier))
                 {
                     fliesenKalkulation.Identifier = generateGuid();
