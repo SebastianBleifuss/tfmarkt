@@ -22,7 +22,7 @@ using xmlserializer.Models;
 
 namespace tfMarktMain.Export
 {
-      /// <summary>
+    /// <summary>
     /// Extention class for Customer
     /// </summary>
     public static class PDFFactory
@@ -97,9 +97,9 @@ namespace tfMarktMain.Export
 
             //X,Y,Width,Height
             gfx.DrawImage(CompanyLogo, gfx.PageSize.Width - 50 - CompanyLogoWidth, 55, 250, 100);
-            
 
-           
+
+
 
             //Define positions for vertical and horizontal allignment
             vPos = 120;
@@ -153,7 +153,8 @@ namespace tfMarktMain.Export
                     Fliesenkalkulation.Fliesenkalkulation FliesenCalc = (Fliesenkalkulation.Fliesenkalkulation)calc;
                     drawProduct(FliesenCalc.ausgewaehlteFliese, FliesenCalc.anzahlFliesenPakete);
                     drawProduct(FliesenCalc.fugenfueller, FliesenCalc.anzahlFugenfueller);
-                    if (FliesenCalc.WithExtraProduct) {
+                    if (FliesenCalc.WithExtraProduct)
+                    {
                         drawProduct(FliesenCalc.fliesenkleber, FliesenCalc.anzahlFliesenkleber);
                     }
                 }
@@ -183,7 +184,7 @@ namespace tfMarktMain.Export
             }
             else
             {
-               // hPos = gfx.PageSize.Height - 100;
+                // hPos = gfx.PageSize.Height - 100;
 
             }
 
@@ -211,7 +212,8 @@ namespace tfMarktMain.Export
             doc.Save(new FileStream(FilePath, FileMode.Create, FileAccess.Write));
         }
 
-        private static void drawProduct(Product prod, int Amount) {
+        private static void drawProduct(Product prod, int Amount)
+        {
 
             if (drawRec)
             {
@@ -293,9 +295,16 @@ namespace tfMarktMain.Export
             /// <param name="Customer">Customer for PDF-generation</param>
             public CustomerPDFDocument(Customer Customer)
             {
-                TemporaryFile = new FileInfo(System.IO.Path.GetTempPath() + Guid.NewGuid().ToString() + ".pdf");//Create temporary file and set FileInfo of it
-                Customer.GenerateTotalCalculation(TemporaryFile.FullName);//Generate PDF and save to temporary file
-                TemporaryFile.IsReadOnly = true;//Set temporary file read-only
+                try
+                {
+                    TemporaryFile = new FileInfo(System.IO.Path.GetTempPath() + Guid.NewGuid().ToString() + ".pdf");//Create temporary file and set FileInfo of it
+                    Customer.GenerateTotalCalculation(TemporaryFile.FullName);//Generate PDF and save to temporary file
+                    TemporaryFile.IsReadOnly = true;//Set temporary file read-only
+                }
+                catch (Exception ex)
+                {
+                    throw new InvalidOperationException("Error while initializing CustomerPDFDocument", ex);
+                }
             }
 
 
@@ -306,13 +315,20 @@ namespace tfMarktMain.Export
             /// <param name="open">Defines if the PDF should be opened after saving</param>
             public void savePDF(String Path, bool open)
             {
-                FileStream fs = new FileStream(Path, FileMode.Create, FileAccess.Write);
-                new FileStream(TemporaryFile.FullName, FileMode.Open, FileAccess.Read).CopyTo(fs);//Copy data from temporary file to saving file via filestream
-                if (open)
+                try
                 {
-                    String FilePath = fs.Name;
-                    fs.Close();
-                    Process.Start(FilePath);//Send PDF to Process to trigger windows opening sequence
+                    FileStream fs = new FileStream(Path, FileMode.Create, FileAccess.Write);
+                    new FileStream(TemporaryFile.FullName, FileMode.Open, FileAccess.Read).CopyTo(fs);//Copy data from temporary file to saving file via filestream
+                    if (open)
+                    {
+                        String FilePath = fs.Name;
+                        fs.Close();
+                        Process.Start(FilePath);//Send PDF to Process to trigger windows opening sequence
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new InvalidOperationException("Error while saving CustomerPDFDocument", ex);
                 }
             }
             /// <summary>
@@ -321,15 +337,29 @@ namespace tfMarktMain.Export
             /// <param name="open">Defines if the PDF should be opened after saving</param>
             public void savePDF(bool open)
             {
-                SaveFileDialog sfd = new SaveFileDialog();
-                sfd.Filter = "Pdf Files|*.pdf";//Set file filter
-                sfd.Title = "Gesamtkalkulation speichern";
-                sfd.ShowDialog();
-
-
-                if (!sfd.FileName.Equals(""))
+                try
                 {
-                    savePDF(sfd.FileName, open);//Call other savePDF method with selected Path
+                    SaveFileDialog sfd = new SaveFileDialog();
+                    sfd.Filter = "Pdf Files|*.pdf";//Set file filter
+                    sfd.Title = "Gesamtkalkulation speichern";
+                    sfd.ShowDialog();
+
+
+                    if (!sfd.FileName.Equals(""))
+                    {
+                        savePDF(sfd.FileName, open);//Call other savePDF method with selected Path
+                    }
+                }
+                catch (Exception ex)
+                {
+                    if (ex.GetType().Equals(typeof(InvalidOperationException)))
+                    {
+                        throw (InvalidOperationException)ex;
+                    }
+                    else
+                    {
+                        throw new InvalidOperationException("Error while initializing CustomerPDFDocument", ex);
+                    }
                 }
             }
 
@@ -339,46 +369,57 @@ namespace tfMarktMain.Export
             /// </summary>
             public TabItem displayPDF()
             {
-                
+                try
+                {
+                    WebBrowser wb = new WebBrowser();
+                    wb.Navigate(new Uri(TemporaryFile.FullName));
 
-                WebBrowser wb = new WebBrowser();
-                wb.Navigate(new Uri(TemporaryFile.FullName));
+                    TabItem GesamtItem = new TabItem();
+                    GesamtItem.Header = "Geamtkalkulation";
+                    GesamtItem.Content = wb;
 
-                TabItem GesamtItem = new TabItem();
-                GesamtItem.Header = "Geamtkalkulation";
-                GesamtItem.Content = wb;
-
-                return GesamtItem;
+                    return GesamtItem;
+                }
+                catch (Exception ex)
+                {
+                    throw new InvalidOperationException("Error while creating CustomerPDFDocument display", ex);
+                }
             }
-
 
             /// <summary>
             /// print PDF file
             /// </summary>
             public void printPDF()
             {
-                Process.Start(TemporaryFile.FullName);//Send PDF to Process to trigger windows opening sequence
-
-                //Create PrintDialog and configure it
-                PrintDialog printDialog = new PrintDialog();
-                PrinterSettings settings = new PrinterSettings();
-                printDialog.PageRangeSelection = PageRangeSelection.AllPages;
-                printDialog.UserPageRangeEnabled = true;
-                String printerExtraParameters = "";
-                
-                if (printDialog.ShowDialog() == true)
+                try
                 {
-                    //Create and execute print process
-                    Process printJob = new Process();
-                    printJob.StartInfo.FileName = TemporaryFile.FullName;
-                    printJob.StartInfo.UseShellExecute = true;
-                    printJob.StartInfo.Verb = "printto";
-                    printJob.StartInfo.CreateNoWindow = true;
-                    printJob.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-                    printJob.StartInfo.Arguments = "\"" + printDialog.PrintQueue.Name + "\"" + " " + printerExtraParameters;
-                    printJob.StartInfo.WorkingDirectory = TemporaryFile.DirectoryName;
-                    printJob.Start();
+                    Process.Start(TemporaryFile.FullName);//Send PDF to Process to trigger windows opening sequence
 
+                    //Create PrintDialog and configure it
+                    PrintDialog printDialog = new PrintDialog();
+                    PrinterSettings settings = new PrinterSettings();
+                    printDialog.PageRangeSelection = PageRangeSelection.AllPages;
+                    printDialog.UserPageRangeEnabled = true;
+                    String printerExtraParameters = "";
+
+                    if (printDialog.ShowDialog() == true)
+                    {
+                        //Create and execute print process
+                        Process printJob = new Process();
+                        printJob.StartInfo.FileName = TemporaryFile.FullName;
+                        printJob.StartInfo.UseShellExecute = true;
+                        printJob.StartInfo.Verb = "printto";
+                        printJob.StartInfo.CreateNoWindow = true;
+                        printJob.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                        printJob.StartInfo.Arguments = "\"" + printDialog.PrintQueue.Name + "\"" + " " + printerExtraParameters;
+                        printJob.StartInfo.WorkingDirectory = TemporaryFile.DirectoryName;
+                        printJob.Start();
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new InvalidOperationException("Error while printing CustomerPDFDocument", ex);
                 }
             }
 

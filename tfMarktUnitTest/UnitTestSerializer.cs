@@ -20,6 +20,13 @@ namespace tfMarktUnitTest
         [TestMethod]
         public void SaveCustomer()
         {
+            Customer NewCustomer = new Customer(new Guid("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"))
+            {
+                Name = "FooMan, Hans Joseph"
+            };
+
+
+
             xmlserializer.Models.Products.Hilfsmittel Filler = new xmlserializer.Models.Products.Hilfsmittel(42, "Filler", 42m, 42m);
             xmlserializer.Models.Products.Hilfsmittel Glue = new xmlserializer.Models.Products.Hilfsmittel(42, "Glue", 42m, 42m);
             List<xmlserializer.Models.Products.Fliese> Fliesen = new List<xmlserializer.Models.Products.Fliese>();
@@ -35,17 +42,28 @@ namespace tfMarktUnitTest
             }
 
 
-            tfMarktMain.Fliesenkalkulation.Fliesenkalkulation NewFliesenCalc = new tfMarktMain.Fliesenkalkulation.Fliesenkalkulation("Fliese grau","saveCustomer" , true, 42m,
+            tfMarktMain.Fliesenkalkulation.Fliesenkalkulation NewFliesenCalc = new tfMarktMain.Fliesenkalkulation.Fliesenkalkulation("Fliese grau", "UnitTestFliesenCalc", true, 42m,
                 Fliesen,
                 Filler,
                 Glue
                 )
             { ausgewaehlteFliese = new xmlserializer.Models.Products.Fliese(42, "Fliese", 42m, 42m, 42, 42m) };
 
-            Customer NewCustomer = new Customer(new Guid("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa")) {
-                Name = "FooMan, Hans Joseph"
+
+
+            tfMarktMain.Tapetenkalkulation.Tapetenkalkulation NewTepetenCalc = new tfMarktMain.Tapetenkalkulation.Tapetenkalkulation() {
+                Description = "UnitTestTapetenCalc",
+                Identifier = new Guid("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"),
+                Length = 42,
+                Width = 42,
+                WithExtraProduct = true,
+                SelectedProduct = new xmlserializer.Models.Products.Tapete(42, "Tapete", 42m, 42m, 42, 42m)
             };
+
+
+            
             NewCustomer.addCalculation(NewFliesenCalc, true);
+            NewCustomer.addCalculation(NewTepetenCalc, true);
             xmlserializer.xmlserializer.serialize(NewCustomer);
             Assert.AreEqual(true,File.Exists(xmlserializer.xmlserializer.DATASTORAGEPATH + "\\customers\\aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa_FooMan_Hans Joseph.xml"));
         }
@@ -59,7 +77,7 @@ namespace tfMarktUnitTest
         [TestMethod]
         public void SaveProducts()
         {
-            xmlserializer.xmlserializer.serialize(new xmlserializer.Models.Products.Fliese(42, "Fliese", 42m, 42m, 42, 42m));
+            xmlserializer.xmlserializer.serialize(new xmlserializer.Models.Products.Fliese(42, "UnitTestFliese", 42m, 42m, 42, 42m));
         }
     }
 }

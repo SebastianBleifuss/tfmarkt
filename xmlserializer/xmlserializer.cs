@@ -26,19 +26,31 @@ namespace xmlserializer
         /// <param name="Customer">Customer instance which will be serialized</param>
         public static void serialize(Customer Customer)
         {
-            XmlDocument doc = new XmlDocument();
+            try
+            {
+                XmlDocument doc = new XmlDocument();
 
-            //Create document declaration
-            XmlDeclaration xmlDeclaration = doc.CreateXmlDeclaration("1.0", "UTF-8", null);
-            XmlElement docElement = doc.DocumentElement;
-            doc.InsertBefore(xmlDeclaration, docElement);
+                //Create document declaration
+                XmlDeclaration xmlDeclaration = doc.CreateXmlDeclaration("1.0", "UTF-8", null);
+                XmlElement docElement = doc.DocumentElement;
+                doc.InsertBefore(xmlDeclaration, docElement);
 
-            //Create root element as customer element
-            XmlElement root = doc.CreateCustomerElement(Customer);
-            doc.AppendChild(root);
+                //Create root element as customer element
+                XmlElement root = doc.CreateCustomerElement(Customer);
+                doc.AppendChild(root);
 
-            //Save document to passed path
-            doc.Save(DATASTORAGEPATH + "\\customers\\" +Customer.Customernumber+"_"+ Customer.Name.Replace(", ", "_") + ".xml");
+                //Save document to passed path
+                doc.Save(DATASTORAGEPATH + "\\customers\\" + Customer.Customernumber + "_" + Customer.Name.Replace(", ", "_") + ".xml");
+            }
+            catch (Exception ex) {
+                if (ex.GetType().Equals(typeof(InvalidOperationException)))
+                {
+                    throw (InvalidOperationException)ex;
+                }
+                else {
+                    throw new InvalidOperationException("Error while creating customer xml",ex);
+                }
+            }
         }
 
         /// <summary>
@@ -48,6 +60,7 @@ namespace xmlserializer
         /// <returns>Customer instance defined by customername</returns>
         public static Customer deserialize(String Customername, Guid Customernumber)
         {
+            try { 
             //Path defines where the xml-file will be located
             String XmlPath = DATASTORAGEPATH + "\\customers\\" + Customernumber + "_" + Customername.Replace(", ", "_") + ".xml";
             if (File.Exists(XmlPath))//Check if xml-file exists
@@ -60,6 +73,18 @@ namespace xmlserializer
             {
                 throw new FileNotFoundException("XML-File \"" + XmlPath + "\" not found!");
             }
+            }
+            catch (Exception ex)
+            {
+                if (ex.GetType().Equals(typeof(InvalidOperationException)))
+                {
+                    throw (InvalidOperationException)ex;
+                }
+                else
+                {
+                    throw new InvalidOperationException("Error while loading customer xml", ex);
+                }
+            }
         }
         /// <summary>
         /// Serialize product instance
@@ -67,6 +92,7 @@ namespace xmlserializer
         /// <param name="Product">Product instance which will be serialized</param>
         public static void serialize(Product Product)
         {
+            try { 
             XmlDocument doc = new XmlDocument();
 
             //Create document declaration
@@ -80,6 +106,18 @@ namespace xmlserializer
 
             //Save document to passed path
             doc.Save(DATASTORAGEPATH+"\\products\\" + Product.getArtikelbezeichnung().Replace(" ","_") + ".xml");
+            }
+            catch (Exception ex)
+            {
+                if (ex.GetType().Equals(typeof(InvalidOperationException)))
+                {
+                    throw (InvalidOperationException)ex;
+                }
+                else
+                {
+                    throw new InvalidOperationException("Error while creating product xml", ex);
+                }
+            }
         }
 
         /// <summary>
@@ -88,6 +126,7 @@ namespace xmlserializer
         /// <returns>List of product instances</returns>
         public static List<Product> deserializeAllProducts()
         {
+            try { 
             XmlDocument doc = new XmlDocument();
 
             List<Product> ProductList = new List<Product>();
@@ -98,6 +137,18 @@ namespace xmlserializer
             }
 
             return ProductList;
+            }
+            catch (Exception ex)
+            {
+                if (ex.GetType().Equals(typeof(InvalidOperationException)))
+                {
+                    throw (InvalidOperationException)ex;
+                }
+                else
+                {
+                    throw new InvalidOperationException("Error while loading all product xmls", ex);
+                }
+            }
         }
 
 

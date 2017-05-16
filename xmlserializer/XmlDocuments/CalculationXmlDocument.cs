@@ -23,6 +23,7 @@ namespace xmlserializer.XmlDocuments
         /// <returns>Calculation-XmlElement</returns>
         public static XmlElement CreateCalculationElement(this XmlDocument doc, Calculation calc)
         {
+            try { 
             //Create root Element
             XmlElement root = doc.CreateElement(string.Empty, "Calculation", string.Empty);
 
@@ -75,6 +76,18 @@ namespace xmlserializer.XmlDocuments
             root.AppendChild(doc.CreateProductElement(calc.SelectedProduct));//Create product-XmlElement from product instance
 
             return root;//Return CalculationElement
+            }
+            catch (Exception ex)
+            {
+                if (ex.GetType().Equals(typeof(InvalidOperationException)))
+                {
+                    throw (InvalidOperationException)ex;
+                }
+                else
+                {
+                    throw new InvalidOperationException("Error while creating calculation xml-element",ex);
+                }
+            }
         }
 
         /// <summary>
@@ -85,6 +98,7 @@ namespace xmlserializer.XmlDocuments
         /// <returns>Calculation instance</returns>
         public static Calculation GetCalculationFromNode(this XmlDocument doc, XmlNode CalculationNode)
         {
+            try { 
             String AssemblyQualifiedName = CalculationNode.SelectSingleNode("CalculationType").InnerText;//Get AssemblyQualifiedName to identify class type
             Type CalculationType = Type.GetType(AssemblyQualifiedName);
 
@@ -105,6 +119,18 @@ namespace xmlserializer.XmlDocuments
             LoadingCalculation.SelectedProduct = doc.GetProductFromNode(CalculationNode.SelectSingleNode("Product"));
 
             return LoadingCalculation;//Return Calculation
+            }
+            catch (Exception ex)
+            {
+                if (ex.GetType().Equals(typeof(InvalidOperationException)))
+                {
+                    throw (InvalidOperationException)ex;
+                }
+                else
+                {
+                    throw new InvalidOperationException("Error while loading calculation xml-node", ex);
+                }
+            }
         }
     }
 }
