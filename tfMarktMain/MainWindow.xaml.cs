@@ -51,7 +51,7 @@ namespace tfMarktMain
                 CustomersBox.Items.Add(NewComboItem);
             }
             CustomersBox.SelectedIndex = 0;
-            SelectedCustomer = new Customer();
+
         }
 
         private void customer_selected(object sender, RoutedEventArgs e)
@@ -168,13 +168,6 @@ namespace tfMarktMain
 
         private void cmdFliesenAuf_Click(object sender, RoutedEventArgs e)
         {
-            //KalkulationsTab<Calculation> tab= neuerTab("Fliesen", "tabFliesenAnsicht", fliesenTabs);
-            //Frame tabFrame = new Frame();
-            //Fliesenkalkulation.FliesenkalkulationGUI ladeSeite = new Fliesenkalkulation.FliesenkalkulationGUI();
-            //tabFrame.Content = ladeSeite.Content;
-            //tab.Content = tabFrame;
-            //tab.Focus();
-            //fliesenTabs++;
             neueFliesenKalkulationTab(null);
         }
 
@@ -293,41 +286,6 @@ namespace tfMarktMain
                 }
             }
         }
-//>>>>>>>>>>>>>>>>>>>Kalkulationstab muss noch entfernt werden. Ist noch drin wegen FliesenTab 
-        private KalkulationsTab<Calculation> neuerTab(String tabname, String tabBezeichnung, int anzahl)
-        {
-            KalkulationsTab<Calculation> tab = new KalkulationsTab<Calculation>();
-            if (anzahl > 0)
-            {
-                tab.Name = tabname + anzahl;
-                tab.Header = tabname + anzahl;
-            }
-            else
-            {
-                tab.Name = tabname;
-                tab.Header = tabname;
-            }
-
-            ContextMenu TabContextMenue = new ContextMenu();
-            MenuItem SpeicherItem = new MenuItem();
-            SpeicherItem.Header = "Speichern";
-            SpeicherItem.Click += SpeicherItem_Click;
-            SpeicherItem.Tag = tab;
-
-
-            MenuItem VerwerfItem = new MenuItem();
-            VerwerfItem.Header = "Verwerfen";
-            VerwerfItem.Click += VerwerfItem_Click;
-            VerwerfItem.Tag = tab;
-            TabContextMenue.Items.Add(SpeicherItem);
-            TabContextMenue.Items.Add(VerwerfItem);
-            tab.ContextMenu = TabContextMenue;
-            tabAnsicht.Items.Add(tab);
-            tabAnsicht.SelectedItem = tab;
-            tabList.Add(tab);
-            return tab;
-        }
-//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
         private void VerwerfItem_Click(object sender, RoutedEventArgs e)
         {
             MenuItem ConItem = (MenuItem)sender;
@@ -349,6 +307,7 @@ namespace tfMarktMain
                 }
                 tabItem.setKalkulation(tapetenKalkulation);
                 SelectedCustomer.addCalculation(tabItem.getKalkulation(), /*OVERRIDE SETZEN!*/ true); //Wirft Exception wenn die Kalkulation nicht vollständig initialisiert wurde
+                tabItem.Header = tapetenKalkulation.Description;
             }
             if (ConItem.Tag.GetType().Equals(typeof(tfMarktMain.FliesenTab)))
             {
@@ -360,6 +319,7 @@ namespace tfMarktMain
                 }
                 tabItem.setKalkulation(fliesenKalkulation);
                 SelectedCustomer.addCalculation(tabItem.getKalkulation(), /*OVERRIDE SETZEN!*/ true); //Wirft Exception wenn die Kalkulation nicht vollständig initialisiert wurde
+                tabItem.Header = fliesenKalkulation.Description;
             }
             CalculationListBox.ItemsSource = SelectedCustomer.Calculations.Values;
             CalculationListBox.Items.Refresh();
