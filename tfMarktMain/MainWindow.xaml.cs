@@ -83,6 +83,7 @@ namespace tfMarktMain
         private void CalculationListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             bool istTabBekannt = false;
+            int tabMitName=0;
             if (CalculationListBox.SelectedIndex != -1)
             {
                 Calculation calc = SelectedCustomer.Calculations.Values.ToArray()[CalculationListBox.SelectedIndex];
@@ -293,41 +294,7 @@ namespace tfMarktMain
                 }
             }
         }
-//>>>>>>>>>>>>>>>>>>>Kalkulationstab muss noch entfernt werden. Ist noch drin wegen FliesenTab 
-        private KalkulationsTab<Calculation> neuerTab(String tabname, String tabBezeichnung, int anzahl)
-        {
-            KalkulationsTab<Calculation> tab = new KalkulationsTab<Calculation>();
-            if (anzahl > 0)
-            {
-                tab.Name = tabname + anzahl;
-                tab.Header = tabname + anzahl;
-            }
-            else
-            {
-                tab.Name = tabname;
-                tab.Header = tabname;
-            }
 
-            ContextMenu TabContextMenue = new ContextMenu();
-            MenuItem SpeicherItem = new MenuItem();
-            SpeicherItem.Header = "Speichern";
-            SpeicherItem.Click += SpeicherItem_Click;
-            SpeicherItem.Tag = tab;
-
-
-            MenuItem VerwerfItem = new MenuItem();
-            VerwerfItem.Header = "Verwerfen";
-            VerwerfItem.Click += VerwerfItem_Click;
-            VerwerfItem.Tag = tab;
-            TabContextMenue.Items.Add(SpeicherItem);
-            TabContextMenue.Items.Add(VerwerfItem);
-            tab.ContextMenu = TabContextMenue;
-            tabAnsicht.Items.Add(tab);
-            tabAnsicht.SelectedItem = tab;
-            tabList.Add(tab);
-            return tab;
-        }
-//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
         private void VerwerfItem_Click(object sender, RoutedEventArgs e)
         {
             MenuItem ConItem = (MenuItem)sender;
@@ -339,31 +306,46 @@ namespace tfMarktMain
         private void SpeicherItem_Click(object sender, RoutedEventArgs e)
         {
             MenuItem ConItem = (MenuItem)sender;
+            
             if (ConItem.Tag.GetType().Equals(typeof(tfMarktMain.TapetenTab)))
             {
                 TapetenTab tabItem = (TapetenTab)ConItem.Tag;
-                tabItem.setKalkulation(tabItem.getTapetenGUI().getKalkulation());
-                Tapetenkalkulation.Tapetenkalkulation tapetenKalkulation = tabItem.getKalkulation();
-                tapetenKalkulation.Identifier = generateGuid();
+                Tapetenkalkulation.Tapetenkalkulation tapetenKalkulation = tabItem.getTapetenGUI().getKalkulation();
+                if (!hatGUID(tapetenKalkulation.Identifier)) 
+                {
+                    tapetenKalkulation.Identifier = generateGuid();
+                    Console.WriteLine("Neue GUID generiert");
+                }
                 tabItem.setKalkulation(tapetenKalkulation);
                 SelectedCustomer.addCalculation(tabItem.getKalkulation(), /*OVERRIDE SETZEN!*/ true); //Wirft Exception wenn die Kalkulation nicht vollständig initialisiert wurde
-                CalculationListBox.ItemsSource = SelectedCustomer.Calculations.Values;
-                isCustomerChanged = true;
-               // tabAnsicht.Items.Remove(tabItem);
             }
             if (ConItem.Tag.GetType().Equals(typeof(tfMarktMain.FliesenTab)))
             {
                 FliesenTab tabItem = (FliesenTab)ConItem.Tag;
-                tabItem.setKalkulation(tabItem.getFliesenGUI().getFliesenKalkulation());
-                Fliesenkalkulation.Fliesenkalkulation fliesenKalkulation = tabItem.getKalkulation();
+                Fliesenkalkulation.Fliesenkalkulation fliesenKalkulation = tabItem.getFliesenGUI().getFliesenKalkulation();
+                if (!hatGUID(fliesenKalkulation.Identifier))
+                {
+                    fliesenKalkulation.Identifier = generateGuid();
+                    Console.WriteLine("Neue GUID generiert");
+                }
                 fliesenKalkulation.Identifier = generateGuid();
                 tabItem.setKalkulation(fliesenKalkulation);
                 SelectedCustomer.addCalculation(tabItem.getKalkulation(), /*OVERRIDE SETZEN!*/ true); //Wirft Exception wenn die Kalkulation nicht vollständig initialisiert wurde
-                CalculationListBox.ItemsSource = SelectedCustomer.Calculations.Values;
-                isCustomerChanged = true;
             }
+            CalculationListBox.ItemsSource = SelectedCustomer.Calculations.Values;
+            CalculationListBox.Items.Refresh();
+            isCustomerChanged = true;
         }
 
+        private bool hatGUID(Guid guid) 
+        {
+            Calculation tmp;
+            if (SelectedCustomer.Calculations.TryGetValue(guid, out tmp)) 
+            {
+                return true;
+            }
+            return false;
+        }
         private Guid generateGuid()
         {
             // Prüfen, ob Kunde schon Kalkulation mit GUID hat.
