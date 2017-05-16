@@ -104,8 +104,7 @@ namespace tfMarktMain
                     }
                     if (calc.CalculationType.Equals(typeof(Fliesenkalkulation.Fliesenkalkulation)))
                     {
-                        Fliesenkalkulation.Fliesenkalkulation fliesCalc = (Fliesenkalkulation.Fliesenkalkulation)calc;
-                        FliesenTab tab = neueFliesenKalkulationTab(fliesCalc.Description, fliesCalc);
+                        FliesenTab tab = neueFliesenKalkulationTab(calc);
                     }
                 }
             }
@@ -176,7 +175,7 @@ namespace tfMarktMain
             //tab.Content = tabFrame;
             //tab.Focus();
             //fliesenTabs++;
-            neueFliesenKalkulationTab("Fliese", null);
+            neueFliesenKalkulationTab(null);
         }
 
         private void cmdTapetenAuf_Click(object sender, RoutedEventArgs e)
@@ -221,8 +220,13 @@ namespace tfMarktMain
             return tab;
         }
 
-        private FliesenTab neueFliesenKalkulationTab(String tabname, Fliesenkalkulation.Fliesenkalkulation kalkulation)
+        private FliesenTab neueFliesenKalkulationTab(Calculation kalkulation)
         {
+            String tabname = "Fliese";
+            if (kalkulation != null)
+            {
+                tabname = kalkulation.Description;
+            }
             FliesenTab tab = new FliesenTab();
             if (fliesenTabs > 0 && kalkulation == null)
             {
@@ -250,8 +254,11 @@ namespace tfMarktMain
             tabAnsicht.Items.Add(tab);
             tabAnsicht.SelectedItem = tab;
             Frame tabFrame = new Frame();
-            tab.setKalkulation(kalkulation);
             tabFrame.Content = tab.getFliesenGUI().Content;
+            if (kalkulation != null)
+            {
+                tab.getFliesenGUI().ladeVorhandeneKalkulation(kalkulation);
+            }
             tab.Content = tabFrame;
             tab.Focus();
             fliesenTabs++;

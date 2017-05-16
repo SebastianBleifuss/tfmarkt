@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Customer>
-  <Name>Flieseneimer, Fritz</Name>
-  <Customernumber>0ac005df-f127-4d95-b3c8-1d9fbd3b2c68</Customernumber>
+  <Name>Bleifuß, Sebastian</Name>
+  <Customernumber>011d8e06-4adf-4f4f-86b3-6391c5fa0da0</Customernumber>
   <Calculations>
     <Calculation>
-      <Identifier>0d7493bd-0366-4a5a-84f6-65ff3bc5a700</Identifier>
-      <Description>undefined</Description>
+      <Identifier>886b15f6-e788-4556-a18f-e78011d5a004</Identifier>
+      <Description>Küche</Description>
       <CalculationType>tfMarktMain.Fliesenkalkulation.Fliesenkalkulation, tfMarktMain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</CalculationType>
-      <Length>3,46410161513775</Length>
-      <Width>3,46410161513775</Width>
+      <Length>173,205080756888</Length>
+      <Width>173,205080756888</Width>
       <WithExtraProduct>False</WithExtraProduct>
       <Product>
         <Articlenumber>123456</Articlenumber>

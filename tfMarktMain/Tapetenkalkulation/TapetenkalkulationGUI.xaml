@@ -18,7 +18,7 @@
             <Label Content="Tapetenkalkulation" Margin="10,10,0,0" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" Width="325" Height="41" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
             <Label Content="Länge" Margin="15,10,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" HorizontalAlignment="Left" Width="45"/>
             <TextBox x:Name="txtLaenge" HorizontalAlignment="Left" Height="25" Margin="10,10,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="237" Grid.Column="1" TextChanged="txtGroesse_TextChanged" Text="0"/>
-            <Label Content="m²" HorizontalAlignment="Left" Margin="252,10,0,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="8.361,0.668" Height="26" Width="25" Grid.Column="1"/>
+            <Label Content="m" HorizontalAlignment="Left" Margin="252,10,0,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="8.361,0.668" Height="26" Width="25" Grid.Column="1"/>
             <Label Content="Tapete" HorizontalAlignment="Left" Margin="15,10,0,0" Grid.Row="2" VerticalAlignment="Top" Height="25" Width="45"/>
             <ComboBox x:Name="tapetenComboBox" Margin="10,12,0,0" Grid.Row="2" VerticalAlignment="Top" IsReadOnly="True" SelectedIndex="0" Height="25" Grid.Column="1" SelectionChanged="tapetenComboBox_SelectionChanged" HorizontalAlignment="Left" Width="237">
                 <ComboBoxItem Content="Tapeten zur Auswahl"/>
@@ -35,8 +35,9 @@
                 <Label x:Name="lblGesamt" Content="-" HorizontalAlignment="Left" Margin="10,0,0,0" Height="26"/>
             </TextBlock>
             <TextBox x:Name="txtBreite" Height="25" Margin="10,40,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" TextChanged="txtGroesse_TextChanged" HorizontalAlignment="Left" Width="237" Text="0"/>
-            <Label Content="m²" HorizontalAlignment="Left" Margin="252,39,0,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="8.361,0.668" Height="26" Width="25" Grid.Column="1"/>
+            <Label Content="m" HorizontalAlignment="Left" Margin="252,39,0,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="8.361,0.668" Height="26" Width="25" Grid.Column="1"/>
             <Label Content="Breite" Margin="15,40,0,0" Grid.Row="1" VerticalAlignment="Top" Height="25" HorizontalAlignment="Left" Width="45"/>
+            <Label Content="Raumname" Margin="229,21,0,0" VerticalAlignment="Top" Height="26" HorizontalAlignment="Left" Width="78" RenderTransformOrigin="6.42,-1.619" Grid.ColumnSpan="2" Grid.Column="1"/>
 
         </Grid>
 
