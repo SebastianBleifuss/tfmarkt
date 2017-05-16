@@ -3,7 +3,7 @@
   <Name>Gonzales, SirPeter</Name>
   <Customernumber>ffffffff-ffff-ffff-ffff-ffffffffffff</Customernumber>
   <Calculations>
-    <Calculation>
+     <Calculation>
       <Identifier>00000000-0000-0000-0000-000000000000</Identifier>
       <Description>UnitTestFliesenCalc</Description>
       <CalculationType>xmlserializer.Models.Calculations.Fliesenkalkulation, xmlserializer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</CalculationType>
@@ -17,7 +17,7 @@
           <Price>42</Price>
           <ProductType>xmlserializer.Models.Products.Fliese, xmlserializer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</ProductType>
           <Width>42</Width>
-          <Lenght>42</Lenght>
+          <Length>42</Length>
           <PacketSize>42</PacketSize>
           <AmountTile>36</AmountTile>
         </Product>
@@ -38,7 +38,26 @@
       <Length>42</Length>
       <Width>42</Width>
       <WithExtraProduct>True</WithExtraProduct>
-      <Products />
+      <Products>
+        <Product>
+          <Articlenumber>42</Articlenumber>
+          <Articledescription>Tapete</Articledescription>
+          <Price>42</Price>
+          <ProductType>xmlserializer.Models.Products.Tapete, xmlserializer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</ProductType>
+          <Width>42</Width>
+          <Length>42</Length>
+          <Rapport>42</Rapport>
+          <AmountWallpaper>0</AmountWallpaper>
+        </Product>
+        <Product>
+          <Articlenumber>42</Articlenumber>
+          <Articledescription>Paste</Articledescription>
+          <Price>42</Price>
+          <ProductType>xmlserializer.Models.Products.Hilfsmittel, xmlserializer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</ProductType>
+          <Productivity>42</Productivity>
+          <AmountPaste>0</AmountPaste>
+        </Product>
+      </Products>
     </Calculation>
   </Calculations>
 </Customer>
