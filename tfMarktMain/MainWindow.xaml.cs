@@ -83,6 +83,7 @@ namespace tfMarktMain
         private void CalculationListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             bool istTabBekannt = false;
+            int tabMitName=0;
             if (CalculationListBox.SelectedIndex != -1)
             {
                 Calculation calc = SelectedCustomer.Calculations.Values.ToArray()[CalculationListBox.SelectedIndex];
@@ -297,6 +298,7 @@ namespace tfMarktMain
         private void SpeicherItem_Click(object sender, RoutedEventArgs e)
         {
             MenuItem ConItem = (MenuItem)sender;
+            
             if (ConItem.Tag.GetType().Equals(typeof(tfMarktMain.TapetenTab)))
             {
                 TapetenTab tabItem = (TapetenTab)ConItem.Tag;
