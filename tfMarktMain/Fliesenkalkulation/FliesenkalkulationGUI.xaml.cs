@@ -59,7 +59,7 @@ namespace tfMarktMain.Fliesenkalkulation
 
         private void btnKalkulieren_Click(object sender, RoutedEventArgs e)
         {
-            kalkulation = new Fliesenkalkulation(cbFliese.SelectedValue.ToString(), (bool)chkFliesenkleber.IsChecked, Convert.ToDecimal(txtGroesse.Text), fliesenliste, fugenfueller, fliesenkleber);
+            kalkulation = new Fliesenkalkulation(cbFliese.SelectedValue.ToString(),txtRaumname.Text,(bool)chkFliesenkleber.IsChecked, Convert.ToDecimal(txtGroesse.Text), fliesenliste, fugenfueller, fliesenkleber);
             dgAnzeigeDerKalkulation.Visibility = Visibility.Visible;
             lblGesamtsumme.Visibility = Visibility.Visible;
             lblAngebot.Visibility = Visibility.Visible;
@@ -93,11 +93,12 @@ namespace tfMarktMain.Fliesenkalkulation
 
         public void ladeVorhandeneKalkulation(Calculation vorhandeneKalkulation) 
         {
-            this.kalkulation = new Fliesenkalkulation(vorhandeneKalkulation.SelectedProduct.getArtikelbezeichnung(), this.fliesenliste,vorhandeneKalkulation.WithExtraProduct, (vorhandeneKalkulation.Length * vorhandeneKalkulation.Width), this.fugenfueller, this.fliesenkleber);
+            this.kalkulation = new Fliesenkalkulation(vorhandeneKalkulation.SelectedProduct.getArtikelbezeichnung(),vorhandeneKalkulation.Description, this.fliesenliste,vorhandeneKalkulation.WithExtraProduct, Math.Round(vorhandeneKalkulation.Length * vorhandeneKalkulation.Width, 2), this.fugenfueller, this.fliesenkleber);
             dgAnzeigeDerKalkulation.Visibility = Visibility.Visible;
             lblGesamtsumme.Visibility = Visibility.Visible;
             ladeKalkulationInDasGrid();
             txtGroesse.Text = kalkulation.raumFlaeche + "";
+            txtRaumname.Text = vorhandeneKalkulation.Description;
             for (int i = 0; i < cbFliese.Items.Count; i++)
             {
                 if (cbFliese.Items[i].ToString() == kalkulation.ausgewaehlteFliese.getArtikelbezeichnung())
@@ -144,6 +145,12 @@ namespace tfMarktMain.Fliesenkalkulation
             dgAnzeigeDerKalkulation.ItemsSource = dataGridSource;
             dgAnzeigeDerKalkulation.Items.Refresh();
             lblGesamtsumme.Content = "Gesamtsumme: " + gesamtpreis.ToString("C");
+        }
+
+        //Vivi was here 0-0
+        public Fliesenkalkulation getFliesenKalkulation() 
+        {
+            return this.kalkulation;
         }
     }
 

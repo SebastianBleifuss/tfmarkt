@@ -15,27 +15,27 @@ namespace xmlserializer.Models
         /// <summary>
         /// Identifier of calculations
         /// </summary>
-        public Guid Identifier { get; internal protected set; }
+        public Guid Identifier { get; set; }
 
         /// <summary>
         /// Description used as displayed name
         /// </summary>
-        public String Description { get; internal protected set; }
+        public String Description { get;  set; }
 
         /// <summary>
         /// Type of calculation
         /// </summary>
-        public Type CalculationType { get; internal protected set; }
+        public Type CalculationType { get; set; }
 
         /// <summary>
         /// Length of the room
         /// </summary>
-        public decimal Length { get; internal protected set; }
+        public decimal Length { get; set; }
 
         /// <summary>
         /// Width of the room
         /// </summary>
-        public decimal Width { get; internal protected set; }
+        public decimal Width { get; set; }
 
         /// <summary>
         /// With Fliesenkleber for the Fliesenkalkuation
@@ -45,7 +45,7 @@ namespace xmlserializer.Models
         /// <summary>
         /// Selected product
         /// </summary>
-        public Product SelectedProduct { get; internal protected set; }
+        public Product SelectedProduct { get; set; }
 
         public Calculation(){
         Description = "undefined";

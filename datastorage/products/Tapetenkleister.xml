@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Product>
+  <Articlenumber>14</Articlenumber>
+  <Articledescription>Tapetenkleister</Articledescription>
+  <Price>7,89</Price>
+  <ProductType>xmlserializer.Models.Products.Hilfsmittel, xmlserializer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</ProductType>
+  <Productivity>26</Productivity>
+</Product>

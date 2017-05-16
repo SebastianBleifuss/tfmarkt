@@ -5,24 +5,39 @@
     <Grid>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="112*"/>
-                <ColumnDefinition Width="485*"/>
+                <ColumnDefinition Width="111*"/>
+                <ColumnDefinition Width="280*"/>
+                <ColumnDefinition Width="201*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="58*"/>
-                <RowDefinition Height="61*"/>
-                <RowDefinition Height="117*"/>
+                <RowDefinition Height="66*"/>
+                <RowDefinition Height="70*"/>
+                <RowDefinition Height="49*"/>
+                <RowDefinition Height="84*"/>
             </Grid.RowDefinitions>
             <Label Content="Tapetenkalkulation" Margin="10,10,0,0" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" Width="325" Height="41" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
-            <Label Content="Größe" HorizontalAlignment="Left" Margin="15,24,0,0" Grid.Row="1" VerticalAlignment="Top" Height="25" Width="45"/>
-            <TextBox x:Name="txtGroesse" HorizontalAlignment="Left" Height="25" Margin="10,23,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="237" Grid.Column="1"/>
-            <Label Content="m²" HorizontalAlignment="Left" Margin="252,24,0,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="8.361,0.668" Height="26" Width="25" Grid.Column="1"/>
-            <Button x:Name="btnFlaecheBerechnen" Content="Fläche Berechnen" Margin="312,23,0,0" RenderTransformOrigin="-0.057,0.708" Click="btnFlaecheBerechnen_Click" Grid.Row="1" HorizontalAlignment="Left" Width="116" Height="25" Grid.Column="1" VerticalAlignment="Top"/>
+            <Label Content="Länge" Margin="15,10,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" HorizontalAlignment="Left" Width="45"/>
+            <TextBox x:Name="txtLaenge" HorizontalAlignment="Left" Height="25" Margin="10,10,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="237" Grid.Column="1" TextChanged="txtGroesse_TextChanged" Text="0"/>
+            <Label Content="m" HorizontalAlignment="Left" Margin="252,10,0,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="8.361,0.668" Height="26" Width="25" Grid.Column="1"/>
             <Label Content="Tapete" HorizontalAlignment="Left" Margin="15,10,0,0" Grid.Row="2" VerticalAlignment="Top" Height="25" Width="45"/>
-            <ComboBox HorizontalAlignment="Left" x:Name="tapetenComboBox" Margin="10,12,0,0" Grid.Row="2" VerticalAlignment="Top" Width="237" IsReadOnly="True" SelectedIndex="0" Height="25" Grid.Column="1">
+            <ComboBox x:Name="tapetenComboBox" Margin="10,12,0,0" Grid.Row="2" VerticalAlignment="Top" IsReadOnly="True" SelectedIndex="0" Height="25" Grid.Column="1" SelectionChanged="tapetenComboBox_SelectionChanged" HorizontalAlignment="Left" Width="237">
                 <ComboBoxItem Content="Tapeten zur Auswahl"/>
             </ComboBox>
-            <Button x:Name="btnKalkulieren" Content="Kalkulation starten" Margin="312,12,0,0" RenderTransformOrigin="-0.057,0.708" Click="btnRollenBerechnen_Click" Grid.Row="2" HorizontalAlignment="Left" Width="116" Grid.Column="1" Height="25" VerticalAlignment="Top"/>
+            <Button x:Name="btnKalkulieren" Content="Kalkulation starten" Margin="32,12,0,0" RenderTransformOrigin="-0.057,0.708" Click="btnRollenBerechnen_Click" Grid.Row="2" HorizontalAlignment="Left" Width="116" Grid.Column="2" Height="25" VerticalAlignment="Top"/>
+            <TextBox x:Name="txtKalkulationsBeschreibung" TextChanged="txtKalkulationsBeschreibung_TextChanged" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="32,21,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="116" ToolTip="Name der Kalkulation"/>
+            <TextBlock x:Name="txbErgebnis" Margin="15,10,53,10" Grid.Row="3" TextWrapping="Wrap" Grid.ColumnSpan="3" Visibility="Hidden">
+                <Label Content="Tapetenrollen:" HorizontalAlignment="Left" Margin="10,0,0,0" Height="26"/>
+                <Label x:Name="lblRollen" Content="-" HorizontalAlignment="Left" Margin="10,0,0,0" Height="26"/>
+                <Label Content="Tapetenkleister(Packungen):" HorizontalAlignment="Left" Margin="10,0,0,0" Height="26"/>
+                <Label x:Name="lblKleister" Content="-" HorizontalAlignment="Left" Margin="10,0,0,0" Height="26"/>
+                <LineBreak></LineBreak>
+                <Label Content="Gesamtpreis:" HorizontalAlignment="Left" Margin="10,0,0,0" Height="26"/>
+                <Label x:Name="lblGesamt" Content="-" HorizontalAlignment="Left" Margin="10,0,0,0" Height="26"/>
+            </TextBlock>
+            <TextBox x:Name="txtBreite" Height="25" Margin="10,40,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" TextChanged="txtGroesse_TextChanged" HorizontalAlignment="Left" Width="237" Text="0"/>
+            <Label Content="m" HorizontalAlignment="Left" Margin="252,39,0,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="8.361,0.668" Height="26" Width="25" Grid.Column="1"/>
+            <Label Content="Breite" Margin="15,40,0,0" Grid.Row="1" VerticalAlignment="Top" Height="25" HorizontalAlignment="Left" Width="45"/>
+            <Label Content="Raumname" Margin="229,21,0,0" VerticalAlignment="Top" Height="26" HorizontalAlignment="Left" Width="78" RenderTransformOrigin="6.42,-1.619" Grid.ColumnSpan="2" Grid.Column="1"/>
 
         </Grid>
 

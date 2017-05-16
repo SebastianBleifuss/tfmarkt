@@ -18,16 +18,20 @@ namespace AdministrationDerProdukte
     /// Interaktionslogik für Login.xaml
     /// </summary>
     public partial class Login : Window
-    {        
+    {
+        private bool RichtigeEingabe;
+        
         public Login()
         {
             InitializeComponent();
+            RichtigeEingabe = false;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             if (txtBenutzer.Text == "admin" && txtPasswort.Password == "admin")
             {
+                RichtigeEingabe = true;
                 this.Hide();
             }
         }
@@ -38,6 +42,11 @@ namespace AdministrationDerProdukte
             {
                 Button_Click(sender, e);
             }
+        }
+
+        public bool isRichtigeEingabe()
+        {
+            return RichtigeEingabe;
         }
     }
 }

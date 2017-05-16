@@ -16,9 +16,13 @@ namespace tfMarktMain.Fliesenkalkulation
         public Hilfsmittel fugenfueller, fliesenkleber;
         public int anzahlFliesenPakete, anzahlFugenfueller, anzahlFliesenkleber;
 
-        public Fliesenkalkulation(String Artikelbezeichnung, bool mitFliesenkleber, decimal raumFlaeche, List<Fliese> fliesenliste, Hilfsmittel fugenfueller, Hilfsmittel fliesenkleber)
+        public Fliesenkalkulation() 
+        {
+        }
+        public Fliesenkalkulation(String Artikelbezeichnung,String description ,bool mitFliesenkleber, decimal raumFlaeche, List<Fliese> fliesenliste, Hilfsmittel fugenfueller, Hilfsmittel fliesenkleber)
         {
             this.CalculationType = typeof(Fliesenkalkulation);
+            this.Description = description;
             this.ausgewaehlteFliese = getFliesenObjektZuArtikelbezeichnung(Artikelbezeichnung, fliesenliste);
 
             SelectedProduct = ausgewaehlteFliese;
@@ -37,11 +41,11 @@ namespace tfMarktMain.Fliesenkalkulation
             this.anzahlFliesenPakete = berechneAnzahlPakete();
         }
 
-        public Fliesenkalkulation(String artikelbezeichnung, List<Fliese> fliesenliste, bool mitFliesenkleber,decimal raumFlaeche, Hilfsmittel fugenfueller, Hilfsmittel fliesenkleber)
+        public Fliesenkalkulation(String artikelbezeichnung, String description,List<Fliese> fliesenliste, bool mitFliesenkleber,decimal raumFlaeche, Hilfsmittel fugenfueller, Hilfsmittel fliesenkleber)
         {
             this.CalculationType = typeof(Fliesenkalkulation);
+            this.Description = description;
             this.ausgewaehlteFliese = getFliesenObjektZuArtikelbezeichnung(artikelbezeichnung, fliesenliste);
-
             SelectedProduct = ausgewaehlteFliese;
 
             this.raumFlaeche = raumFlaeche;
