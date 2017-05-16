@@ -93,7 +93,7 @@ namespace tfMarktMain.Fliesenkalkulation
 
         public void ladeVorhandeneKalkulation(Calculation vorhandeneKalkulation) 
         {
-            this.kalkulation = new xmlserializer.Models.Calculations.Fliesenkalkulation(vorhandeneKalkulation.SelectedProduct.getArtikelbezeichnung(),vorhandeneKalkulation.Description, this.fliesenliste,vorhandeneKalkulation.WithExtraProduct, Math.Round(vorhandeneKalkulation.Length * vorhandeneKalkulation.Width, 2), this.fugenfueller, this.fliesenkleber);
+            this.kalkulation = new xmlserializer.Models.Calculations.Fliesenkalkulation(((xmlserializer.Models.Calculations.Fliesenkalkulation)vorhandeneKalkulation).ausgewaehlteFliese.getArtikelbezeichnung(),vorhandeneKalkulation.Description, this.fliesenliste,vorhandeneKalkulation.WithExtraProduct, Math.Round(vorhandeneKalkulation.Length * vorhandeneKalkulation.Width, 2), this.fugenfueller, this.fliesenkleber);
             dgAnzeigeDerKalkulation.Visibility = Visibility.Visible;
             lblGesamtsumme.Visibility = Visibility.Visible;
             ladeKalkulationInDasGrid();

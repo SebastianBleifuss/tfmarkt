@@ -11,7 +11,6 @@ namespace xmlserializer.Models.Calculations
     public class Tapetenkalkulation : Calculation
     {
         public Hilfsmittel tapetenkleister;
-        public Hilfsmittel hilfsmittel;
         public Tapete tapete;
         public int rollen, kleisterpakete;
 
@@ -80,7 +79,7 @@ namespace xmlserializer.Models.Calculations
             if (tapetenkleister.Ergiebigkeit != 0)
             {
                 decimal gesamtFlaeche = Length * Width;
-                decimal pakete = gesamtFlaeche / hilfsmittel.Ergiebigkeit;
+                decimal pakete = gesamtFlaeche / tapetenkleister.Ergiebigkeit;
 
                 kleisterpakete = Convert.ToInt32(Math.Ceiling(pakete));
                 return kleisterpakete;

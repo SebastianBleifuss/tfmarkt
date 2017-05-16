@@ -43,7 +43,7 @@ namespace xmlserializer.Models
         public bool WithExtraProduct { get;  set; }
 
 
-        public Product SelectedProduct { get; set; }
+        //public Product SelectedProduct { get; set; }
 
         public Calculation(){
         Description = "undefined";
