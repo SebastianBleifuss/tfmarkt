@@ -392,7 +392,7 @@ namespace tfMarktMain
 
         private void cmdStarteAdministration_Click(object sender, RoutedEventArgs e)
         {
-            new AdministrationDerProdukteGUI().Show();
+            new AdministrationDerProdukteGUI();
         }
         private void saveGesamtkalkulation(object sender, RoutedEventArgs e)
         {
