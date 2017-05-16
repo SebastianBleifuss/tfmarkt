@@ -28,10 +28,18 @@ namespace AdministrationDerProdukte
 
         public AdministrationDerProdukteGUI()
         {
-            Window loginFenster = new Login();
+            Login loginFenster = new Login();
             loginFenster.ShowDialog();
-            InitializeComponent();
-            AblaufProduktListeNeuLaden();
+            if (loginFenster.isRichtigeEingabe())
+            {
+                InitializeComponent();
+                AblaufProduktListeNeuLaden();
+                this.Show();
+            }
+            else
+            {
+                this.Close();
+            }
         }
 
         private void Hinzufuegen_Click(object sender, RoutedEventArgs e)
