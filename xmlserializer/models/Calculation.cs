@@ -40,7 +40,7 @@ namespace xmlserializer.Models
         /// <summary>
         /// With Fliesenkleber for the Fliesenkalkuation
         /// </summary>
-        public bool WithExtraProduct { get; internal protected set; }
+        public bool WithExtraProduct { get;  set; }
 
         /// <summary>
         /// Selected product

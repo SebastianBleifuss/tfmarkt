@@ -23,6 +23,7 @@ namespace xmlserializer.XmlDocuments
         /// <returns>Customer-XmlElement</returns>
         public static XmlElement CreateCustomerElement(this XmlDocument doc, Customer c)
         {
+            try {
             //Create root Element
             XmlElement root = doc.CreateElement(string.Empty, "Customer", string.Empty);
 
@@ -53,6 +54,18 @@ namespace xmlserializer.XmlDocuments
 
 
             return root;//Return root Element
+            }
+            catch (Exception ex)
+            {
+                if (ex.GetType().Equals(typeof(InvalidOperationException)))
+                {
+                    throw (InvalidOperationException)ex;
+                }
+                else
+                {
+                    throw new InvalidOperationException("Error while creating customer xml-element",ex);
+                }
+            }
         }
 
         /// <summary>
@@ -63,6 +76,7 @@ namespace xmlserializer.XmlDocuments
         /// <returns>Customer instance</returns>
         public static Customer GetCustomerFromElement(this XmlDocument doc, XmlElement CustomerElement)
         {
+            try { 
             Customer LoadingCustomer = new Customer(new Guid(CustomerElement.SelectSingleNode("Customernumber").InnerText));
 
             //Set Properties from Nodes of the xml-file
@@ -78,6 +92,18 @@ namespace xmlserializer.XmlDocuments
             }
 
             return LoadingCustomer;//Return Customer
+            }
+            catch (Exception ex)
+            {
+                if (ex.GetType().Equals(typeof(InvalidOperationException)))
+                {
+                    throw (InvalidOperationException)ex;
+                }
+                else
+                {
+                    throw new InvalidOperationException("Error while loading customer xml-element", ex);
+                }
+            }
         }
     }
 }

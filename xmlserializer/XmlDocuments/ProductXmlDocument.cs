@@ -19,7 +19,7 @@ namespace xmlserializer.XmlDocuments
         /// <returns>Product-XmlElement</returns>
         public static XmlElement CreateProductElement(this XmlDocument doc, Product prod)
         {
-
+            try { 
             //Create root Element
             XmlElement root = doc.CreateElement(string.Empty, "Product", string.Empty);
 
@@ -120,6 +120,12 @@ namespace xmlserializer.XmlDocuments
 
 
                 return root;//Return root Element
+
+            }
+            catch (Exception ex)
+            {
+                    throw new InvalidOperationException("Error while creating product xml-element", ex);
+            }
         }
 
         /// <summary>
@@ -130,7 +136,7 @@ namespace xmlserializer.XmlDocuments
         /// <returns>Product instance</returns>
         public static Product GetProductFromNode(this XmlDocument doc, XmlNode ProductNode)
         {
-
+            try { 
             String AssemblyQualifiedName = ProductNode.SelectSingleNode("ProductType").InnerText;//Get AssemblyQualifiedName to identify class type
 
             //Instances created from CalculationType
@@ -163,6 +169,18 @@ namespace xmlserializer.XmlDocuments
             }
 
             return LoadingProduct;//Return Calculation
+            }
+            catch (Exception ex)
+            {
+                if (ex.GetType().Equals(typeof(InvalidOperationException)))
+                {
+                    throw (InvalidOperationException)ex;
+                }
+                else
+                {
+                    throw new InvalidOperationException("Error while loading product xml-node", ex);
+                }
+            }
 
         }
     }
