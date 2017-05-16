@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Product>
+  <Articlenumber>42</Articlenumber>
+  <Articledescription>UnitTestFliese</Articledescription>
+  <Price>42</Price>
+  <ProductType>xmlserializer.Models.Products.Fliese, xmlserializer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</ProductType>
+  <Width>42</Width>
+  <Length>42</Length>
+  <PacketSize>42</PacketSize>
+</Product>

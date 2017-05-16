@@ -10,11 +10,8 @@ namespace xmlserializer.Models.Calculations
 {
     public class Tapetenkalkulation : Calculation
     {
-<<<<<<< HEAD:xmlserializer/models/Calculations/Tapetenkalkulation.cs
         public Hilfsmittel tapetenkleister;
-=======
         public Hilfsmittel hilfsmittel;
->>>>>>> develop:tfMarktMain/Tapetenkalkulation/Tapetenkalkulation.cs
         public Tapete tapete;
         public int rollen, kleisterpakete;
 
@@ -83,11 +80,8 @@ namespace xmlserializer.Models.Calculations
             if (tapetenkleister.Ergiebigkeit != 0)
             {
                 decimal gesamtFlaeche = Length * Width;
-<<<<<<< HEAD:xmlserializer/models/Calculations/Tapetenkalkulation.cs
-                decimal pakete = gesamtFlaeche / tapetenkleister.Ergiebigkeit;
-=======
                 decimal pakete = gesamtFlaeche / hilfsmittel.Ergiebigkeit;
->>>>>>> develop:tfMarktMain/Tapetenkalkulation/Tapetenkalkulation.cs
+
                 kleisterpakete = Convert.ToInt32(Math.Ceiling(pakete));
                 return kleisterpakete;
             }

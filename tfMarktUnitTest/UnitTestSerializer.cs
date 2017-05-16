@@ -58,7 +58,8 @@ namespace tfMarktUnitTest
                 Length = 42,
                 Width = 42,
                 WithExtraProduct = true,
-                SelectedProduct = new xmlserializer.Models.Products.Tapete(42, "Tapete", 42m, 42m, 42, 42m)
+                tapete = new xmlserializer.Models.Products.Tapete(42, "Tapete", 42m, 42m, 42, 42m)
+                
             };
 
 

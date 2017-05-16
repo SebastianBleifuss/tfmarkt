@@ -303,7 +303,7 @@ namespace tfMarktMain
             if (ConItem.Tag.GetType().Equals(typeof(tfMarktMain.TapetenTab)))
             {
                 TapetenTab tabItem = (TapetenTab)ConItem.Tag;
-                Tapetenkalkulation.Tapetenkalkulation tapetenKalkulation = tabItem.getTapetenGUI().getKalkulation();
+                xmlserializer.Models.Calculations.Tapetenkalkulation tapetenKalkulation = tabItem.getTapetenGUI().getKalkulation();
                 if (!hatGUID(tapetenKalkulation.Identifier))
                 {
                     tapetenKalkulation.Identifier = generateGuid();
@@ -316,7 +316,7 @@ namespace tfMarktMain
             if (ConItem.Tag.GetType().Equals(typeof(tfMarktMain.FliesenTab)))
             {
                 FliesenTab tabItem = (FliesenTab)ConItem.Tag;
-                Fliesenkalkulation.Fliesenkalkulation fliesenKalkulation = tabItem.getFliesenGUI().getFliesenKalkulation();
+                xmlserializer.Models.Calculations.Fliesenkalkulation fliesenKalkulation = tabItem.getFliesenGUI().getFliesenKalkulation();
                 if (!hatGUID(fliesenKalkulation.Identifier))
                 {
                     fliesenKalkulation.Identifier = generateGuid();

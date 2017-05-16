@@ -42,9 +42,7 @@ namespace xmlserializer.Models
         /// </summary>
         public bool WithExtraProduct { get;  set; }
 
-        /// <summary>
-        /// Selected product
-        /// </summary>
+
         public Product SelectedProduct { get; set; }
 
         public Calculation(){
