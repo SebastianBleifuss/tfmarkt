@@ -37,5 +37,22 @@
         <Rapport>0</Rapport>
       </Product>
     </Calculation>
+    <Calculation>
+      <Identifier>53f41570-b24d-4a9b-acca-53c34c007477</Identifier>
+      <Description>Folterkammer</Description>
+      <CalculationType>tfMarktMain.Tapetenkalkulation.Tapetenkalkulation, tfMarktMain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</CalculationType>
+      <Length>3</Length>
+      <Width>55</Width>
+      <WithExtraProduct>False</WithExtraProduct>
+      <Product>
+        <Articlenumber>11</Articlenumber>
+        <Articledescription>Mustertapete grün</Articledescription>
+        <Price>10</Price>
+        <ProductType>xmlserializer.Models.Products.Tapete, xmlserializer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</ProductType>
+        <Width>0,50</Width>
+        <Lenght>20</Lenght>
+        <Rapport>0</Rapport>
+      </Product>
+    </Calculation>
   </Calculations>
 </Customer>

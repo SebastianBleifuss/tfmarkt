@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Customer>
+  <Name>Ranodon, Peter</Name>
+  <Customernumber>9fc37c24-94d7-44d5-a733-fbfb9dfbddf7</Customernumber>
+  <Calculations>
+    <Calculation>
+      <Identifier>9329bb8d-26cd-42cc-9029-f9b46afb7f72</Identifier>
+      <Description>Dachboden</Description>
+      <CalculationType>tfMarktMain.Tapetenkalkulation.Tapetenkalkulation, tfMarktMain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</CalculationType>
+      <Length>12</Length>
+      <Width>3</Width>
+      <WithExtraProduct>False</WithExtraProduct>
+      <Product>
+        <Articlenumber>11</Articlenumber>
+        <Articledescription>Mustertapete grün</Articledescription>
+        <Price>10</Price>
+        <ProductType>xmlserializer.Models.Products.Tapete, xmlserializer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</ProductType>
+        <Width>0,50</Width>
+        <Lenght>20</Lenght>
+        <Rapport>0</Rapport>
+      </Product>
+    </Calculation>
+  </Calculations>
+</Customer>

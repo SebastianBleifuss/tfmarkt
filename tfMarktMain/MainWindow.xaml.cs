@@ -51,7 +51,7 @@ namespace tfMarktMain
                 CustomersBox.Items.Add(NewComboItem);
             }
             CustomersBox.SelectedIndex = 0;
-            SelectedCustomer = new Customer();
+
         }
 
         private void customer_selected(object sender, RoutedEventArgs e)
@@ -169,13 +169,6 @@ namespace tfMarktMain
 
         private void cmdFliesenAuf_Click(object sender, RoutedEventArgs e)
         {
-            //KalkulationsTab<Calculation> tab= neuerTab("Fliesen", "tabFliesenAnsicht", fliesenTabs);
-            //Frame tabFrame = new Frame();
-            //Fliesenkalkulation.FliesenkalkulationGUI ladeSeite = new Fliesenkalkulation.FliesenkalkulationGUI();
-            //tabFrame.Content = ladeSeite.Content;
-            //tab.Content = tabFrame;
-            //tab.Focus();
-            //fliesenTabs++;
             neueFliesenKalkulationTab(null);
         }
 
@@ -294,7 +287,6 @@ namespace tfMarktMain
                 }
             }
         }
-
         private void VerwerfItem_Click(object sender, RoutedEventArgs e)
         {
             MenuItem ConItem = (MenuItem)sender;
@@ -311,13 +303,13 @@ namespace tfMarktMain
             {
                 TapetenTab tabItem = (TapetenTab)ConItem.Tag;
                 Tapetenkalkulation.Tapetenkalkulation tapetenKalkulation = tabItem.getTapetenGUI().getKalkulation();
-                if (!hatGUID(tapetenKalkulation.Identifier)) 
+                if (!hatGUID(tapetenKalkulation.Identifier))
                 {
                     tapetenKalkulation.Identifier = generateGuid();
-                    Console.WriteLine("Neue GUID generiert");
                 }
                 tabItem.setKalkulation(tapetenKalkulation);
                 SelectedCustomer.addCalculation(tabItem.getKalkulation(), /*OVERRIDE SETZEN!*/ true); //Wirft Exception wenn die Kalkulation nicht vollständig initialisiert wurde
+                tabItem.Header = tapetenKalkulation.Description;
             }
             if (ConItem.Tag.GetType().Equals(typeof(tfMarktMain.FliesenTab)))
             {
@@ -326,18 +318,17 @@ namespace tfMarktMain
                 if (!hatGUID(fliesenKalkulation.Identifier))
                 {
                     fliesenKalkulation.Identifier = generateGuid();
-                    Console.WriteLine("Neue GUID generiert");
                 }
-                fliesenKalkulation.Identifier = generateGuid();
                 tabItem.setKalkulation(fliesenKalkulation);
                 SelectedCustomer.addCalculation(tabItem.getKalkulation(), /*OVERRIDE SETZEN!*/ true); //Wirft Exception wenn die Kalkulation nicht vollständig initialisiert wurde
+                tabItem.Header = fliesenKalkulation.Description;
             }
             CalculationListBox.ItemsSource = SelectedCustomer.Calculations.Values;
             CalculationListBox.Items.Refresh();
             isCustomerChanged = true;
         }
 
-        private bool hatGUID(Guid guid) 
+        private bool hatGUID(Guid guid)
         {
             Calculation tmp;
             if (SelectedCustomer.Calculations.TryGetValue(guid, out tmp)) 
@@ -346,6 +337,7 @@ namespace tfMarktMain
             }
             return false;
         }
+
         private Guid generateGuid()
         {
             // Prüfen, ob Kunde schon Kalkulation mit GUID hat.
