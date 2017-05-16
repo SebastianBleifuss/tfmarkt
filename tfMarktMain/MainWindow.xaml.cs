@@ -342,26 +342,38 @@ namespace tfMarktMain
             if (ConItem.Tag.GetType().Equals(typeof(tfMarktMain.TapetenTab)))
             {
                 TapetenTab tabItem = (TapetenTab)ConItem.Tag;
-                tabItem.setKalkulation(tabItem.getTapetenGUI().getKalkulation());
-                Tapetenkalkulation.Tapetenkalkulation tapetenKalkulation = tabItem.getKalkulation();
-                tapetenKalkulation.Identifier = generateGuid();
+                Tapetenkalkulation.Tapetenkalkulation tapetenKalkulation = tabItem.getTapetenGUI().getKalkulation();
+                if (!hatGUID(tapetenKalkulation.Identifier))
+                {
+                    tapetenKalkulation.Identifier = generateGuid();
+                }
                 tabItem.setKalkulation(tapetenKalkulation);
                 SelectedCustomer.addCalculation(tabItem.getKalkulation(), /*OVERRIDE SETZEN!*/ true); //Wirft Exception wenn die Kalkulation nicht vollständig initialisiert wurde
-                CalculationListBox.ItemsSource = SelectedCustomer.Calculations.Values;
-                isCustomerChanged = true;
-               // tabAnsicht.Items.Remove(tabItem);
             }
             if (ConItem.Tag.GetType().Equals(typeof(tfMarktMain.FliesenTab)))
             {
                 FliesenTab tabItem = (FliesenTab)ConItem.Tag;
-                tabItem.setKalkulation(tabItem.getFliesenGUI().getFliesenKalkulation());
-                Fliesenkalkulation.Fliesenkalkulation fliesenKalkulation = tabItem.getKalkulation();
-                fliesenKalkulation.Identifier = generateGuid();
+                Fliesenkalkulation.Fliesenkalkulation fliesenKalkulation = tabItem.getFliesenGUI().getFliesenKalkulation();
+                if (!hatGUID(fliesenKalkulation.Identifier))
+                {
+                    fliesenKalkulation.Identifier = generateGuid();
+                }
                 tabItem.setKalkulation(fliesenKalkulation);
                 SelectedCustomer.addCalculation(tabItem.getKalkulation(), /*OVERRIDE SETZEN!*/ true); //Wirft Exception wenn die Kalkulation nicht vollständig initialisiert wurde
-                CalculationListBox.ItemsSource = SelectedCustomer.Calculations.Values;
-                isCustomerChanged = true;
             }
+            CalculationListBox.ItemsSource = SelectedCustomer.Calculations.Values;
+            CalculationListBox.Items.Refresh();
+            isCustomerChanged = true;
+        }
+
+        private bool hatGUID(Guid guid)
+        {
+            Calculation tmp;
+            if (SelectedCustomer.Calculations.TryGetValue(guid, out tmp)) 
+            {
+                return true;
+            }
+            return false;
         }
 
         private Guid generateGuid()

@@ -10,7 +10,10 @@ namespace tfMarktMain.Tapetenkalkulation
 {
     public class Tapetenkalkulation : Calculation
     {
-        private Hilfsmittel hilfsmittel;
+        public Hilfsmittel hilfsmittel;
+        public Tapete tapete;
+        public int rollen, kleisterpakete;
+
 
         public Tapetenkalkulation()
         {
@@ -55,7 +58,8 @@ namespace tfMarktMain.Tapetenkalkulation
                 {
                     bahnenProRolle = 1;
                 }
-                return Convert.ToInt32(Math.Ceiling(Convert.ToDecimal(benoetigteBahnen / bahnenProRolle)));
+                this.rollen = Convert.ToInt32(Math.Ceiling(Convert.ToDecimal(benoetigteBahnen / bahnenProRolle)));
+                return this.rollen;
                 //Was ist mit verschnitt? https://www.blitzrechner.de/tapetenrollen-bedarf/
             }
             return -1;
@@ -76,7 +80,8 @@ namespace tfMarktMain.Tapetenkalkulation
             {
                 decimal gesamtFlaeche = Length * Width;
                 decimal pakete = gesamtFlaeche / hilfsmittel.Ergiebigkeit;
-                return Convert.ToInt32(Math.Ceiling(pakete));
+                kleisterpakete = Convert.ToInt32(Math.Ceiling(pakete));
+                return kleisterpakete;
             }
             return -1;
         }
