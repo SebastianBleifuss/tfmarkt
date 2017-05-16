@@ -67,7 +67,7 @@ namespace xmlserializer.XmlDocuments
                 root.AppendChild(Width);//Add WidthElement to root Element
 
                 //Create LenghtElement
-                XmlElement Lenght = doc.CreateElement(string.Empty, "Lenght", string.Empty);
+                XmlElement Lenght = doc.CreateElement(string.Empty, "Length", string.Empty);
                 Lenght.AppendChild(
                     doc.CreateTextNode(FliesenProduct.Laenge.ToString())//Create and add TextNode to LenghtElement child
                 );
@@ -92,7 +92,7 @@ namespace xmlserializer.XmlDocuments
                 root.AppendChild(Width);//Add WidthElement to root Element
 
                 //Create LenghtElement
-                XmlElement Lenght = doc.CreateElement(string.Empty, "Lenght", string.Empty);
+                XmlElement Lenght = doc.CreateElement(string.Empty, "Length", string.Empty);
                 Lenght.AppendChild(
                     doc.CreateTextNode(TapetenProduct.Laenge.ToString())//Create and add TextNode to LenghtElement child
                 );
@@ -151,14 +151,14 @@ namespace xmlserializer.XmlDocuments
 
             if (ProductType.Equals(typeof(Fliese)))
             {
-                ((Fliese)LoadingProduct).Laenge = Decimal.Parse(ProductNode.SelectSingleNode("Lenght").InnerText);
+                ((Fliese)LoadingProduct).Laenge = Decimal.Parse(ProductNode.SelectSingleNode("Length").InnerText);
                 ((Fliese)LoadingProduct).Breite = Decimal.Parse(ProductNode.SelectSingleNode("Width").InnerText);
                 ((Fliese)LoadingProduct).Paketgroesse = Int32.Parse(ProductNode.SelectSingleNode("PacketSize").InnerText);
                 
             }
             else if (ProductType.Equals(typeof(Tapete)))
             {
-                ((Tapete)LoadingProduct).Laenge = Decimal.Parse(ProductNode.SelectSingleNode("Lenght").InnerText);
+                ((Tapete)LoadingProduct).Laenge = Decimal.Parse(ProductNode.SelectSingleNode("Length").InnerText);
                 ((Tapete)LoadingProduct).Breite = Decimal.Parse(ProductNode.SelectSingleNode("Width").InnerText);
                 ((Tapete)LoadingProduct).Rapport = Decimal.Parse(ProductNode.SelectSingleNode("Rapport").InnerText);
 

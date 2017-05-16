@@ -27,7 +27,7 @@ namespace tfMarktMain.Fliesenkalkulation
         private List<Fliese> fliesenliste;
         private Hilfsmittel fugenfueller;
         private Hilfsmittel fliesenkleber;
-        private Fliesenkalkulation kalkulation;
+        private xmlserializer.Models.Calculations.Fliesenkalkulation kalkulation;
         private ObservableCollection<Kalkulationsanzeige> dataGridSource;
         
         public FliesenkalkulationGUI()
@@ -59,7 +59,7 @@ namespace tfMarktMain.Fliesenkalkulation
 
         private void btnKalkulieren_Click(object sender, RoutedEventArgs e)
         {
-            kalkulation = new Fliesenkalkulation(cbFliese.SelectedValue.ToString(),txtRaumname.Text,(bool)chkFliesenkleber.IsChecked, Convert.ToDecimal(txtGroesse.Text), fliesenliste, fugenfueller, fliesenkleber);
+            kalkulation = new xmlserializer.Models.Calculations.Fliesenkalkulation(cbFliese.SelectedValue.ToString(),txtRaumname.Text,(bool)chkFliesenkleber.IsChecked, Convert.ToDecimal(txtGroesse.Text), fliesenliste, fugenfueller, fliesenkleber);
             dgAnzeigeDerKalkulation.Visibility = Visibility.Visible;
             lblGesamtsumme.Visibility = Visibility.Visible;
             lblAngebot.Visibility = Visibility.Visible;
@@ -93,7 +93,7 @@ namespace tfMarktMain.Fliesenkalkulation
 
         public void ladeVorhandeneKalkulation(Calculation vorhandeneKalkulation) 
         {
-            this.kalkulation = new Fliesenkalkulation(vorhandeneKalkulation.SelectedProduct.getArtikelbezeichnung(),vorhandeneKalkulation.Description, this.fliesenliste,vorhandeneKalkulation.WithExtraProduct, Math.Round(vorhandeneKalkulation.Length * vorhandeneKalkulation.Width, 2), this.fugenfueller, this.fliesenkleber);
+            this.kalkulation = new xmlserializer.Models.Calculations.Fliesenkalkulation(vorhandeneKalkulation.SelectedProduct.getArtikelbezeichnung(),vorhandeneKalkulation.Description, this.fliesenliste,vorhandeneKalkulation.WithExtraProduct, Math.Round(vorhandeneKalkulation.Length * vorhandeneKalkulation.Width, 2), this.fugenfueller, this.fliesenkleber);
             dgAnzeigeDerKalkulation.Visibility = Visibility.Visible;
             lblGesamtsumme.Visibility = Visibility.Visible;
             ladeKalkulationInDasGrid();
@@ -148,7 +148,7 @@ namespace tfMarktMain.Fliesenkalkulation
         }
 
         //Vivi was here 0-0
-        public Fliesenkalkulation getFliesenKalkulation() 
+        public xmlserializer.Models.Calculations.Fliesenkalkulation getFliesenKalkulation() 
         {
             return this.kalkulation;
         }

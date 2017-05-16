@@ -36,7 +36,7 @@ namespace tfMarktUnitTest
             }
 
 
-            tfMarktMain.Fliesenkalkulation.Fliesenkalkulation NewFliesenCalc = new tfMarktMain.Fliesenkalkulation.Fliesenkalkulation("Fliese grau", "UnitTestFliesenCalc", true, 42m,
+            xmlserializer.Models.Calculations.Fliesenkalkulation NewFliesenCalc = new xmlserializer.Models.Calculations.Fliesenkalkulation("Fliese grau", "UnitTestFliesenCalc", true, 42m,
                 Fliesen,
                 Filler,
                 Glue
@@ -45,7 +45,7 @@ namespace tfMarktUnitTest
 
 
 
-            tfMarktMain.Tapetenkalkulation.Tapetenkalkulation NewTepetenCalc = new tfMarktMain.Tapetenkalkulation.Tapetenkalkulation()
+            xmlserializer.Models.Calculations.Tapetenkalkulation NewTapetenCalc = new xmlserializer.Models.Calculations.Tapetenkalkulation()
             {
                 Description = "UnitTestTapetenCalc",
                 Identifier = new Guid("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"),
@@ -58,7 +58,7 @@ namespace tfMarktUnitTest
 
 
             NewCustomer.addCalculation(NewFliesenCalc, true);
-            NewCustomer.addCalculation(NewTepetenCalc, true);
+            NewCustomer.addCalculation(NewTapetenCalc, true);
 
             tfMarktMain.Export.PDFFactory.CustomerPDFDocument PDF = new tfMarktMain.Export.PDFFactory.CustomerPDFDocument(NewCustomer);
             PDF.printPDF();

@@ -6,5 +6,5 @@
   <ProductType>xmlserializer.Models.Products.Fliese, xmlserializer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</ProductType>
   <Width>50</Width>
   <PacketSize>5</PacketSize>
-  <Lenght>50</Lenght>
+  <Length>50</Length>
 </Product>

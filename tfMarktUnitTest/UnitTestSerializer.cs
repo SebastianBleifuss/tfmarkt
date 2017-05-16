@@ -4,6 +4,7 @@ using xmlserializer.Models;
 using tfMarktMain;
 using System.Collections.Generic;
 using xmlserializer.Models.Products;
+using xmlserializer.Models.Calculations;
 using System.IO;
 
 namespace tfMarktUnitTest
@@ -42,7 +43,7 @@ namespace tfMarktUnitTest
             }
 
 
-            tfMarktMain.Fliesenkalkulation.Fliesenkalkulation NewFliesenCalc = new tfMarktMain.Fliesenkalkulation.Fliesenkalkulation("Fliese grau", "UnitTestFliesenCalc", true, 42m,
+            xmlserializer.Models.Calculations.Fliesenkalkulation NewFliesenCalc = new xmlserializer.Models.Calculations.Fliesenkalkulation("Fliese grau", "UnitTestFliesenCalc", true, 42m,
                 Fliesen,
                 Filler,
                 Glue
@@ -51,7 +52,7 @@ namespace tfMarktUnitTest
 
 
 
-            tfMarktMain.Tapetenkalkulation.Tapetenkalkulation NewTepetenCalc = new tfMarktMain.Tapetenkalkulation.Tapetenkalkulation() {
+            xmlserializer.Models.Calculations.Tapetenkalkulation NewTapetenCalc = new xmlserializer.Models.Calculations.Tapetenkalkulation() {
                 Description = "UnitTestTapetenCalc",
                 Identifier = new Guid("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"),
                 Length = 42,
@@ -63,7 +64,7 @@ namespace tfMarktUnitTest
 
             
             NewCustomer.addCalculation(NewFliesenCalc, true);
-            NewCustomer.addCalculation(NewTepetenCalc, true);
+            NewCustomer.addCalculation(NewTapetenCalc, true);
             xmlserializer.xmlserializer.serialize(NewCustomer);
             Assert.AreEqual(true,File.Exists(xmlserializer.xmlserializer.DATASTORAGEPATH + "\\customers\\aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa_FooMan_Hans Joseph.xml"));
         }

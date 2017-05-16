@@ -11,7 +11,7 @@ namespace tfMarktMain
 {
     class FliesenTab : TabItem
     {
-        private Fliesenkalkulation.Fliesenkalkulation kalkulation;
+        private xmlserializer.Models.Calculations.Fliesenkalkulation kalkulation;
         private Fliesenkalkulation.FliesenkalkulationGUI fliesenSeite;
 
         public FliesenTab()
@@ -21,13 +21,13 @@ namespace tfMarktMain
             
         }
 
-        public Fliesenkalkulation.Fliesenkalkulation getKalkulation()
+        public xmlserializer.Models.Calculations.Fliesenkalkulation getKalkulation()
         {
             return this.kalkulation;
         }
 
         //Entfällt, wenn Tapetenkalkulation nicht mehr so geladen werden muss.
-        public void setKalkulation(Fliesenkalkulation.Fliesenkalkulation kalkulation)
+        public void setKalkulation(xmlserializer.Models.Calculations.Fliesenkalkulation kalkulation)
         {
             //fliesenSeite.setKalkulation(kalkulation);
             this.kalkulation = kalkulation;

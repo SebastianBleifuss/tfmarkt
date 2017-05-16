@@ -88,7 +88,6 @@
     <Compile Include="Fliesenkalkulation\FlaecheBerechnen.xaml.cs">
       <DependentUpon>FlaecheBerechnen.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Fliesenkalkulation\Fliesenkalkulation.cs" />
     <Compile Include="Fliesenkalkulation\FliesenkalkulationGUI.xaml.cs">
       <DependentUpon>FliesenkalkulationGUI.xaml</DependentUpon>
     </Compile>
@@ -96,7 +95,6 @@
     <Compile Include="Tapetenkalkulation\FlaecheBerechnen.xaml.cs">
       <DependentUpon>FlaecheBerechnen.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Tapetenkalkulation\Tapetenkalkulation.cs" />
     <Compile Include="Tapetenkalkulation\TapetenkalkulationGUI.xaml.cs">
       <DependentUpon>TapetenkalkulationGUI.xaml</DependentUpon>
     </Compile>
