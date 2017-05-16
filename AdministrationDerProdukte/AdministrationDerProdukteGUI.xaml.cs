@@ -80,6 +80,7 @@ namespace AdministrationDerProdukte
                 }
                 Hinzufuegen gui = new Hinzufuegen();
                 gui.setProdukt(selectedProduct);
+                gui.setIsAenderung();
                 gui.ShowDialog();
                 AblaufProduktListeNeuLaden();
             }

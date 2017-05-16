@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using System.Text.RegularExpressions;
 using xmlserializer.Models.Products;
 using xmlserializer.Models;
+using System.IO;
 
 namespace AdministrationDerProdukte
 {
@@ -22,7 +23,6 @@ namespace AdministrationDerProdukte
     /// </summary>
     public partial class Hinzufuegen : Window
     {
-
         public Hinzufuegen()
         {
             InitializeComponent();
@@ -189,6 +189,24 @@ namespace AdministrationDerProdukte
             txtArtikelnummer.Text = hilfsmittel.getArtikelnummer().ToString();
             txtPreis.Text = hilfsmittel.getPreis().ToString();
             txtOptionOne.Text = hilfsmittel.Ergiebigkeit.ToString();
+        }
+
+        public void setIsAenderung()
+        {
+            btnLoeschen.IsEnabled = true;
+        }
+
+        private void btnLoeschen_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                File.Delete(xmlserializer.xmlserializer.DATASTORAGEPATH + "\\products\\" + txtArtikelbezeichnung.Text + ".xml");
+                this.Close();
+            }
+            catch(Exception)
+            {
+                MessageBox.Show("Die Datei "+txtArtikelbezeichnung.Text+" konnte nicht gelöscht werden");
+            }
         }
     }
 }
