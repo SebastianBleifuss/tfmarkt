@@ -125,36 +125,54 @@ namespace tfMarktMain.Tapetenkalkulation
 
         private void ergebnisAusgabeAendern() 
         {
-            if (tapetenComboBox.SelectedIndex > 0)
+            if (kalkulation != null)
             {
-                if (!String.IsNullOrWhiteSpace(txtBreite.Text) && !String.IsNullOrWhiteSpace(txtLaenge.Text))
+                if (tapetenComboBox.SelectedIndex > 0)
                 {
-                    this.kalkulation.Length=Convert.ToDecimal(txtLaenge.Text);
-                    this.kalkulation.Width=Convert.ToDecimal(txtBreite.Text);
-                    int rollen = this.kalkulation.rollenBerechnen(gewaehlteTapete());
-                    lblRollen.Content = rollen;
-                    lblGesamt.Content = this.kalkulation.getGesamtpreis(gewaehlteTapete(), rollen);
-                    lblKleister.Content = this.kalkulation.getKleistermenge();
+                    if (!String.IsNullOrWhiteSpace(txtBreite.Text) && !String.IsNullOrWhiteSpace(txtLaenge.Text))
+                    {
+                        try
+                        {
+                            this.kalkulation.Length = Convert.ToDecimal(txtLaenge.Text);
+                            this.kalkulation.Width = Convert.ToDecimal(txtBreite.Text);
+                            int rollen = this.kalkulation.rollenBerechnen(gewaehlteTapete());
+                            if (rollen != -1 && this.kalkulation.getKleistermenge() != -1 )
+                            {
+                                lblRollen.Content = rollen;
+                                lblKleister.Content = this.kalkulation.getKleistermenge();
+                                lblGesamt.Content = Math.Round(this.kalkulation.getGesamtpreis(gewaehlteTapete(), rollen),2) + " EUR";
+                                lblFehlerNachricht.Content="";
+                            }
+                            else 
+                            {
+                                lblRollen.Content = "NaN";
+                                lblKleister.Content = "NaN";
+                                lblGesamt.Content = "0 EUR";
+                                if (kalkulation.Length > 100) { lblFehlerNachricht.Content = "Die maximale Höhe beträgt 100m"; }
+                                if (kalkulation.Width > 250) { lblFehlerNachricht.Content = "Die maximale Breite beträgt 250m"; }
+                            }                   
+                        }
+                        catch(System.FormatException e) 
+                        {
+                            lblFehlerNachricht.Content = "Länge und Breite dürfen nur Zahlen enthalten.";
+                        }
+                        catch 
+                        {
+                            lblFehlerNachricht.Content = "Es ist ein Fehler bei der Kalkulation aufgetreten.";
+                        }
+                    }
                 }
             }
-            else { Console.WriteLine("SelectBox nicht gefüllt."); }
-            
         }
 
         private void tapetenComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (kalkulation != null)
-            {
                 ergebnisAusgabeAendern();
-            }
         }
 
         private void txtGroesse_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (kalkulation != null)
-            {
                 ergebnisAusgabeAendern();
-            }
         }
     }
 }

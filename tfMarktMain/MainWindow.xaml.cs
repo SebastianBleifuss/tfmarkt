@@ -298,36 +298,51 @@ namespace tfMarktMain
 
         private void SpeicherItem_Click(object sender, RoutedEventArgs e)
         {
+            bool istDescriptionDa = false;
             MenuItem ConItem = (MenuItem)sender;
-            
             if (ConItem.Tag.GetType().Equals(typeof(tfMarktMain.TapetenTab)))
             {
                 TapetenTab tabItem = (TapetenTab)ConItem.Tag;
                 xmlserializer.Models.Calculations.Tapetenkalkulation tapetenKalkulation = tabItem.getTapetenGUI().getKalkulation();
-                if (!hatGUID(tapetenKalkulation.Identifier))
+                if (!tapetenKalkulation.Description.Equals("undefined"))
                 {
-                    tapetenKalkulation.Identifier = generateGuid();
-                }
+                    if (!hatGUID(tapetenKalkulation.Identifier))
+                    {
+                        tapetenKalkulation.Identifier = generateGuid();
+                    }
 
-                tabItem.setKalkulation(tapetenKalkulation);
-                SelectedCustomer.addCalculation(tabItem.getKalkulation(), /*OVERRIDE SETZEN!*/ true); //Wirft Exception wenn die Kalkulation nicht vollständig initialisiert wurde
-                tabItem.Header = tapetenKalkulation.Description;
+                    tabItem.setKalkulation(tapetenKalkulation);
+                    SelectedCustomer.addCalculation(tabItem.getKalkulation(), /*OVERRIDE SETZEN!*/ true); //Wirft Exception wenn die Kalkulation nicht vollständig initialisiert wurde
+                    tabItem.Header = tapetenKalkulation.Description;
+                    istDescriptionDa = true;
+                }
             }
             if (ConItem.Tag.GetType().Equals(typeof(tfMarktMain.FliesenTab)))
             {
                 FliesenTab tabItem = (FliesenTab)ConItem.Tag;
                 xmlserializer.Models.Calculations.Fliesenkalkulation fliesenKalkulation = tabItem.getFliesenGUI().getFliesenKalkulation();
-                if (!hatGUID(fliesenKalkulation.Identifier))
+                if (!fliesenKalkulation.Description.Equals("undefined") && !String.IsNullOrWhiteSpace(fliesenKalkulation.Description))
                 {
-                    fliesenKalkulation.Identifier = generateGuid();
+                    if (!hatGUID(fliesenKalkulation.Identifier))
+                    {
+                        fliesenKalkulation.Identifier = generateGuid();
+                    }
+                    tabItem.setKalkulation(fliesenKalkulation);
+                    SelectedCustomer.addCalculation(tabItem.getKalkulation(), /*OVERRIDE SETZEN!*/ true); //Wirft Exception wenn die Kalkulation nicht vollständig initialisiert wurde
+                    tabItem.Header = fliesenKalkulation.Description;
+                    istDescriptionDa = true;
                 }
-                tabItem.setKalkulation(fliesenKalkulation);
-                SelectedCustomer.addCalculation(tabItem.getKalkulation(), /*OVERRIDE SETZEN!*/ true); //Wirft Exception wenn die Kalkulation nicht vollständig initialisiert wurde
-                tabItem.Header = fliesenKalkulation.Description;
             }
-            CalculationListBox.ItemsSource = SelectedCustomer.Calculations.Values;
-            CalculationListBox.Items.Refresh();
-            isCustomerChanged = true;
+            if (istDescriptionDa)
+            {
+                CalculationListBox.ItemsSource = SelectedCustomer.Calculations.Values;
+                CalculationListBox.Items.Refresh();
+                isCustomerChanged = true;
+            }
+            else 
+            {
+                MessageBox.Show("Bitte geben Sie vor dem Speichern eine Raumbezeichnung ein!", "Achtung",MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
 
         private bool hatGUID(Guid guid)

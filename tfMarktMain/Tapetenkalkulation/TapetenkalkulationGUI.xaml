@@ -33,6 +33,7 @@
                 <LineBreak></LineBreak>
                 <Label Content="Gesamtpreis:" HorizontalAlignment="Left" Margin="10,0,0,0" Height="26"/>
                 <Label x:Name="lblGesamt" Content="-" HorizontalAlignment="Left" Margin="10,0,0,0" Height="26"/>
+                <Label x:Name="lblFehlerNachricht" Foreground="#FFAA0F0F"/>
             </TextBlock>
             <TextBox x:Name="txtBreite" Height="25" Margin="10,40,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" TextChanged="txtGroesse_TextChanged" HorizontalAlignment="Left" Width="237" Text="0"/>
             <Label Content="m" HorizontalAlignment="Left" Margin="252,39,0,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="8.361,0.668" Height="26" Width="25" Grid.Column="1"/>
