@@ -54,6 +54,14 @@ namespace tfMarktMain
             CustomersBox.SelectedIndex = 0;            
 
         }
+        //Wenn das MainWindow geschlossen wird, dann soll sich ganze Anwendung schließen
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+
+            Application.Current.Shutdown();
+        }
+
 
         private void customer_selected(object sender, RoutedEventArgs e)
         {
