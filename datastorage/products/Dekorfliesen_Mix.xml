@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Product>
+  <Articlenumber>123475</Articlenumber>
+  <Articledescription>Dekorfliesen Mix</Articledescription>
+  <Price>44,90</Price>
+  <ProductType>xmlserializer.Models.Products.Fliese, xmlserializer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</ProductType>
+  <Width>20</Width>
+  <Length>20</Length>
+  <PacketSize>20</PacketSize>
+</Product>

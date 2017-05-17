@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Product>
+  <Articlenumber>123474</Articlenumber>
+  <Articledescription>Mosaik Naturstein</Articledescription>
+  <Price>9,99</Price>
+  <ProductType>xmlserializer.Models.Products.Fliese, xmlserializer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</ProductType>
+  <Width>30</Width>
+  <Length>30</Length>
+  <PacketSize>10</PacketSize>
+</Product>

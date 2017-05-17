@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Product>
-  <Articlenumber>12</Articlenumber>
-  <Articledescription>Wolkentapete</Articledescription>
-  <Price>5,99</Price>
+  <Articlenumber>123459</Articlenumber>
+  <Articledescription>Raufaser Großrolle</Articledescription>
+  <Price>40,50</Price>
   <ProductType>xmlserializer.Models.Products.Tapete, xmlserializer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</ProductType>
-  <Width>0,53</Width>
-  <Length>10,05</Length>
-  <Rapport>0,73</Rapport>
+  <Width>1,05</Width>
+  <Length>125,00</Length>
+  <Rapport>0</Rapport>
 </Product>

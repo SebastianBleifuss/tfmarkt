@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Product>
-  <Articlenumber>42</Articlenumber>
-  <Articledescription>UnitTestFliese</Articledescription>
-  <Price>42</Price>
+  <Articlenumber>123476</Articlenumber>
+  <Articledescription>Fliese Holzoptik</Articledescription>
+  <Price>39,90</Price>
   <ProductType>xmlserializer.Models.Products.Fliese, xmlserializer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</ProductType>
-  <Width>42</Width>
-  <Length>42</Length>
-  <PacketSize>42</PacketSize>
+  <Width>90</Width>
+  <Length>22</Length>
+  <PacketSize>12</PacketSize>
 </Product>
