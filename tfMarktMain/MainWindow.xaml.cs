@@ -84,7 +84,6 @@ namespace tfMarktMain
         private void CalculationListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             bool istTabBekannt = false;
-            int tabMitName=0;
             if (CalculationListBox.SelectedIndex != -1)
             {
                 Calculation calc = SelectedCustomer.Calculations.Values.ToArray()[CalculationListBox.SelectedIndex];
@@ -130,27 +129,33 @@ namespace tfMarktMain
         {
             if (isCustomerChanged)
             {
-                if (SelectedCustomer.Calculations.Count > 0)
+                if (!String.IsNullOrEmpty(KundenNachnameTextbox.Text) && !String.IsNullOrEmpty(KundenNameTextbox.Text))
                 {
-                    xmlserializer.xmlserializer.serialize(SelectedCustomer);
-
-                    if (CustomersBox.SelectedIndex != 0)
+                    if (SelectedCustomer.Calculations.Count > 0)
                     {
-                        CustomersBox.Items.Remove(CustomersBox.SelectedItem);
-                    }
+                        xmlserializer.xmlserializer.serialize(SelectedCustomer);
 
-                    ComboBoxItem NewComboItem = new ComboBoxItem();
-                    NewComboItem.Content = SelectedCustomer.Name;
-                    NewComboItem.Selected += customer_selected;
-                    NewComboItem.ToolTip = SelectedCustomer.Customernumber;
-                    CustomersBox.Items.Add(NewComboItem);
-                    CustomersBox.SelectedItem = NewComboItem;
+                        if (CustomersBox.SelectedIndex != 0)
+                        {
+                            CustomersBox.Items.Remove(CustomersBox.SelectedItem);
+                        }
+
+                        ComboBoxItem NewComboItem = new ComboBoxItem();
+                        NewComboItem.Content = SelectedCustomer.Name;
+                        NewComboItem.Selected += customer_selected;
+                        NewComboItem.ToolTip = SelectedCustomer.Customernumber;
+                        CustomersBox.Items.Add(NewComboItem);
+                        CustomersBox.SelectedItem = NewComboItem;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Keine Kalkualtionen zum speichern!", "Hinweis", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
                 }
-                else
+                else 
                 {
-                    MessageBox.Show("Keine Kalkualtionen zum speichern!");
+                    MessageBox.Show("Kunden können nur mit Vor-und Nachname gespeichert werden!", "Hinweis", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
-                
             }
 
         }
