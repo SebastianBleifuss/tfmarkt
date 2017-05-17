@@ -7,6 +7,34 @@
       <Identifier>6f86b4ae-f903-4380-bae7-4fd5200db001</Identifier>
       <Description>Wohnzimmer</Description>
       <CalculationType>xmlserializer.Models.Calculations.Tapetenkalkulation, xmlserializer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</CalculationType>
+      <Length>7</Length>
+      <Width>3</Width>
+      <WithExtraProduct>False</WithExtraProduct>
+      <Products>
+        <Product>
+          <Articlenumber>11</Articlenumber>
+          <Articledescription>Mustertapete grün</Articledescription>
+          <Price>10</Price>
+          <ProductType>xmlserializer.Models.Products.Tapete, xmlserializer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</ProductType>
+          <Width>0,50</Width>
+          <Length>20</Length>
+          <Rapport>0</Rapport>
+          <AmountWallpaper>2</AmountWallpaper>
+        </Product>
+        <Product>
+          <Articlenumber>14</Articlenumber>
+          <Articledescription>Tapetenkleister</Articledescription>
+          <Price>7,89</Price>
+          <ProductType>xmlserializer.Models.Products.Hilfsmittel, xmlserializer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</ProductType>
+          <Productivity>26</Productivity>
+          <AmountPaste>1</AmountPaste>
+        </Product>
+      </Products>
+    </Calculation>
+    <Calculation>
+      <Identifier>36b34945-cdaf-42bc-abca-4de0cd19d1f3</Identifier>
+      <Description>Wohnzimmer</Description>
+      <CalculationType>xmlserializer.Models.Calculations.Tapetenkalkulation, xmlserializer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</CalculationType>
       <Length>12</Length>
       <Width>3</Width>
       <WithExtraProduct>False</WithExtraProduct>
@@ -28,6 +56,62 @@
           <ProductType>xmlserializer.Models.Products.Hilfsmittel, xmlserializer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</ProductType>
           <Productivity>26</Productivity>
           <AmountPaste>2</AmountPaste>
+        </Product>
+      </Products>
+    </Calculation>
+    <Calculation>
+      <Identifier>628eb0cc-9b1b-48de-9426-32c1db896d8f</Identifier>
+      <Description>Raum</Description>
+      <CalculationType>xmlserializer.Models.Calculations.Fliesenkalkulation, xmlserializer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</CalculationType>
+      <Length>6,6332495807108</Length>
+      <Width>6,6332495807108</Width>
+      <WithExtraProduct>False</WithExtraProduct>
+      <Products>
+        <Product>
+          <Articlenumber>123456</Articlenumber>
+          <Articledescription>Fliese grau</Articledescription>
+          <Price>20</Price>
+          <ProductType>xmlserializer.Models.Products.Fliese, xmlserializer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</ProductType>
+          <Width>50</Width>
+          <Length>50</Length>
+          <PacketSize>50</PacketSize>
+          <AmountTile>37</AmountTile>
+        </Product>
+        <Product>
+          <Articlenumber>10</Articlenumber>
+          <Articledescription>Fugenfüller</Articledescription>
+          <Price>20</Price>
+          <ProductType>xmlserializer.Models.Products.Hilfsmittel, xmlserializer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</ProductType>
+          <Productivity>20</Productivity>
+          <AmountFiller>3</AmountFiller>
+        </Product>
+      </Products>
+    </Calculation>
+    <Calculation>
+      <Identifier>0ecaf7cd-6d37-453c-a474-5467c09aa1fd</Identifier>
+      <Description>Raum</Description>
+      <CalculationType>xmlserializer.Models.Calculations.Fliesenkalkulation, xmlserializer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</CalculationType>
+      <Length>5,8309518948453</Length>
+      <Width>5,8309518948453</Width>
+      <WithExtraProduct>False</WithExtraProduct>
+      <Products>
+        <Product>
+          <Articlenumber>123456</Articlenumber>
+          <Articledescription>Fliese grau</Articledescription>
+          <Price>20</Price>
+          <ProductType>xmlserializer.Models.Products.Fliese, xmlserializer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</ProductType>
+          <Width>50</Width>
+          <Length>50</Length>
+          <PacketSize>50</PacketSize>
+          <AmountTile>29</AmountTile>
+        </Product>
+        <Product>
+          <Articlenumber>10</Articlenumber>
+          <Articledescription>Fugenfüller</Articledescription>
+          <Price>20</Price>
+          <ProductType>xmlserializer.Models.Products.Hilfsmittel, xmlserializer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</ProductType>
+          <Productivity>20</Productivity>
+          <AmountFiller>2</AmountFiller>
         </Product>
       </Products>
     </Calculation>

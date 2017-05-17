@@ -83,30 +83,17 @@ namespace tfMarktMain
 
         private void CalculationListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            bool istTabBekannt = false;
             if (CalculationListBox.SelectedIndex != -1)
             {
                 Calculation calc = SelectedCustomer.Calculations.Values.ToArray()[CalculationListBox.SelectedIndex];
-                //prüfen, ob es den tab schon gibt
-                foreach (TabItem item in tabAnsicht.Items) 
+                if (calc.CalculationType.Equals(typeof(xmlserializer.Models.Calculations.Tapetenkalkulation)))
                 {
-                    if (item.Header.ToString().Equals(calc.Description)) 
-                    {
-                        istTabBekannt = true;
-                        break;
-                    }
+                    xmlserializer.Models.Calculations.Tapetenkalkulation tapCalc = (xmlserializer.Models.Calculations.Tapetenkalkulation)calc;
+                    TapetenTab tab = neueTapetenKalkulationTab(tapCalc.Description, tapCalc);
                 }
-                if (!istTabBekannt)
+                if (calc.CalculationType.Equals(typeof(xmlserializer.Models.Calculations.Fliesenkalkulation)))
                 {
-                    if (calc.CalculationType.Equals(typeof(xmlserializer.Models.Calculations.Tapetenkalkulation)))
-                    {
-                        xmlserializer.Models.Calculations.Tapetenkalkulation tapCalc = (xmlserializer.Models.Calculations.Tapetenkalkulation)calc;
-                        TapetenTab tab = neueTapetenKalkulationTab(tapCalc.Description, tapCalc);
-                    }
-                    if (calc.CalculationType.Equals(typeof(xmlserializer.Models.Calculations.Fliesenkalkulation)))
-                    {
-                        FliesenTab tab = neueFliesenKalkulationTab(calc);
-                    }
+                    FliesenTab tab = neueFliesenKalkulationTab(calc);
                 }
             }
         }
@@ -185,84 +172,132 @@ namespace tfMarktMain
 
         private TapetenTab neueTapetenKalkulationTab(String tabname, xmlserializer.Models.Calculations.Tapetenkalkulation kalkulation) 
         {
-            TapetenTab tab = new TapetenTab();
-            if (tapetenTabs > 0 && kalkulation==null)
+            bool istTabBekannt=false;
+            if (kalkulation != null)
             {
-                tab.Name = tabname + tapetenTabs;
-                tab.Header = tabname + tapetenTabs;
+                //prüfen, ob es den tab schon gibt
+                foreach (TabItem item in tabAnsicht.Items)
+                {
+                    if (item.ToolTip != null)
+                    {
+                        if (item.ToolTip.ToString().Equals(kalkulation.Identifier.ToString()))
+                        {
+                            istTabBekannt = true;
+                            break;
+                        }
+                    }
+                }
             }
-            else
+            if (!istTabBekannt)
             {
-                tab.Name = tabname;
-                tab.Header = tabname;
+                TapetenTab tab = new TapetenTab();
+                if (tapetenTabs > 0 && kalkulation == null)
+                {
+                    tab.Name = tabname + tapetenTabs;
+                    tab.Header = tabname + tapetenTabs;
+                }
+                else
+                {
+                    tab.Name = tabname;
+                    tab.Header = tabname;
+                    if (kalkulation != null)
+                    {
+                        tab.ToolTip = kalkulation.Identifier;
+                    }
+                }
+                ContextMenu TabContextMenue = new ContextMenu();
+                MenuItem SpeicherItem = new MenuItem();
+                SpeicherItem.Header = "Speichern";
+                SpeicherItem.Click += SpeicherItem_Click;
+                SpeicherItem.Tag = tab;
+                MenuItem VerwerfItem = new MenuItem();
+                VerwerfItem.Header = "Verwerfen";
+                VerwerfItem.Click += VerwerfItem_Click;
+                VerwerfItem.Tag = tab;
+                TabContextMenue.Items.Add(SpeicherItem);
+                TabContextMenue.Items.Add(VerwerfItem);
+                tab.ContextMenu = TabContextMenue;
+                tabList.Add(tab);
+                tabAnsicht.Items.Add(tab);
+                tabAnsicht.SelectedItem = tab;
+                Frame tabFrame = new Frame();
+                tab.setKalkulation(kalkulation);
+                tabFrame.Content = tab.getTapetenGUI().Content;
+                tab.Content = tabFrame;
+                tab.Focus();
+                tapetenTabs++;
+                return tab;
             }
-            ContextMenu TabContextMenue = new ContextMenu();
-            MenuItem SpeicherItem = new MenuItem();
-            SpeicherItem.Header = "Speichern";
-            SpeicherItem.Click += SpeicherItem_Click;
-            SpeicherItem.Tag = tab;
-            MenuItem VerwerfItem = new MenuItem();
-            VerwerfItem.Header = "Verwerfen";
-            VerwerfItem.Click += VerwerfItem_Click;
-            VerwerfItem.Tag = tab;
-            TabContextMenue.Items.Add(SpeicherItem);
-            TabContextMenue.Items.Add(VerwerfItem);
-            tab.ContextMenu = TabContextMenue;
-            tabList.Add(tab);
-            tabAnsicht.Items.Add(tab);
-            tabAnsicht.SelectedItem = tab;
-            Frame tabFrame = new Frame();
-            tab.setKalkulation(kalkulation);
-            tabFrame.Content = tab.getTapetenGUI().Content;
-            tab.Content = tabFrame;
-            tab.Focus();
-            tapetenTabs++;
-            return tab;
+            return null;
         }
 
         private FliesenTab neueFliesenKalkulationTab(Calculation kalkulation)
         {
-            String tabname = "Fliese";
+            bool istTabBekannt = false;
             if (kalkulation != null)
             {
-                tabname = kalkulation.Description;
+                //prüfen, ob es den tab schon gibt
+                foreach (TabItem item in tabAnsicht.Items)
+                {
+                    if (item.ToolTip != null)
+                    {
+                        if (item.ToolTip.ToString().Equals(kalkulation.Identifier.ToString()))
+                        {
+                            istTabBekannt = true;
+                            break;
+                        }
+                    }
+                }
             }
-            FliesenTab tab = new FliesenTab();
-            if (fliesenTabs > 0 && kalkulation == null)
+            if (!istTabBekannt)
             {
-                tab.Name = tabname + fliesenTabs;
-                tab.Header = tabname + fliesenTabs;
+                String tabname = "Fliese";
+                if (kalkulation != null)
+                {
+                    tabname = kalkulation.Description;
+                }
+                FliesenTab tab = new FliesenTab();
+                if (fliesenTabs > 0 && kalkulation == null)
+                {
+                    tab.Name = tabname + fliesenTabs;
+                    tab.Header = tabname + fliesenTabs;
+                }
+                else
+                {
+                    tab.Name = tabname;
+                    tab.Header = tabname;
+                    if (kalkulation != null)
+                    {
+                        tab.ToolTip = kalkulation.Identifier;
+                    }
+                }
+                ContextMenu TabContextMenue = new ContextMenu();
+                MenuItem SpeicherItem = new MenuItem();
+                SpeicherItem.Header = "Speichern";
+                SpeicherItem.Click += SpeicherItem_Click;
+                SpeicherItem.Tag = tab;
+                MenuItem VerwerfItem = new MenuItem();
+                VerwerfItem.Header = "Verwerfen";
+                VerwerfItem.Click += VerwerfItem_Click;
+                VerwerfItem.Tag = tab;
+                TabContextMenue.Items.Add(SpeicherItem);
+                TabContextMenue.Items.Add(VerwerfItem);
+                tab.ContextMenu = TabContextMenue;
+                tabList.Add(tab);
+                tabAnsicht.Items.Add(tab);
+                tabAnsicht.SelectedItem = tab;
+                Frame tabFrame = new Frame();
+                tabFrame.Content = tab.getFliesenGUI().Content;
+                if (kalkulation != null)
+                {
+                    tab.getFliesenGUI().ladeVorhandeneKalkulation(kalkulation);
+                }
+                tab.Content = tabFrame;
+                tab.Focus();
+                fliesenTabs++;
+                return tab;
             }
-            else
-            {
-                tab.Name = tabname;
-                tab.Header = tabname;
-            }
-            ContextMenu TabContextMenue = new ContextMenu();
-            MenuItem SpeicherItem = new MenuItem();
-            SpeicherItem.Header = "Speichern";
-            SpeicherItem.Click += SpeicherItem_Click;
-            SpeicherItem.Tag = tab;
-            MenuItem VerwerfItem = new MenuItem();
-            VerwerfItem.Header = "Verwerfen";
-            VerwerfItem.Click += VerwerfItem_Click;
-            VerwerfItem.Tag = tab;
-            TabContextMenue.Items.Add(SpeicherItem);
-            TabContextMenue.Items.Add(VerwerfItem);
-            tab.ContextMenu = TabContextMenue;
-            tabList.Add(tab);
-            tabAnsicht.Items.Add(tab);
-            tabAnsicht.SelectedItem = tab;
-            Frame tabFrame = new Frame();
-            tabFrame.Content = tab.getFliesenGUI().Content;
-            if (kalkulation != null)
-            {
-                tab.getFliesenGUI().ladeVorhandeneKalkulation(kalkulation);
-            }
-            tab.Content = tabFrame;
-            tab.Focus();
-            fliesenTabs++;
-            return tab;
+            return null;
         }
 
         private void cmdGesamtbetragAuf_Click(object sender, RoutedEventArgs e)
@@ -319,6 +354,7 @@ namespace tfMarktMain
                     tabItem.setKalkulation(tapetenKalkulation);
                     SelectedCustomer.addCalculation(tabItem.getKalkulation(), /*OVERRIDE SETZEN!*/ true); //Wirft Exception wenn die Kalkulation nicht vollständig initialisiert wurde
                     tabItem.Header = tapetenKalkulation.Description;
+                    tabItem.ToolTip = tapetenKalkulation.Identifier;
                     istDescriptionDa = true;
                 }
             }
@@ -335,6 +371,7 @@ namespace tfMarktMain
                     tabItem.setKalkulation(fliesenKalkulation);
                     SelectedCustomer.addCalculation(tabItem.getKalkulation(), /*OVERRIDE SETZEN!*/ true); //Wirft Exception wenn die Kalkulation nicht vollständig initialisiert wurde
                     tabItem.Header = fliesenKalkulation.Description;
+                    tabItem.ToolTip = fliesenKalkulation.Identifier;
                     istDescriptionDa = true;
                 }
             }
@@ -384,6 +421,7 @@ namespace tfMarktMain
             {
                 tabAnsicht.Items.Remove(tab);
             }
+            tabAnsicht.Items.Remove(GesamtKalkulationsTab);
         }
 
         private void cmdStarteAdministration_Click(object sender, RoutedEventArgs e)
