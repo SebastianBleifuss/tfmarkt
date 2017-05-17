@@ -70,6 +70,7 @@ namespace AdministrationDerProdukte
         {
             gridListe = new ObservableCollection<GridItem>();
             fuelleProduktListe();
+            gridListe.sortListe(g => g.ArtikelNr);
             ProdukteGrid.ItemsSource = gridListe;
             ProdukteGrid.Items.Refresh();
         }
@@ -106,6 +107,16 @@ namespace AdministrationDerProdukte
             selectedItem = (GridItem)ProdukteGrid.SelectedItem;
         }
 
-
+    }
+    public static class Extensions
+    {
+        public static void sortListe<TSource, TKey>(this ObservableCollection<TSource> collection, Func<TSource, TKey> keyselector)
+        {
+            List<TSource> sorted = collection.OrderBy(keyselector).ToList();
+            for (int i = 0; i < sorted.Count; i++)
+            {
+                collection.Move(collection.IndexOf(sorted[i]), i);
+            }
+        }
     }
 }
