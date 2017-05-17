@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Product>
-  <Articlenumber>12</Articlenumber>
-  <Articledescription>Wolkentapete</Articledescription>
-  <Price>5,99</Price>
+  <Articlenumber>123478</Articlenumber>
+  <Articledescription>Bodenfliese Weiß</Articledescription>
+  <Price>17,95</Price>
   <ProductType>xmlserializer.Models.Products.Tapete, xmlserializer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</ProductType>
-  <Width>0,53</Width>
-  <Length>10,05</Length>
-  <Rapport>0,73</Rapport>
+  <Width>60</Width>
+  <Length>60</Length>
+  <Rapport>60</Rapport>
 </Product>

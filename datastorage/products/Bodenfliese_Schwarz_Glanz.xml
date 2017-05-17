@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Product>
+  <Articlenumber>123479</Articlenumber>
+  <Articledescription>Bodenfliese Schwarz Glanz</Articledescription>
+  <Price>19,99</Price>
+  <ProductType>xmlserializer.Models.Products.Fliese, xmlserializer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</ProductType>
+  <Width>60</Width>
+  <Length>60</Length>
+  <PacketSize>60</PacketSize>
+</Product>
